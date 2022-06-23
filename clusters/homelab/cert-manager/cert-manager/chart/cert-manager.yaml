@@ -40,6 +40,10 @@ spec:
       tolerations:
       - key: "arm"
         operator: "Exists"
+    podDnsConfig:
+      nameservers:
+        - 1.1.1.1
+        - 8.8.8.8
     prometheus:
       enabled: true
       servicemonitor:
