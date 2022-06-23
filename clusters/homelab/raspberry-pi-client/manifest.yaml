@@ -1,0 +1,62 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raspberry-pi-client
+spec:
+  selector:
+    matchLabels:
+      app: raspberry-pi-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: raspberry-pi-client
+    spec:
+      containers:
+      - name: raspberry-pi-client
+        image: ghcr.io/rustygreen/raspberry-pi-client:main
+        imagePullPolicy: "Always"
+        ports:
+          - containerPort: 80
+        env:
+          # - name: RPC_SERVER
+          #   value: 'https://pi-basement.rusty.green'
+          - name: RPC_CONFIG
+            value: '{"servers": [{"title": "Basement Pi","url": "https://pi-basement.rusty.green","pinLabels": {"11": "Cows water","32": "Cows water drain","15": "Chickens water","36": "Chickens water drain"}}]}'
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: raspberry-pi-client
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app:  raspberry-pi-client
+---
+# Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: raspberry-pi-client
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-redirect-https@kubernetescrd
+spec:
+  rules:
+    - host: pi.rusty.green
+      http:
+        paths:
+          - backend:
+              service:
+                name: raspberry-pi-client
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - pi.rusty.green

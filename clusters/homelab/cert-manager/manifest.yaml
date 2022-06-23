@@ -12,7 +12,7 @@ metadata:
   name: jetstack
   namespace: cert-manager
 spec:
-  interval: 1h
+  interval: 1d
   url: https://charts.jetstack.io/
 ---
 # Release.
