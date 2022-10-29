@@ -1,0 +1,28 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: cluster-settings
+    namespace: flux-system
+stringData:
+    TIMEZONE: ENC[AES256_GCM,data:x+TLCjIl+FMy27NDSXfjtQ==,iv:xlph7gwRCZ8zbWaCMLnyLCQHu3lVdqAr3izrYbueKFg=,tag:E5TyVqnDAKWrgQW1qrM6eQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1q50xz97syrgwskahjc7qrcn6wsl2a3je2n88fd0rsf8jk07q23usdw2a0w
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxdHlKeTVOcnpjSEplVU96
+            US91dkh4bUxvRGdiby9jOUN5ekR4Zi9RQzF3CkNnWWRCY0NVOGExT2Z3RFIwRlRM
+            SFh0ZnJMYnNCclRadTlPNXZ5dGovVE0KLS0tIC9mSzN0Lzk0Q2xhL0EzY1pnTUlX
+            dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
+            qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-10-24T17:33:02Z"
+    mac: ENC[AES256_GCM,data:/Ht5OIDd6QJgC+zhI0uF56b6A2JTuB+afebSVKvHrOopQZzQRN3lQbsip2PZcirY4rkby8QS66WPqknfYdQIUviJQAHnjcQE1afQ+9RAjji2acZYN1VgIVL6sVz/jHwZ6dd3p8dTdXYmIrbC+qckvz0zdjm9S6t6Zd3jUb4kZTE=,iv:Y3wgsBOYk0Khe5rLKUz7ZcdgGpE70Gw2tPE9UJJUP/g=,tag:cd+h1o8ys55oWNlkPDU9yg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3

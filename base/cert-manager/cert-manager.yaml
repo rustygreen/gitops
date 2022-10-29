@@ -1,0 +1,70 @@
+---
+# Repositories
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cert-manager-helm-repositories
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: ./base/cert-manager/helm-repositories
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
+# CRDs
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cert-manager-crds
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: ./base/cert-manager/crds
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  dependsOn:
+    - name: cert-manager-helm-repositories
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
+# Cluster Issuers
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cert-manager-cluster-issuers
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: ./base/cert-manager/cluster-issuers
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  dependsOn:
+    - name: cert-manager-crds
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings

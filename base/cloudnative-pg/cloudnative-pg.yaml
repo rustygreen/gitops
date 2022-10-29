@@ -1,0 +1,46 @@
+---
+# Charts
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cloud-native-pg-charts
+  namespace: flux-system
+spec:
+  interval: ${KUSTOMIZATION_INTERVAL}
+  path: ./base/cloudnative-pg/charts
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
+# Workloads
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cloud-native-pg
+  namespace: flux-system
+spec:
+  interval: ${KUSTOMIZATION_INTERVAL}
+  path: ./base/cloudnative-pg/workloads
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  dependsOn:
+    - name: cloud-native-pg-charts
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings

@@ -1,0 +1,24 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: flux-cluster
+  namespace: flux-system
+spec:
+  interval: 10m
+  ref:
+    branch: main
+  url: https://github.com/rustygreen/gitops
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: flux-cluster
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: ./clusters/homelab/production/flux-system
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
