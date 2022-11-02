@@ -7,6 +7,8 @@ metadata:
 stringData:
     TIMEZONE: ENC[AES256_GCM,data:x+TLCjIl+FMy27NDSXfjtQ==,iv:xlph7gwRCZ8zbWaCMLnyLCQHu3lVdqAr3izrYbueKFg=,tag:E5TyVqnDAKWrgQW1qrM6eQ==,type:str]
     INGRESS_CLASS: ENC[AES256_GCM,data:Y3Sk2kM=,iv:Dx8d8nFs6xQNdn8IiMGvXfngN91qGtmBWbQwSApZq/c=,tag:xRGlt58UaCDdjwhanGlGmQ==,type:str]
+    HELM_RELEASE_INTERVAL: ENC[AES256_GCM,data:lOad,iv:MWdndvkRnRmrl5w4xdzKte+kRckO80uL9B24nqhR4zQ=,tag:HnKLkXDlrPnQI9qE20f2rA==,type:str]
+    KUSTOMIZATION_INTERVAL: ENC[AES256_GCM,data:a9nb,iv:p3jGSthMUVeRbK9GlE9Qg37fZFGAjzPNN6Jc06lRVJE=,tag:MGfeG293kxt2OBgUvzYzRQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -22,8 +24,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-10-25T21:04:41Z"
-    mac: ENC[AES256_GCM,data:mX/c6G44wFL4L3SWk/HJe/MahF57cFbqbQdIIAtcsl1QVp7vRTGEfdZ735QQ4DiP30qnCGesbTB6P0N7Z4PxsEIHBQU9eCJwyZFegGuAwi78B21adB57YczRFjV/ha/w51YtPvIfmeY5lVci8sRh2XXxmhpf5bUsdl26MCcG51w=,iv:YE/3PJUVg9N/wo+DPlRXWhUOgXkyCkd7d42bkiftGlc=,tag:nAcZ1Du/oiRiqa+FLskkJg==,type:str]
+    lastmodified: "2022-11-02T20:29:19Z"
+    mac: ENC[AES256_GCM,data:PvCTWNusYP/pdT/aquPSGJcW9ZDWxwjBU0p0vlIjpXCQ8TWELB44q5BP8IAOnOhrKwNfJZGNI7C1eW/J6yGWdard738bKxh+gDPNJ4ZXtxIl+dqPWqb88u+39UvCsLm5dgRqz2LykYsc42krjSjyGhyI26P7Ci8f0wsYDhLXVvo=,iv:KMox5QZR/AxR1fT594eJ9mQVz+nk8JX83DQi3iOGnYg=,tag:sAl/xh+NLqWm5xetEBHECg==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
