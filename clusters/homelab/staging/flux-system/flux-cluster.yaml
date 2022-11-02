@@ -9,6 +9,8 @@ spec:
   ref:
     branch: main
   url: https://github.com/rustygreen/gitops
+  secretRef:
+    name: repo-ssh-key
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
