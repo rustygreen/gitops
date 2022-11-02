@@ -8,7 +8,7 @@ spec:
   interval: 10m
   ref:
     branch: main
-  url: https://github.com/rustygreen/gitops
+  url: ssh://git@github.com:rustygreen/gitops.git
   secretRef:
     name: repo-ssh-key
 ---
