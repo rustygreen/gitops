@@ -12,3 +12,12 @@ sops --decrypt clusters/homelab/ssh-key.sops.yaml | kubectl apply -f -
 # 4) Link repository
 kubectl apply --kustomize clusters/homelab/production/
 ```
+
+## Maintenance
+
+```bash
+# Reconcile
+flux reconcile -n flux-system source git flux-cluster
+
+flux reconcile -n flux-system kustomization flux-cluster
+```
