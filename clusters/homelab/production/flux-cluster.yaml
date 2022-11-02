@@ -11,7 +11,7 @@ spec:
   url: ssh://git@github.com/rustygreen/gitops
   # NOTE: we need to use libgit2 instead of the default go-git because Azure Devops support:
   # https://github.com/fluxcd/source-controller/blob/main/docs/spec/v1beta2/gitrepositories.md#git-implementation
-  gitImplementation: libgit2
+  # gitImplementation: libgit2
   secretRef:
     name: repo-ssh-key
 ---
@@ -22,7 +22,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ./clusters/homelab/production/flux-system
+  path: ./clusters/homelab/production
   prune: true
   sourceRef:
     kind: GitRepository
