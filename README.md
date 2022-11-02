@@ -21,3 +21,8 @@ flux reconcile -n flux-system source git flux-cluster
 
 flux reconcile -n flux-system kustomization flux-cluster
 ```
+
+# Local
+```bash
+k3d cluster create homelab
+```
