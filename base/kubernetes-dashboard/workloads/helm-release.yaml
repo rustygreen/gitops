@@ -1,30 +1,9 @@
-# ---
-# # TODO: Update from https://github.com/angelnu/k8s-gitops/blob/main/core/kubernetes-dashboard/release.yaml
-# apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# kind: HelmRelease
-# metadata:
-#   name: kubernetes-dashboard
-# spec:
-#   interval: ${HELM_RELEASE_INTERVAL}
-#   chart:
-#     spec:
-#       # renovate: registryUrl=https://kubernetes.github.io/dashboard
-#       chart: kubernetes-dashboard
-#       version: 5.11.0
-#       sourceRef:
-#         kind: HelmRepository
-#         name: kubernetes-dashboard
-#         namespace: flux-system
-#       interval: ${HELM_RELEASE_INTERVAL}
-
-
-
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kubernetes-dashboard
-  namespace: default
+  namespace: kubernetes-dashboard
 spec:
   interval: ${HELM_RELEASE_INTERVAL}
   chart:
@@ -37,32 +16,31 @@ spec:
         name: kubernetes-dashboard
         namespace: flux-system
       interval: ${HELM_RELEASE_INTERVAL}
+  # See: https://github.com/angelnu/k8s-gitops/blob/main/core/kubernetes-dashboard/release.yaml
   values:
-    image:
-      name: kubernetesui/dashboard
-      tag: v2.3.0
-      pullPolicy: IfNotPresent
-    
-    # ingress:
-    #   enabled: true
-    #   annotations:
-    #     hajimari.io/enable: "true"
-    #     hajimari.io/icon: logos:kubernetes
-    #     hajimari.io/info: Kubernetes dashboard
-    #     hajimari.io/group: admin
-    #     nginx.ingress.kubernetes.io/proxy-body-size: "100m"
-    #     nginx.ingress.kubernetes.io/configuration-snippet: |
-    #       auth_request_set $required_groups 'kubernetes_dashboard';
-    #   hosts:
-    #     - dashboard.${CLUSTER_DOMAIN}
-    #     - dashboard.home.${CLUSTER_DOMAIN}
-    #   tls:
-    #   - hosts:
-    #     - dashboard.${CLUSTER_DOMAIN}
-    #     - dashboard.home.${CLUSTER_DOMAIN}
+    # image:
+    #   name: kubernetesui/dashboard
+    #   tag: v2.3.0
+    #   pullPolicy: IfNotPresent
+    ingress:
+      enabled: true
+      annotations:
+        hajimari.io/enable: "true"
+        hajimari.io/icon: logos:kubernetes
+        hajimari.io/info: Kubernetes dashboard
+        hajimari.io/group: admin
+        nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+        # TODO: Implement authorization at edge - @russell.green
+        # nginx.ingress.kubernetes.io/configuration-snippet: |
+        #   auth_request_set $required_groups 'kubernetes_dashboard';
+      hosts:
+        - &host dashboard.${PRIMARY_DOMAIN}
+      tls:
+      - hosts:
+        - *host
     extraArgs:
       - --enable-skip-login
       - --disable-settings-authorizer
       - --enable-insecure-login
-    # metricsScraper:
-    #   enabled: true
+    metricsScraper:
+      enabled: true
