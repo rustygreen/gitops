@@ -17,7 +17,7 @@ spec:
       interval: ${HELM_RELEASE_INTERVAL:=24h}
   dependsOn:
     - name: cert-manager
-      namespace: kube-system
+      namespace: ${CERT_MANAGER_NAMESPACE:=cert-manager}
   values:
     controller:
       replicaCount: 1
