@@ -3,26 +3,26 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: cloudflare-api-key
-    namespace: kube-system
+    namespace: ${CERT_MANAGER_NAMESPACE:=cert-manager}
 stringData:
-    api-key: ENC[AES256_GCM,data:gL444w6oKAKAl80z4bk15wIQolG24mgfeofOv2yvAqzWgW6VAQ==,iv:KPlg1Snod2DsF7D26QzOJfCulvc9zOPjmegMGq8Jey8=,tag:WWpc2VPZyoYzLFYtt7Xnpg==,type:str]
+    api-key: ENC[AES256_GCM,data:1sZN8jTgMhGGJJqNpdVmI7kK8uZQtqdrvaNF7U72/yhDd1Ipzg==,iv:MtP1ggt5rHFCvNmvPb9w3pKkuCOHXwRGNqqODOHCdfg=,tag:tDYalK1C1FzX8bHvbqlVNQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age:
-        - recipient: age17sywxrcz450j22aff3xdwfadggx5w3m0ejrqcvg9uweva55ryv7sqg2hjd
+        - recipient: age1q50xz97syrgwskahjc7qrcn6wsl2a3je2n88fd0rsf8jk07q23usdw2a0w
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBsMHBvbW1sY2pRV2FMYjQy
-            ekEwcjBPVy9KUXFGbTBncVJKOEFZQUxqYWdrCjdwb1dJRkZjakFlNHBDNndIQ01a
-            OW50VGNuelIyNHJ3NlMvZFFCKzhPTXMKLS0tIFZEVjI0Tzh4MUd6MGErZzNzcGZR
-            R0tSSWMrYk5QUkNWOFhvN2lzcUNvbjgKWqmgW67AzY8w599No0JJNlxehMJi+Wlz
-            pf4i+gJW47urXl/hpmPhWa0n74QUGikq1fufg+U135ao8jy4bkwl0A==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxdHlKeTVOcnpjSEplVU96
+            US91dkh4bUxvRGdiby9jOUN5ekR4Zi9RQzF3CkNnWWRCY0NVOGExT2Z3RFIwRlRM
+            SFh0ZnJMYnNCclRadTlPNXZ5dGovVE0KLS0tIC9mSzN0Lzk0Q2xhL0EzY1pnTUlX
+            dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
+            qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-08-19T18:45:28Z"
-    mac: ENC[AES256_GCM,data:Lz+sC0qXqzCwO8d/6OANSvFi+aaeLWd3lOrPSD2lO8fAv047PE5CmgwnaDsKxe3cAAYU+UyHRQcVGMU3ijUPhWWcX8FpukzAKgqxeY8KThdb0ekgrlCxfdKahsidz+wDnTFcy2a4hkT2GFE1SB9j2pkgRoxspyfEb7BlYPyYbYs=,iv:WLjsrn1vEcYGPFEPxdg6a6OqPVlOzxFbBulguAB3UIQ=,tag:0X61ZTHcm0ZMmrvgcpul5Q==,type:str]
+    lastmodified: "2022-11-03T13:11:21Z"
+    mac: ENC[AES256_GCM,data:5qMZp+ZbPo6+s52sm+Q1SaZhd8R5EepO3GOOlsk1ip+MrKXzJsOZhNLBdKAhx2/I0xBG/UUaeP0dyW6j6dRJhdMRaTC1fmV5NhQp/xm7tLIDUfdnt5ab90S2m7k4U8DIZp0uxtWJsVSCUibiO31t94JEj6n+VgTasoc3RllGo/g=,iv:o2BkJ7ljBg+CJyTQ6vHgtxtDcXFWvtONM8blVT0fG14=,tag:3X9AB26kYVz5JiReFrf74g==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
