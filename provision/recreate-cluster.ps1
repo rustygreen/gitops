@@ -2,7 +2,7 @@
 echo "Deleting local cluster";
 k3d cluster delete homelab;
 echo "Creating local cluster";
-k3d cluster create homelab;
+k3d cluster create homelab --api-port 6550 -p "8081:80@loadbalancer" --agents 2;
 
 # minkube
 # echo "Deleting local cluster";

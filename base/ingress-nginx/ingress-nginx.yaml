@@ -12,6 +12,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
+  dependsOn:
+    - name: settings
   decryption:
     provider: sops
     secretRef:
@@ -35,6 +37,7 @@ spec:
     kind: GitRepository
     name: flux-cluster
   dependsOn:
+    - name: settings
     - name: ingress-nginx-charts
   decryption:
     provider: sops
