@@ -26,6 +26,7 @@ spec:
           value: "${TIMEZONE:=UTC}"
       service:
         annotations:
+          # TODO: Figure out how to omit this or set a better default - @russell.green
           metallb.universe.tf/loadBalancerIPs: |-
             ${METALLB_INGRESS_ADDR:=0.0.0.0}
         externalTrafficPolicy: Local
@@ -37,8 +38,8 @@ spec:
         client-header-timeout: 120
         client-body-buffer-size: "100M"
         client-body-timeout: 120
-        custom-http-errors: |-
-          401,403,404,500,501,502,503
+        # custom-http-errors: |-
+        #   ${CUSTOM_HTTP_ERRORS:=401,403,404,500,501,502,503}
         enable-brotli: "true"
         forwarded-for-header: "CF-Connecting-IP"
         hsts-max-age: "31449600"
