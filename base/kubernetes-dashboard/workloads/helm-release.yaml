@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kubernetes-dashboard
-  namespace: ${KUBE_DASH_NAMESPACE:=kube-dashboard}
+  namespace: ${KUBE_DASH_NAMESPACE:=kubernetes-dashboard}
 spec:
   interval: ${HELM_RELEASE_INTERVAL:=24h}
   chart:
@@ -40,19 +40,3 @@ spec:
       - --enable-insecure-login
     metricsScraper:
       enabled: true
----
-# kubectl get serviceaccount | grep dash
-# kubectl create clusterrolebinding dashboard-admin-sa --clusterrole=cluster-admin --serviceaccount=system:kubernetes-dashboard
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: kubernetes-dashboard
-  namespace: system
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-  - kind: ServiceAccount
-    name: kubernetes-dashboard
-    namespace: system
