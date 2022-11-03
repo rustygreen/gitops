@@ -1,10 +1,11 @@
-
-# echo "Deleting cluster homelab";
-# k3d cluster delete homelab;
-# echo "Creating cluster homelab";
-# k3d cluster create homelab;
-
+# k3d
 echo "Deleting local cluster";
-minikube delete --all
+k3d cluster delete homelab;
 echo "Creating local cluster";
-minikube start
+k3d cluster create homelab;
+
+# minkube
+# echo "Deleting local cluster";
+# minikube delete --all
+# echo "Creating local cluster";
+# minikube start
