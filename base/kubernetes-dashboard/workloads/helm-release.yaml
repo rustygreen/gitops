@@ -5,7 +5,7 @@ metadata:
   name: kubernetes-dashboard
   namespace: kubernetes-dashboard
 spec:
-  interval: ${HELM_RELEASE_INTERVAL}
+  interval: ${HELM_RELEASE_INTERVAL:=24h}
   chart:
     spec:
       # renovate: registryUrl=https://kubernetes.github.io/dashboard
@@ -15,14 +15,13 @@ spec:
         kind: HelmRepository
         name: kubernetes-dashboard
         namespace: flux-system
-      interval: ${HELM_RELEASE_INTERVAL}
+      interval: ${HELM_RELEASE_INTERVAL:=24h}
   # See: https://github.com/angelnu/k8s-gitops/blob/main/core/kubernetes-dashboard/release.yaml
   values:
     # image:
     #   name: kubernetesui/dashboard
     #   tag: v2.3.0
     #   pullPolicy: IfNotPresent
-    <#if PRIMARY_DOMAIN>
     ingress:
       enabled: true
       annotations:
@@ -39,7 +38,6 @@ spec:
       tls:
       - hosts:
         - *host
-    </#if>
     extraArgs:
       - --enable-skip-login
       - --disable-settings-authorizer

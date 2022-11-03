@@ -5,7 +5,7 @@ metadata:
   name: &app echo-server
   namespace: default
 spec:
-  interval: ${HELM_RELEASE_INTERVAL}
+  interval: ${HELM_RELEASE_INTERVAL:=24h}
   chart:
     spec:
       chart: kah-common-chart
@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
-      interval: ${HELM_RELEASE_INTERVAL}
+      interval: ${HELM_RELEASE_INTERVAL:=24h}
   install:
     createNamespace: true
     remediation:
