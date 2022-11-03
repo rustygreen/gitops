@@ -27,7 +27,7 @@ spec:
       service:
         annotations:
           metallb.universe.tf/loadBalancerIPs: |-
-            ${METALLB_INGRESS_ADDR:=""}
+            ${METALLB_INGRESS_ADDR:=0.0.0.0}
         externalTrafficPolicy: Local
       publishService:
         enabled: true
