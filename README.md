@@ -26,3 +26,9 @@ flux reconcile -n flux-system kustomization flux-cluster
 ```bash
 k3d cluster create homelab
 ```
+
+## Troubleshooting
+
+```yaml
+kubectl describe -n flux-system gitrepository flux-cluster
+```
