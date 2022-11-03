@@ -1,24 +1,3 @@
-# Charts
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: kubernetes-dashboard-charts
-#   namespace: flux-system
-# spec:
-#   interval: ${KUSTOMIZATION_INTERVAL}
-#   path: ./base/kubernetes-dashboard/charts
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-cluster
-#   decryption:
-#     provider: sops
-#     secretRef:
-#       name: sops-age
-#   postBuild:
-#     substituteFrom:
-#       - kind: Secret
-#         name: cluster-settings
 ---
 # Workloads
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -27,7 +6,7 @@ metadata:
   name: kubernetes-dashboard
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 1h
   path: ./base/kubernetes-dashboard/workloads
   prune: true
   sourceRef:

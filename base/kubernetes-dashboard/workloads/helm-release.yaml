@@ -22,6 +22,7 @@ spec:
     #   name: kubernetesui/dashboard
     #   tag: v2.3.0
     #   pullPolicy: IfNotPresent
+    <#if PRIMARY_DOMAIN>
     ingress:
       enabled: true
       annotations:
@@ -38,6 +39,7 @@ spec:
       tls:
       - hosts:
         - *host
+    </#if>
     extraArgs:
       - --enable-skip-login
       - --disable-settings-authorizer

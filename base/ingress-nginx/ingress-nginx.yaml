@@ -6,7 +6,7 @@ metadata:
   name: ingress-nginx-charts
   namespace: flux-system
 spec:
-  interval: ${KUSTOMIZATION_INTERVAL}
+  interval: 1h
   path: ./base/ingress-nginx/charts
   prune: true
   sourceRef:
@@ -25,17 +25,17 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cloud-native-pg
+  name: ingress-nginx
   namespace: flux-system
 spec:
-  interval: ${KUSTOMIZATION_INTERVAL}
+  interval: 1h
   path: ./base/ingress-nginx/workloads
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-cluster
   dependsOn:
-    - name: cloud-native-pg-charts
+    - name: ingress-nginx-charts
   decryption:
     provider: sops
     secretRef:

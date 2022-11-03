@@ -5,7 +5,7 @@ metadata:
   name: settings
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 1h
   path: ./clusters/homelab/production/settings
   prune: true
   sourceRef:

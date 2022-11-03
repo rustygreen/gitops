@@ -8,7 +8,7 @@ metadata:
   name: wildcard-certificate
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 1h
   path: ./base/wildcard-certificate/certificate
   prune: true
   sourceRef:
