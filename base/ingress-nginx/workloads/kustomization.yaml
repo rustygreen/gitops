@@ -5,7 +5,6 @@ namespace: networking
 resources:
   - namespace.yaml
   - helm-release.yaml
-  - wildcard-certificate.yaml
 configMapGenerator:
   - name: cloudflare-proxied-networks
     files:
