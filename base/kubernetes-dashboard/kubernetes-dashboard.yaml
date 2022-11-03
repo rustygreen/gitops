@@ -12,8 +12,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # dependsOn:
-  #   - name: kubernetes-dashboard-charts
   decryption:
     provider: sops
     secretRef:

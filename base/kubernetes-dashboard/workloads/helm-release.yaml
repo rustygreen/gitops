@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kubernetes-dashboard
-  namespace: ${KUB_DASH_NAMESPACE:=kubernetes-dashboard}
+  namespace: ${KUBE_DASH_NAMESPACE:=kube-dashboard}
 spec:
   interval: ${HELM_RELEASE_INTERVAL:=24h}
   chart:
@@ -18,10 +18,6 @@ spec:
       interval: ${HELM_RELEASE_INTERVAL:=24h}
   # See: https://github.com/angelnu/k8s-gitops/blob/main/core/kubernetes-dashboard/release.yaml
   values:
-    # image:
-    #   name: kubernetesui/dashboard
-    #   tag: v2.3.0
-    #   pullPolicy: IfNotPresent
     ingress:
       enabled: true
       annotations:
@@ -34,7 +30,7 @@ spec:
         # nginx.ingress.kubernetes.io/configuration-snippet: |
         #   auth_request_set $required_groups 'kubernetes_dashboard';
       hosts:
-        - &host dashboard.${PRIMARY_DOMAIN}
+        - &host kube-dash.${PRIMARY_DOMAIN}
       tls:
       - hosts:
         - *host

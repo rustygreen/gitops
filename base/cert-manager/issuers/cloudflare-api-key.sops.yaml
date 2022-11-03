@@ -1,0 +1,28 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: cloudflare-api-key
+    namespace: kube-system
+stringData:
+    api-key: ENC[AES256_GCM,data:gL444w6oKAKAl80z4bk15wIQolG24mgfeofOv2yvAqzWgW6VAQ==,iv:KPlg1Snod2DsF7D26QzOJfCulvc9zOPjmegMGq8Jey8=,tag:WWpc2VPZyoYzLFYtt7Xnpg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age17sywxrcz450j22aff3xdwfadggx5w3m0ejrqcvg9uweva55ryv7sqg2hjd
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBsMHBvbW1sY2pRV2FMYjQy
+            ekEwcjBPVy9KUXFGbTBncVJKOEFZQUxqYWdrCjdwb1dJRkZjakFlNHBDNndIQ01a
+            OW50VGNuelIyNHJ3NlMvZFFCKzhPTXMKLS0tIFZEVjI0Tzh4MUd6MGErZzNzcGZR
+            R0tSSWMrYk5QUkNWOFhvN2lzcUNvbjgKWqmgW67AzY8w599No0JJNlxehMJi+Wlz
+            pf4i+gJW47urXl/hpmPhWa0n74QUGikq1fufg+U135ao8jy4bkwl0A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-08-19T18:45:28Z"
+    mac: ENC[AES256_GCM,data:Lz+sC0qXqzCwO8d/6OANSvFi+aaeLWd3lOrPSD2lO8fAv047PE5CmgwnaDsKxe3cAAYU+UyHRQcVGMU3ijUPhWWcX8FpukzAKgqxeY8KThdb0ekgrlCxfdKahsidz+wDnTFcy2a4hkT2GFE1SB9j2pkgRoxspyfEb7BlYPyYbYs=,iv:WLjsrn1vEcYGPFEPxdg6a6OqPVlOzxFbBulguAB3UIQ=,tag:0X61ZTHcm0ZMmrvgcpul5Q==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3

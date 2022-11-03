@@ -1,13 +1,13 @@
 ---
-# Repositories
+# Charts
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cert-manager-helm-repositories
+  name: cert-manager-charts
   namespace: flux-system
 spec:
   interval: 1h
-  path: ./base/cert-manager/helm-repositories
+  path: ./base/cert-manager/charts
   prune: true
   sourceRef:
     kind: GitRepository
@@ -21,21 +21,21 @@ spec:
       - kind: Secret
         name: cluster-settings
 ---
-# CRDs
+# Controller
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cert-manager-crds
+  name: cert-manager
   namespace: flux-system
 spec:
   interval: 1h
-  path: ./base/cert-manager/crds
+  path: ./base/cert-manager/controller
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-cluster
   dependsOn:
-    - name: cert-manager-helm-repositories
+    - name: cert-manager-charts
   decryption:
     provider: sops
     secretRef:
@@ -49,17 +49,18 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cert-manager-cluster-issuers
+  name: cert-manager-issuers
   namespace: flux-system
 spec:
   interval: 1h
-  path: ./base/cert-manager/cluster-issuers
+  path: ./base/cert-manager/issuers
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-cluster
   dependsOn:
-    - name: cert-manager-crds
+    - name: cert-manager-charts
+    - name: cert-manager
   decryption:
     provider: sops
     secretRef:

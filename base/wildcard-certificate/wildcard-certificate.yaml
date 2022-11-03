@@ -15,7 +15,7 @@ spec:
     kind: GitRepository
     name: flux-cluster
   dependsOn:
-    - name: cert-manager-cluster-issuers
+    - name: cert-manager-issuers
   decryption:
     provider: sops
     secretRef:

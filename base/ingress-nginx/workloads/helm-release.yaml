@@ -3,25 +3,18 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: ingress-nginx
-  namespace: networking
+  namespace: ${NGINX_NAMESPACE:=nginx}
 spec:
-  interval: 15m
+  interval: ${HELM_RELEASE_INTERVAL:=24h}
   chart:
     spec:
       chart: ingress-nginx
-      version: 4.2.1
+      version: 4.3.0
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
         namespace: flux-system
-      interval: 15m
-  install:
-    createNamespace: true
-    remediation:
-      retries: 5
-  upgrade:
-    remediation:
-      retries: 5
+      interval: ${HELM_RELEASE_INTERVAL:=24h}
   dependsOn:
     - name: cert-manager
       namespace: kube-system
@@ -30,7 +23,7 @@ spec:
       replicaCount: 1
       extraEnvs:
         - name: TZ
-          value: "${TIMEZONE}"
+          value: "${TIMEZONE:=UTC}"
       service:
         annotations:
           metallb.universe.tf/loadBalancerIPs: |-
@@ -57,7 +50,7 @@ spec:
       metrics:
         enabled: false
       extraArgs:
-        default-ssl-certificate: "networking/${PRIMARY_DOMAIN/./-}-tls"
+        default-ssl-certificate: "cert-manager/${PRIMARY_DOMAIN/./-}-tls"
       podAnnotations:
         configmap.reloader.stakater.com/reload: "cloudflare-proxied-networks"
       resources:
@@ -70,7 +63,7 @@ spec:
       enabled: true
       image:
         repository: ghcr.io/tarampampam/error-pages
-        tag: 2.17.0
+        tag: 2.18.0
       replicaCount: 1
       extraEnvs:
         - name: TEMPLATE_NAME

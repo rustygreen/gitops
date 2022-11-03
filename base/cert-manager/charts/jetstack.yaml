@@ -5,5 +5,5 @@ metadata:
   name: jetstack
   namespace: flux-system
 spec:
-  interval: ${HELM_REPOSITORY_INTERVAL}
+  interval: ${HELM_REPOSITORY_INTERVAL:=1h}
   url: https://charts.jetstack.io/

@@ -2,4 +2,4 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ${KUB_DASH_NAMESPACE:=kubernetes-dashboard}
+  name: ${KUBE_DASH_NAMESPACE:=kube-dashboard}
