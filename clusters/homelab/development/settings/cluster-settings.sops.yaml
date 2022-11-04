@@ -11,7 +11,7 @@ stringData:
     HELM_RELEASE_INTERVAL: ENC[AES256_GCM,data:lOad,iv:MWdndvkRnRmrl5w4xdzKte+kRckO80uL9B24nqhR4zQ=,tag:HnKLkXDlrPnQI9qE20f2rA==,type:str]
     PRIMARY_DOMAIN: ENC[AES256_GCM,data:Pi6Z6vD9VGax/U0=,iv:02vY8jYTqBgy0ABh9yT8lMSL4OiYTYMQo1UNm1GNRkw=,tag:GeUAPrTcVBFr9pE4ga+txw==,type:str]
     CLOUDFLARE_EMAIL: ENC[AES256_GCM,data:GYfn/EEpmaE8J0mgO6UBfmQmwtU=,iv:I0d3VcvXsW8MPwEHFsuRCgDrc0ArVsciGDxPeFCLp9Y=,tag:u3Cm1QcTY+bfu+36cWBhcA==,type:str]
-    INGRESS_REPLICA_COUNT: 1
+    INGRESS_REPLICA_COUNT: ENC[AES256_GCM,data:+Q==,iv:jojX+KbIdt52lekQreFpWrtpxy6Ej7urrKrWNd64eug=,tag:QZpIvKgSlkchd7SdsL+DBQ==,type:int]
 sops:
     kms: []
     gcp_kms: []
@@ -27,8 +27,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-11-03T12:47:33Z"
-    mac: ENC[AES256_GCM,data:YhqJkNVifW2NDWQaF1UGTW7yREpDsBbhE2efgpOg1rRrOE2H0JDsR3xYeW+nWcjZEOIHNQe1oVf5bQQremwh0BXhE46YNJT8+grZ+HzSzy46xmxSv9DHDgOCsoblwJlihPpF2JtSQVX1cNEPkSsgS1InlZPEpiDezYN/gAXrOMY=,iv:ZD5/74QJ1gSKW4iv5a5ihpVC8+H1WJI3Qa/5yN/tdPI=,tag:zwx/8nbZ3583Pmemv7kTfw==,type:str]
+    lastmodified: "2022-11-04T19:42:40Z"
+    mac: ENC[AES256_GCM,data:XLj0Vx9zEoF3qB3hpW/N1QlaEgF3rQ57dUr6Wly4Yk5VvtOIKvpIHlk3NbVNFR93H09zE+pi7xuInmuz80IXrA+fNdJ14XvmWf2zzYP1+T7xTp6UiEs0Hy9oye2iaLcjKL4ysLwclAPUgVLiPMRrBLQhUkvZbO4H98aw7/L9P14=,iv:WKRsZQWy8Sl9L0h5MAOgfGXhiDKcCTg5idtJIvoY9Ro=,tag:zCIDpe+7aRsg23+LRj0d1w==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
