@@ -2,8 +2,9 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: ${POSTGRES_CLUSTER_NAME:=postgres-cluster}
+  namespace: ${CLOUDNATIVE_PG_NAMESPACE:=cloudnative-pg}
 spec:
   instances: 3
   primaryUpdateStrategy: unsupervised
   storage:
-    size: 0.75Gi
+    size: 1Gi
