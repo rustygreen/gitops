@@ -20,7 +20,7 @@ spec:
       namespace: ${CERT_MANAGER_NAMESPACE:=cert-manager}
   values:
     controller:
-      replicaCount: ${INGRESS_REPLICA_COUNT:=3}
+      replicaCount: ${INGRESS_REPLICA_COUNT:=2}
       extraEnvs:
         - name: TZ
           value: "${TIMEZONE:=UTC}"

@@ -1,4 +1,7 @@
 Write-Host "------ Executing: recreate ------"
+# TODO: Pull from argument.
+$Cluster = "homelab"
+$Env = "development"
 
 & "$PSScriptRoot/recreate-cluster.ps1"
 & Write-Host "------------------------"
@@ -12,10 +15,10 @@ Write-Host "------ Executing: recreate ------"
 & kubectl -n flux-system create secret generic sops-age --from-file=age.agekey
 & Write-Host "------------------------"
 & Write-Host "3) Create FluxCD repo credentials secret."
-& sops --decrypt "$PSScriptRoot/../clusters/homelab/ssh-keys.sops.yaml" | kubectl apply -f -
+& sops --decrypt "$PSScriptRoot/../clusters/$Cluster/ssh-keys.sops.yaml" | kubectl apply -f -
 & Write-Host "------------------------"
 & Write-Host "4) Link repository"
-& kubectl apply --kustomize "$PSScriptRoot/../clusters/homelab/production/"
+& kubectl apply --kustomize "$PSScriptRoot/../clusters/$Cluster/$Env/"
 & Write-Host "------------------------"
 & Write-Host "5) Reconciling"
 & "$PSScriptRoot/reconcile.ps1"
