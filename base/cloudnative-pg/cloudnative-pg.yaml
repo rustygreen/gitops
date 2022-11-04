@@ -67,6 +67,13 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
+  healthChecks:
+    - kind: Service
+      # TODO: Figure out how to use variable substitution in here - @russell.green
+      # Need to use ${POSTGRES_CLUSTER_NAME:=postgres-cluster}-rw and namespace.
+      name: postgres-cluster-rw
+      namespace: cloudnative-pg
+  timeout: 10m
   dependsOn:
     - name: settings
     - name: cloud-native-pg-charts
