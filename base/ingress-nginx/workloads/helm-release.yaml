@@ -15,9 +15,6 @@ spec:
         name: ingress-nginx
         namespace: flux-system
       interval: ${HELM_RELEASE_INTERVAL:=24h}
-  dependsOn:
-    - name: cert-manager
-      namespace: ${CERT_MANAGER_NAMESPACE:=cert-manager}
   values:
     controller:
       replicaCount: ${INGRESS_REPLICA_COUNT:=2}
@@ -52,7 +49,7 @@ spec:
       metrics:
         enabled: false
       extraArgs:
-        default-ssl-certificate: "cert-manager/${PRIMARY_DOMAIN/./-}-tls"
+        default-ssl-certificate: "${CERT_MANAGER_NAMESPACE:=cert-manager}/${PRIMARY_DOMAIN/./-}-tls"
       podAnnotations:
         configmap.reloader.stakater.com/reload: "cloudflare-proxied-networks"
       resources:
