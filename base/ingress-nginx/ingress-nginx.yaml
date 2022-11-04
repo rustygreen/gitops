@@ -36,6 +36,12 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: ingress-nginx-controller
+      # TODO: Figure out how to use variable substitution in here - @russell.green
+      namespace: nginx
   dependsOn:
     - name: settings
     - name: ingress-nginx-charts
