@@ -12,7 +12,7 @@ Write-Host "------ Executing: recreate ------"
 & kubectl -n flux-system create secret generic sops-age --from-file=age.agekey
 & Write-Host "------------------------"
 & Write-Host "3) Create FluxCD repo credentials secret."
-& sops --decrypt "$PSScriptRoot/../clusters/homelab/ssh-key.sops.yaml" | kubectl apply -f -
+& sops --decrypt "$PSScriptRoot/../clusters/homelab/ssh-keys.sops.yaml" | kubectl apply -f -
 & Write-Host "------------------------"
 & Write-Host "4) Link repository"
 & kubectl apply --kustomize "$PSScriptRoot/../clusters/homelab/production/"

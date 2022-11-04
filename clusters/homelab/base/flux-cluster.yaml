@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: settings
+  name: flux-cluster
   namespace: flux-system
 spec:
   interval: 1h
-  path: ./clusters/homelab/production/settings
+  # NOTE: "path" must be patched
   prune: true
   sourceRef:
     kind: GitRepository

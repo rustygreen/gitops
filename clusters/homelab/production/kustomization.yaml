@@ -2,6 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - flux-cluster.yaml
-  - flux-settings.yaml
+  - ../base
   - workloads
+patchesStrategicMerge:
+  - patches.yaml
