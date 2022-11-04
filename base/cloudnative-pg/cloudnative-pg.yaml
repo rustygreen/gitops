@@ -74,7 +74,7 @@ spec:
       # Need to use ${POSTGRES_CLUSTER_NAME:=postgres-cluster}-rw and namespace.
       name: postgres-cluster-rw
       namespace: cloudnative-pg
-  # timeout: 10m
+  timeout: 10m
   dependsOn:
     - name: settings
     - name: cloud-native-pg-charts
