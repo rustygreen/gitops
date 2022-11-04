@@ -10,4 +10,4 @@ spec:
     branch: main
   url: https://github.com/rustygreen/gitops
   secretRef:
-    name: ssh-keys
+    name: repo-ssh-keys
