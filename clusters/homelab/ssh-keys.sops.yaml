@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: repo-ssh-keys
+    name: git-ssh-keys
     namespace: flux-system
 stringData:
     #ENC[AES256_GCM,data:VJV3B1R/45KpBctJXUqIip9w2CnS8PvRu549sSwQU0wY2w==,iv:fKhkcTyeyUXeIgeI9qsoleDuvbmQfCCcbkdgpZiQNZE=,tag:LHch1X4XiKpNbLXDffNWyQ==,type:comment]
@@ -24,8 +24,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-11-04T18:58:59Z"
-    mac: ENC[AES256_GCM,data:CGco+CPG7M3cI1HorLH/JbBPMLoh1NsyNDU8aHSiCG/aHw5wR9W9NGgZnvPlB17XbqRQjMMv+PYqyCyMSUczHaPZrOT3auVX5LVIqRB81+nPYufFzPuSZ8TCmaJEOm0nRxvKJJ+i0YVb9u5JjOrIDtom99EY20FAnuDtRyQqX2g=,iv:5G8lmh1ZCE3lHr7upX6vqPr1R7d1JrhD1nqsNrfAUkI=,tag:Y6XS030rhHHfmBIG+rtosQ==,type:str]
+    lastmodified: "2022-11-04T19:02:25Z"
+    mac: ENC[AES256_GCM,data:hGZlAYRzViLB+bw0fiW3mM2I9eNBZrXdZ8XXMOfnG6eqnORMRFv4ljcgtNfrHzK1k4aX4fPTldWPM83qDLlS0bQfno1K5Gs0ptUv6IVoFE88+0OIRhFUVlbYGU2SF5KtNFnvRbVv9r2Qa+O3TJGE1yXx8SMbVLXaMbsasWtDnfo=,iv:5LYDBWYjsqEA5iH5m8xoYnMflpaG9hjmFZWvyms9JNk=,tag:9NtPtpn5w9D9Eq1QGIDbqQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
