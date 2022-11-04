@@ -24,26 +24,26 @@ spec:
         name: cluster-settings
 ---
 # Workloads
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: ingress-nginx
-#   namespace: flux-system
-# spec:
-#   interval: 1h
-#   path: ./base/ingress-nginx/workloads
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-cluster
-#   dependsOn:
-#     - name: settings
-#     - name: ingress-nginx-charts
-#   decryption:
-#     provider: sops
-#     secretRef:
-#       name: sops-age
-#   postBuild:
-#     substituteFrom:
-#       - kind: Secret
-#         name: cluster-settings
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: longhorn
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/longhorn/workloads
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  dependsOn:
+    - name: settings
+    - name: longhorn-prerequisites
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
