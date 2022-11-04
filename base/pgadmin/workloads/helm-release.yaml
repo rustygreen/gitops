@@ -5,7 +5,7 @@ metadata:
   name: pgadmin
   namespace: ${PGADMIN_NAMESPACE:=pgadmin}
 spec:
-  interval: 15m
+  interval: ${HELM_RELEASE_INTERVAL:=24h}
   chart:
     spec:
       # renovate: registryUrl=https://helm.runix.net
@@ -15,11 +15,10 @@ spec:
         kind: HelmRepository
         name: pgadmin
         namespace: flux-system
-      interval: ${HELM_RELEASE_INTERVAL:=24h}
   values:
     env:
-      email: "${SECRET_PGADMIN_USER}"
-      password: "${SECRET_PGADMIN_PASSWORD}"
+      email: "${PGADMIN_USER:=pgadmin@example.com}"
+      password: "${PGADMIN_PASSWORD:=DONT_USE_DEFAULTS!}"
 
     strategy:
       type: Recreate
@@ -30,12 +29,12 @@ spec:
 
     ingress:
       enabled: true
-      ingressClassName: nginx
+      # ingressClassName: nginx
       hosts:
-        - host: "pgadmin.${SECRET_DOMAIN}"
+        - host: "pgadmin.${PRIMARY_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
       tls:
         - hosts:
-            - "pgadmin.${SECRET_DOMAIN}"
+            - "pgadmin.${PRIMARY_DOMAIN}"

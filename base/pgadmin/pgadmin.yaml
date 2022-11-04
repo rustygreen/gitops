@@ -3,48 +3,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cloud-native-pg-charts
+  name: pgadmin-charts
   namespace: flux-system
 spec:
   interval: 1h
-  path: ./base/cloudnative-pg/charts
+  path: ./base/pgadmin/charts
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-cluster
   dependsOn:
     - name: settings
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: cluster-settings
----
-# Operator
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: cloud-native-pg-operator
-  namespace: flux-system
-spec:
-  interval: 1h
-  path: ./base/cloudnative-pg/operator
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-cluster
-  healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: cloudnative-pg-operator
-      # TODO: Figure out how to use variable substitution in here - @russell.green
-      namespace: cloudnative-pg
-  dependsOn:
-    - name: settings
-    - name: cloud-native-pg-charts
   decryption:
     provider: sops
     secretRef:
@@ -58,27 +27,26 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cloud-native-pg
+  name: pgadmin
   namespace: flux-system
 spec:
   interval: 1h
-  path: ./base/cloudnative-pg/workloads
+  path: ./base/pgadmin/workloads
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  healthChecks:
-    - apiVersion: v1
-      kind: Service
-      # TODO: Figure out how to use variable substitution in here - @russell.green
-      # Need to use ${POSTGRES_CLUSTER_NAME:=postgres-cluster}-rw and namespace.
-      name: postgres-cluster-rw
-      namespace: cloudnative-pg
-  timeout: 10m
+  # healthChecks:
+  #   - apiVersion: v1
+  #     kind: Service
+  #     # TODO: Figure out how to use variable substitution in here - @russell.green
+  #     # Need to use ${POSTGRES_CLUSTER_NAME:=postgres-cluster}-rw and namespace.
+  #     name: postgres-cluster-rw
+  #     namespace: pgadmin
+  # timeout: 10m
   dependsOn:
     - name: settings
-    - name: cloud-native-pg-charts
-    - name: cloud-native-pg-operator
+    - name: pgadmin-charts
   decryption:
     provider: sops
     secretRef:
