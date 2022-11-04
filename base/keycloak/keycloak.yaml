@@ -42,6 +42,7 @@ spec:
       name: keycloak-operator
       # TODO: Figure out how to use variable substitution in here - @russell.green
       namespace: keycloak
+  timeout: 10m
   dependsOn:
     - name: settings
     - name: keycloak-crds
