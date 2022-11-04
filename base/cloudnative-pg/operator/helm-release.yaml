@@ -2,10 +2,10 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: postgres
-  namespace: default
+  name: cloudnative-pg
+  namespace: ${CLOUDNATIVE_PG_NAMESPACE:=cloudnative-pg}
 spec:
-  interval: ${KUSTOMIZATION_INTERVAL}
+  interval: ${HELM_RELEASE_INTERVAL:=24h}
   chart:
     spec:
       # renovate: registryUrl=https://cloudnative-pg.github.io/charts
@@ -17,17 +17,12 @@ spec:
         namespace: flux-system
   install:
     createNamespace: true
-    remediation:
-      retries: 5
-  upgrade:
-    remediation:
-      retries: 5
   values:
     crds:
       create: true
-    config:
-      data:
-        INHERITED_ANNOTATIONS: kyverno.io/ignore
-    image:
-      repository: ghcr.io/cloudnative-pg/cloudnative-pg-testing
-      tag: main
+    # config:
+    #   data:
+    #     INHERITED_ANNOTATIONS: kyverno.io/ignore
+    # image:
+    #   repository: ghcr.io/cloudnative-pg/cloudnative-pg-testing
+    #   tag: main
