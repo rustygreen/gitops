@@ -6,4 +6,4 @@ spec:
   instances: 3
   primaryUpdateStrategy: unsupervised
   storage:
-    size: 1Gi
+    size: 0.75Gi
