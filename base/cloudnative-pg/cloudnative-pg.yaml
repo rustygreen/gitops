@@ -37,10 +37,14 @@ spec:
     kind: GitRepository
     name: flux-cluster
   healthChecks:
+    # TODO: Figure out how to use variable substitution to set the namespaces below - @russell.green
     - apiVersion: apps/v1
       kind: Deployment
       name: cloudnative-pg-operator
-      # TODO: Figure out how to use variable substitution in here - @russell.green
+      namespace: cloudnative-pg
+    - apiVersion: v1
+      kind: Service
+      name: cnpg-webhook-service
       namespace: cloudnative-pg
   timeout: 5m
   dependsOn:
