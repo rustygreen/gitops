@@ -6,3 +6,4 @@ resources:
   - ../../../../base/ingress-nginx
   - ../../../../base/kubernetes-dashboard
   - ../../../../base/cloudnative-pg
+  - ../../../../base/keycloak

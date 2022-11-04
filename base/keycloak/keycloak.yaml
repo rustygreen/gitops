@@ -1,0 +1,88 @@
+---
+# CRDs
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: keycloak-crds
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/keycloak/crds
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  dependsOn:
+    - name: settings
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
+# Operator
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: keycloak-operator
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/keycloak/operator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  # healthChecks:
+  #   - apiVersion: apps/v1
+  #     kind: Deployment
+  #     name: keycloak-operator
+  #     # TODO: Figure out how to use variable substitution in here - @russell.green
+  #     namespace: keycloak
+  dependsOn:
+    - name: settings
+    - name: keycloak-crds
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
+# Workloads
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: keycloak
+#   namespace: flux-system
+# spec:
+#   interval: 1h
+#   path: ./base/keycloak/workloads
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-cluster
+#   # healthChecks:
+#   #   - kind: Service
+#   #     # TODO: Figure out how to use variable substitution in here - @russell.green
+#   #     # Need to use ${POSTGRES_CLUSTER_NAME:=postgres-cluster}-rw and namespace.
+#   #     name: postgres-cluster-rw
+#   #     namespace: keycloak
+#   timeout: 10m
+#   dependsOn:
+#     - name: settings
+#     - name: keycloak-crds
+#     - name: keycloak-operator
+#   decryption:
+#     provider: sops
+#     secretRef:
+#       name: sops-age
+#   postBuild:
+#     substituteFrom:
+#       - kind: Secret
+#         name: cluster-settings

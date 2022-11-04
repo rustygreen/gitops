@@ -43,8 +43,8 @@ spec:
       # TODO: Figure out how to use variable substitution in here - @russell.green
       namespace: cloudnative-pg
   dependsOn:
-    - name: cloud-native-pg-charts
     - name: settings
+    - name: cloud-native-pg-charts
   decryption:
     provider: sops
     secretRef:

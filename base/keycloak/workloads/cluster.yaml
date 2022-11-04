@@ -1,0 +1,26 @@
+---
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  instances: 3
+  serverConfiguration:
+    - name: db
+      value: postgres
+    - name: db-url-host
+      value: rizing-cluster.postgres.svc.cluster.local
+    - name: db-url-database
+      value: keycloak
+    - name: db-username
+      secret:
+        name: security.keycloak.rizing-cluster.credentials.postgresql.acid.zalan.do
+        key: username
+    - name: db-password
+      secret:
+        name: security.keycloak.rizing-cluster.credentials.postgresql.acid.zalan.do
+        key: password
+  hostname: identity.${SECRET_DOMAIN}
+  disableDefaultIngress: true
+  tlsSecret: "${SECRET_DOMAIN/./-}-tls"
