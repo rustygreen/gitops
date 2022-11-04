@@ -36,12 +36,12 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: keycloak-operator
-  #     # TODO: Figure out how to use variable substitution in here - @russell.green
-  #     namespace: keycloak
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: keycloak-operator
+      # TODO: Figure out how to use variable substitution in here - @russell.green
+      namespace: keycloak
   dependsOn:
     - name: settings
     - name: keycloak-crds
