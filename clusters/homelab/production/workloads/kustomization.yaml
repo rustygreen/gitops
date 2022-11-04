@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ../../../../base/cert-manager
   - ../../../../base/ingress-nginx
+  - ../../../../base/longhorn
   - ../../../../base/kubernetes-dashboard
   - ../../../../base/cloudnative-pg
   - ../../../../base/keycloak

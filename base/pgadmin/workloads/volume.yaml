@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pgadmin-config
+  namespace: ${PGADMIN_NAMESPACE:=pgadmin}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ${STORAGE_CLASS_NAME:=local-path}
+  resources:
+    requests:
+      storage: 1Gi
