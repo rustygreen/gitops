@@ -109,7 +109,7 @@ spec:
   #     # Need to use ${POSTGRES_CLUSTER_NAME:=postgres-cluster}-rw and namespace.
   #     name: postgres-cluster-rw
   #     namespace: keycloak
-  timeout: 10m
+  timeout: 15m
   dependsOn:
     - name: settings
     - name: keycloak-crds

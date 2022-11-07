@@ -18,7 +18,7 @@ spec:
     database: keycloak
 
   hostname:
-    hostname: identity.${SECRET_DOMAIN}
+    hostname: identity.${PRIMARY_DOMAIN}
 
   # disableDefaultIngress: true
   # http:
