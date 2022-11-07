@@ -1,8 +1,8 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: ${POSTGRES_CLUSTER_NAME:=postgres-cluster}
-  namespace: ${CLOUDNATIVE_PG_NAMESPACE:=cloudnative-pg}
+  name: postgres-cluster
+  namespace: keycloak
 spec:
   instances: 3
   storage:
@@ -11,5 +11,3 @@ spec:
     initdb:
       database: keycloak
       owner: keycloak
-      # secret:
-      #   name: postgres-cluster-keycloak

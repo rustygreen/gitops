@@ -60,35 +60,35 @@ spec:
         name: cluster-settings
 ---
 # Workloads
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: cloud-native-pg
-  namespace: flux-system
-spec:
-  interval: 1h
-  path: ./base/cloudnative-pg/workloads
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-cluster
-  healthChecks:
-    - apiVersion: v1
-      kind: Service
-      # TODO: Figure out how to use variable substitution in here - @russell.green
-      # Need to use ${POSTGRES_CLUSTER_NAME:=postgres-cluster}-rw and namespace.
-      name: postgres-cluster-rw
-      namespace: cloudnative-pg
-  timeout: 10m
-  dependsOn:
-    - name: settings
-    - name: cloud-native-pg-charts
-    - name: cloud-native-pg-operator
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: cluster-settings
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: cloud-native-pg
+#   namespace: flux-system
+# spec:
+#   interval: 1h
+#   path: ./base/cloudnative-pg/workloads
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-cluster
+#   healthChecks:
+#     - apiVersion: v1
+#       kind: Service
+#       # TODO: Figure out how to use variable substitution in here - @russell.green
+#       # Need to use ${POSTGRES_CLUSTER_NAME:=postgres-cluster}-rw and namespace.
+#       name: postgres-cluster-rw
+#       namespace: cloudnative-pg
+#   timeout: 10m
+#   dependsOn:
+#     - name: settings
+#     - name: cloud-native-pg-charts
+#     - name: cloud-native-pg-operator
+#   decryption:
+#     provider: sops
+#     secretRef:
+#       name: sops-age
+#   postBuild:
+#     substituteFrom:
+#       - kind: Secret
+#         name: cluster-settings

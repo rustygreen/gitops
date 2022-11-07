@@ -7,4 +7,5 @@ resources:
   - ../../../../base/kubernetes-dashboard
   - ../../../../base/cloudnative-pg
   - ../../../../base/pgadmin
+  - ../../../../base/keycloak
   # - ../../../../base/keycloak
