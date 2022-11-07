@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cloud-native-pg-charts
+  name: cloudnative-pg-charts
   namespace: flux-system
 spec:
   interval: 1h
@@ -27,7 +27,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cloud-native-pg-operator
+  name: cloudnative-pg-operator
   namespace: flux-system
 spec:
   interval: 1h
@@ -49,7 +49,7 @@ spec:
   timeout: 5m
   dependsOn:
     - name: settings
-    - name: cloud-native-pg-charts
+    - name: cloudnative-pg-charts
   decryption:
     provider: sops
     secretRef:
@@ -63,7 +63,7 @@ spec:
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
 # metadata:
-#   name: cloud-native-pg
+#   name: cloudnative-pg
 #   namespace: flux-system
 # spec:
 #   interval: 1h
@@ -82,8 +82,8 @@ spec:
 #   timeout: 10m
 #   dependsOn:
 #     - name: settings
-#     - name: cloud-native-pg-charts
-#     - name: cloud-native-pg-operator
+#     - name: cloudnative-pg-charts
+#     - name: cloudnative-pg-operator
 #   decryption:
 #     provider: sops
 #     secretRef:
