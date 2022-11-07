@@ -10,16 +10,16 @@ spec:
     - name: db
       value: postgres
     - name: db-url-host
-      value: postgres-cluster-rw.cloudnative-pg.svc
+      value: postgres-cluster-rw.keycloak.svc
     - name: db-url-database
       value: keycloak
     - name: db-username
       secret:
-        name: security.keycloak.rizing-cluster.credentials.postgresql.acid.zalan.do
+        name: postgres-cluster-app
         key: username
     - name: db-password
       secret:
-        name: security.keycloak.rizing-cluster.credentials.postgresql.acid.zalan.do
+        name: postgres-cluster-app
         key: password
   hostname: identity.${SECRET_DOMAIN}
   disableDefaultIngress: true
