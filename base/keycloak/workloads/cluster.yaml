@@ -10,7 +10,7 @@ spec:
     - name: db
       value: postgres
     - name: db-url-host
-      value: rizing-cluster.postgres.svc.cluster.local
+      value: postgres-cluster-rw.cloudnative-pg.svc
     - name: db-url-database
       value: keycloak
     - name: db-username

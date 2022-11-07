@@ -16,3 +16,17 @@ metadata:
   namespace: flux-system
 spec:
   path: ./clusters/homelab/development/settings
+---
+# Override database settings.
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-cluster
+  namespace: cloudnative-pg
+spec:
+  bootstrap:
+    initdb:
+      database: keycloak
+      owner: keycloak
+      secret:
+        name: postgres-keycloak
