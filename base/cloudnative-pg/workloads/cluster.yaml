@@ -8,3 +8,9 @@ spec:
   primaryUpdateStrategy: unsupervised
   storage:
     size: 1Gi
+  bootstrap:
+    initdb:
+      database: keycloak
+      owner: keycloak
+      secret:
+        name: postgres-keycloak
