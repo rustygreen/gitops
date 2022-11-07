@@ -76,7 +76,6 @@ spec:
   dependsOn:
     - name: settings
     - name: cloudnative-pg-operator
-      namespace: cloudnative-pg
   decryption:
     provider: sops
     secretRef:
