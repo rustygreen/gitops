@@ -77,6 +77,21 @@ spec:
       kind: Secret
       name: postgres-cluster-app
       namespace: keycloak
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: postgres-cluster-1
+      namespace: keycloak
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: postgres-cluster-2
+      namespace: keycloak
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: postgres-cluster-3
+      namespace: keycloak
   timeout: 10m
   dependsOn:
     - name: settings
@@ -103,12 +118,26 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - kind: Service
-  #     # TODO: Figure out how to use variable substitution in here - @russell.green
-  #     # Need to use ${POSTGRES_CLUSTER_NAME:=postgres-cluster}-rw and namespace.
-  #     name: postgres-cluster-rw
-  #     namespace: keycloak
+  healthChecks:
+    - apiVersion: v1
+      kind: Service
+      name: keycloak-service
+      namespace: keycloak
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: keycloak-0
+      namespace: keycloak
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: keycloak-1
+      namespace: keycloak
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: keycloak-2
+      namespace: keycloak
   timeout: 15m
   dependsOn:
     - name: settings
