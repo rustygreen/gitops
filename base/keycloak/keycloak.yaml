@@ -69,8 +69,13 @@ spec:
     kind: GitRepository
     name: flux-cluster
   healthChecks:
-    - kind: Service
+    - apiVersion: v1
+      kind: Service
       name: postgres-cluster-rw
+      namespace: keycloak
+    - apiVersion: v1
+      kind: Secret
+      name: postgres-cluster-app
       namespace: keycloak
   timeout: 10m
   dependsOn:
