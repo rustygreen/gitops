@@ -16,10 +16,7 @@ spec:
       key: password
     host: postgres-cluster-rw.keycloak.svc
     database: keycloak
-
   hostname:
     hostname: identity.${PRIMARY_DOMAIN}
-
-  # disableDefaultIngress: true
-  # http:
-  #   tlsSecret: "${SECRET_DOMAIN/./-}-tls"
+  http:
+    tlsSecret: "${PRIMARY_DOMAIN/./-}-tls"
