@@ -6,21 +6,20 @@ metadata:
   namespace: keycloak
 spec:
   instances: 3
-  serverConfiguration:
-    - name: db
-      value: postgres
-    - name: db-url-host
-      value: postgres-cluster-rw.keycloak.svc
-    - name: db-url-database
-      value: keycloak
-    - name: db-username
-      secret:
-        name: postgres-cluster-app
-        key: username
-    - name: db-password
-      secret:
-        name: postgres-cluster-app
-        key: password
-  hostname: identity.${SECRET_DOMAIN}
-  disableDefaultIngress: true
-  tlsSecret: "${SECRET_DOMAIN/./-}-tls"
+  db:
+    vendor: postgres
+    usernameSecret:
+      name: postgres-cluster-app
+      key: username
+    passwordSecret:
+      name: postgres-cluster-app
+      key: password
+    host: postgres-cluster-rw.keycloak.svc
+    database: keycloak
+
+  hostname:
+    hostname: identity.${SECRET_DOMAIN}
+
+  # disableDefaultIngress: true
+  http:
+    tlsSecret: "${SECRET_DOMAIN/./-}-tls"
