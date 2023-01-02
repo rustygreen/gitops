@@ -26,7 +26,7 @@ The idea is to have every cluster in this repository easily repeatable. The clus
 
 [Video Source](https://clipchamp.com/watch/RpfVnbbcxTK)
 
-## :light-bulb: Philosophy
+## :light: Philosophy
 
 The following ideas, patterns, and philosophies are applied for clusters in this repository:
 
