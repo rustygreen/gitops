@@ -7,6 +7,7 @@ metadata:
   namespace: flux-system
 spec:
   ref:
+    # TODO: Change this to develop
     branch: main
 ---
 # Cluster patches
@@ -16,7 +17,7 @@ metadata:
   name: flux-cluster
   namespace: flux-system
 spec:
-  path: ./clusters/homelab/production
+  path: ./clusters/homelab/staging
 ---
 # Cluster setting patches
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -25,4 +26,4 @@ metadata:
   name: settings
   namespace: flux-system
 spec:
-  path: ./clusters/homelab/production/settings
+  path: ./clusters/homelab/staging/settings

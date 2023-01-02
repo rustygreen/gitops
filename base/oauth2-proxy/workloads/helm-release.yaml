@@ -1,0 +1,39 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: oauth2-proxy
+  namespace: ${OAUTH2_PROXY_NAMESPACE:=oauth2-proxy}
+spec:
+  interval: ${HELM_RELEASE_INTERVAL:=24h}
+  chart:
+    spec:
+      # renovate: registryUrl=https://oauth2-proxy.github.io/manifests
+      chart: oauth2-proxy
+      version: 6.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: oauth2-proxy
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    ingress:
+      enabled: true
+      path: /oauth2
+      hosts: 
+        - auth.${PRIMARY_DOMAIN}
+      tls:
+      - hosts:
+        - auth.${PRIMARY_DOMAIN}
+    extraArgs:
+      provider: keycloak
+      set-xauthrequest: true
+      provider-display-name: ${OAUTH_PROXY_PROVIDER_DISPLAY:='Single Sign-on'}
+      client-id: ${OAUTH_PROXY_CLIENT_ID:='kubernetes-oauth-proxy'}
+      client-secret: ${OAUTH_PROXY_CLIENT_SECRET}
+      login-url: ${OAUTH_PROXY_SERVER}/realms/${OAUTH_PROXY_SERVER_REALM:=master}/protocol/openid-connect/auth
+      redeem-url: ${OAUTH_PROXY_SERVER}/realms/${OAUTH_PROXY_SERVER_REALM:=master}/protocol/openid-connect/token
+      validate-url: ${OAUTH_PROXY_SERVER}/realms/${OAUTH_PROXY_SERVER_REALM:=master}/protocol/openid-connect/userinfo
+      email-domain: "*"
+      cookie-domain: .${PRIMARY_DOMAIN}
+      whitelist-domain: .${PRIMARY_DOMAIN}

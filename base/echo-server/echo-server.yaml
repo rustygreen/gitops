@@ -6,14 +6,19 @@ metadata:
   name: echo-server
   namespace: flux-system
 spec:
-  interval: ${KUSTOMIZATION_INTERVAL}
+  interval: 1h
   path: ./base/echo-server/workloads
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-cluster
   dependsOn:
-    - name: k8s-at-home-charts
+    - name: settings
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: echo-server
+      namespace: echo-server
   decryption:
     provider: sops
     secretRef:

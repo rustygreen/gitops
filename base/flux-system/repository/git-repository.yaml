@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: flux-cluster
+  namespace: flux-system
+spec:
+  interval: 5m
+  ref:
+    branch: main
+  url: https://github.com/rustygreen/gitops
+  # TODO: Add docs for using private repo - @russell.green
+  # NOTE: we need to use libgit2 instead of the default go-git when using Azure Devops as the repo:
+  # https://github.com/fluxcd/source-controller/blob/main/docs/spec/v1beta2/gitrepositories.md#git-implementation
+  # gitImplementation: libgit2
+  # secretRef:
+  #   name: git-repo-ssh-keys

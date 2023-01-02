@@ -40,10 +40,18 @@ spec:
     - name: settings
     - name: cert-manager-charts
   healthChecks:
+    # TODO: Figure out how to use variable substitution in here - @russell.green
     - apiVersion: apps/v1
       kind: Deployment
       name: cert-manager
-      # TODO: Figure out how to use variable substitution in here - @russell.green
+      namespace: cert-manager
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cert-manager-webhook
+      namespace: cert-manager
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cert-manager-cainjector
       namespace: cert-manager
   decryption:
     provider: sops
@@ -71,6 +79,17 @@ spec:
     - name: settings
     - name: cert-manager-charts
     - name: cert-manager
+  healthChecks:
+    - apiVersion: cert-manager.io/v1
+      kind: ClusterIssuer
+      name: letsencrypt-staging
+    - apiVersion: cert-manager.io/v1
+      kind: ClusterIssuer
+      name: letsencrypt-production
+    - apiVersion: cert-manager.io/v1
+      kind: ClusterIssuer
+      name: self-signed
+  timeout: 5m
   decryption:
     provider: sops
     secretRef:

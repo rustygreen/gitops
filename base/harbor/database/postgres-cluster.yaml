@@ -1,0 +1,21 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: harbor
+spec:
+  instances: 3
+  storage:
+    size: 100Gi
+    storageClass: local-path
+  bootstrap:
+    initdb:
+      database: registry
+      owner: harbor
+      # Currently, "notary" is disabled in the Harbor helm release. If it is ever enabled
+      # then the notary databases will need to be created (like below) - @russell.green
+      # postInitSQL:
+      #   - CREATE DATABASE notary_server OWNER harbor
+      #   - CREATE DATABASE notary_signer OWNER harbor
+  monitoring:
+    enablePodMonitor: true

@@ -11,6 +11,31 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: calico-typha
+      namespace: calico-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: calico-kube-controllers
+      namespace: calico-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: coredns
+      namespace: kube-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: local-path-provisioner
+      namespace: kube-system
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: tigera-operator
+      namespace: tigera-operator
+    - apiVersion: apps/v1
+      kind: DaemonSet
+      name: calico-node
+      namespace: calico-system
   decryption:
     provider: sops
     secretRef:

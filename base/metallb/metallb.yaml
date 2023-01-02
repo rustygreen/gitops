@@ -1,0 +1,86 @@
+---
+# Charts
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: metallb-charts
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/metallb/charts
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  dependsOn:
+    - name: settings
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
+# Controller
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: metallb-controller
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/metallb/controller
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: metallb-controller
+      namespace: metallb
+    - apiVersion: v1
+      kind: Service
+      name: metallb-webhook-service
+      namespace: metallb
+  timeout: 5m
+  dependsOn:
+    - name: settings
+    - name: metallb-charts
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
+# Workloads
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: metallb
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/metallb/workloads
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  timeout: 5m
+  dependsOn:
+    - name: settings
+    - name: metallb-charts
+    - name: metallb-controller
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings

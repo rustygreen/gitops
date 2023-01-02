@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: ingress-nginx
-      version: 4.3.0
+      version: 4.4.0
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
@@ -23,10 +23,11 @@ spec:
           value: "${TIMEZONE:=UTC}"
       service:
         annotations:
-          # TODO: Figure out how to omit this or set a better default - @russell.green
-          metallb.universe.tf/loadBalancerIPs: |-
-            ${METALLB_INGRESS_ADDR:=0.0.0.0}
+          service.beta.kubernetes.io/azure-dns-label-name: ${AZURE_DNS_LABEL:=""}
+          service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: "/healthz"
+          service.beta.kubernetes.io/azure-load-balancer-resource-group: ${AZURE_RESOURCE_GROUP:=""}
         externalTrafficPolicy: Local
+        loadBalancerIP: ${LOAD_BALANCER_IP:=""}
       publishService:
         enabled: true
       ingressClassResource:
@@ -36,8 +37,11 @@ spec:
         client-header-timeout: 120
         client-body-buffer-size: "100M"
         client-body-timeout: 120
-        custom-http-errors: |-
-          ${CUSTOM_HTTP_ERRORS:=401,403,404,500,501,502,503}
+        # TODO: Revisit these: change to 16k
+        client-header-buffer-size: "512k"
+        large-client-header-buffers: "4 512k"
+        proxy-buffer-size: "512k"
+        custom-http-errors: ${CUSTOM_HTTP_ERRORS:=401,403,404,500,501,502,503}
         enable-brotli: "true"
         forwarded-for-header: "CF-Connecting-IP"
         hsts-max-age: "31449600"
@@ -46,10 +50,11 @@ spec:
         proxy-body-size: "100M"
         ssl-protocols: "TLSv1.3 TLSv1.2"
         use-forwarded-headers: "true"
+        force-ssl-redirect: "${INGRESS_FORCE_SSL:=true}"
       metrics:
         enabled: false
       extraArgs:
-        default-ssl-certificate: "${CERT_MANAGER_NAMESPACE:=cert-manager}/${PRIMARY_DOMAIN/./-}-tls"
+        default-ssl-certificate: "${CERT_MANAGER_NAMESPACE:=cert-manager}/primary-tls"
       podAnnotations:
         configmap.reloader.stakater.com/reload: "cloudflare-proxied-networks"
       resources:
@@ -62,13 +67,13 @@ spec:
       enabled: true
       image:
         repository: ghcr.io/tarampampam/error-pages
-        tag: 2.18.0
+        tag: 2.19.0
       replicaCount: ${INGRESS_BACKEND_REPLICA_COUNT:=1}
       extraEnvs:
         - name: TEMPLATE_NAME
-          value: lost-in-space
+          value: ${INGRESS_BACKEND_TEMPLATE:='lost-in-space'}
         - name: SHOW_DETAILS
-          value: "false"
+          value: ${INGRESS_BACKEND_SHOW_DETAILS:='false'}
   valuesFrom:
     # Cloudflare Networks
     # https://www.cloudflare.com/ips/

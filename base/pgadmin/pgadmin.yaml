@@ -36,17 +36,15 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: v1
-  #     kind: Service
-  #     # TODO: Figure out how to use variable substitution in here - @russell.green
-  #     # Need to use ${POSTGRES_CLUSTER_NAME:=postgres-cluster}-rw and namespace.
-  #     name: postgres-cluster-rw
-  #     namespace: pgadmin
-  # timeout: 10m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: pgadmin-pgadmin4
+      namespace: pgadmin
   dependsOn:
     - name: settings
     - name: pgadmin-charts
+    - name: longhorn
   decryption:
     provider: sops
     secretRef:

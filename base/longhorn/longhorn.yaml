@@ -1,4 +1,28 @@
 ---
+# Charts
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: longhorn-charts
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/longhorn/charts
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  dependsOn:
+    - name: settings
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
 # Prerequisites
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -39,6 +63,24 @@ spec:
   dependsOn:
     - name: settings
     - name: longhorn-prerequisites
+    - name: longhorn-charts
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: longhorn-admission-webhook
+      namespace: longhorn-system
+    - apiVersion: apps/v1
+      kind: DaemonSet
+      name: longhorn-manager
+      namespace: longhorn-system
+    - apiVersion: v1
+      kind: Service
+      name: longhorn-backend
+      namespace: longhorn-system
+    - apiVersion: v1
+      kind: Service
+      name: longhorn-frontend
+      namespace: longhorn-system
   decryption:
     provider: sops
     secretRef:

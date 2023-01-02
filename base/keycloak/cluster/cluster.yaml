@@ -9,14 +9,14 @@ spec:
   db:
     vendor: postgres
     usernameSecret:
-      name: postgres-cluster-app
+      name: postgres-app
       key: username
     passwordSecret:
-      name: postgres-cluster-app
+      name: postgres-app
       key: password
-    host: postgres-cluster-rw.keycloak.svc
+    host: postgres-rw.keycloak.svc
     database: keycloak
   hostname:
     hostname: identity.${PRIMARY_DOMAIN}
   http:
-    tlsSecret: "${PRIMARY_DOMAIN/./-}-tls"
+    tlsSecret: primary-tls

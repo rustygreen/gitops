@@ -14,11 +14,6 @@ spec:
     name: flux-cluster
   dependsOn:
     - name: settings
-  healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: kubernetes-dashboard
-      namespace: kubernetes-dashboard
   decryption:
     provider: sops
     secretRef:

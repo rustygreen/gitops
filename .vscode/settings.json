@@ -1,0 +1,33 @@
+{
+    "ansible.ansibleLint.arguments": "-c .github/linters/.ansible-lint",
+    "files.associations": {
+        "*.json5": "jsonc",
+        "**/provision/ansible/**/*.yml": "ansible",
+        "**/provision/ansible/**/*.sops.yml": "yaml",
+        "**/provision/ansible/**/inventory/**/*.yml": "yaml",
+        "**/provision/terraform/**/*.tf": "terraform"
+    },
+    "prettier.configPath": ".github/linters/.prettierrc.yaml",
+    "prettier.ignorePath": ".github/linters/.prettierignore",
+    "yaml.schemas": {
+        "Kubernetes": "cluster/*.yaml"
+    },
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs":"active",
+    "editor.hover.delay": 1500,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+      "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+      "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+      "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+      "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
+}

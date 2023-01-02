@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "signageos.signageos-vscode-sops",
+        "fcrespo82.markdown-table-formatter",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "streetsidesoftware.code-spell-checker"
+    ]
+}

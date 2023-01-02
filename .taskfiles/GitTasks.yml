@@ -1,0 +1,11 @@
+---
+version: "3"
+
+tasks:
+
+  push:
+    desc: Commits and pushes all changes
+    cmds:
+      - git add -A
+      - "git commit -m 'refactor: updates manifests'"
+      - git push

@@ -1,0 +1,22 @@
+---
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-server
+  namespace: ${ECHO_SERVER_NAMESPACE:=echo-server}
+spec:
+  selector:
+    matchLabels:
+      app: echo-server
+  replicas: ${ECHO_SERVER_REPLICAS:=2}
+  template:
+    metadata:
+      labels:
+        app: echo-server
+    spec:
+      containers:
+      - name: echo-server
+        image: jmalloc/echo-server:0.3.3
+        ports:
+        - containerPort: 8080

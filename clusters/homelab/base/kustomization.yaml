@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - flux-cluster.yaml
   - flux-settings.yaml
-  - git-repository.yaml
+  - ../../../base/flux-system/repository

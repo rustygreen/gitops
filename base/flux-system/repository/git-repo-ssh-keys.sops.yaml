@@ -1,0 +1,31 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: git-repo-ssh-keys
+    namespace: flux-system
+stringData:
+    #ENC[AES256_GCM,data:VJV3B1R/45KpBctJXUqIip9w2CnS8PvRu549sSwQU0wY2w==,iv:fKhkcTyeyUXeIgeI9qsoleDuvbmQfCCcbkdgpZiQNZE=,tag:LHch1X4XiKpNbLXDffNWyQ==,type:comment]
+    identity: ENC[AES256_GCM,data:tvhP5fclhxLnwvk4N2w8FlFS3pfM8gIEfbiulEvWIlISzoM6q8DeIexXT9Fen/eNwtBtbPlVE073tW/AFP9Hh3uOpLHqB1S5UfuR,iv:cmzelb8b6MRGcSPQZDYZu627IurpmKPkP5IDmtBZYKQ=,tag:PpzoU3dcZiOr6BKtvvbd8g==,type:str]
+    #ENC[AES256_GCM,data:dBWpCvzbs17o2R4Qw3V0Hw34J/RF3fy6wBC1WnTFA+YeF8d9J/R5UmpGHCf5vEvCyqnTwC9G2ywJ04QQ1lWSpk94YubJMFwABEyco/I5xCgdUuAja5ubSQFm7G7U54NFptr4uJ6R,iv:o+1z/cktxSU9axEYYDZd5dQYDQekousMC0Yaeo0GqGQ=,tag:mIHASfmxkgOcR7i+Ph4wTA==,type:comment]
+    known_hosts: ENC[AES256_GCM,data:DSihMvg=,iv:YMit8DC2pRmFNJ4WrGXkCXXkVYlDvM5w2iW7PaJ55Ts=,tag:W7+rSdmoOAgj0vsvH5zIUA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1q50xz97syrgwskahjc7qrcn6wsl2a3je2n88fd0rsf8jk07q23usdw2a0w
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxdHlKeTVOcnpjSEplVU96
+            US91dkh4bUxvRGdiby9jOUN5ekR4Zi9RQzF3CkNnWWRCY0NVOGExT2Z3RFIwRlRM
+            SFh0ZnJMYnNCclRadTlPNXZ5dGovVE0KLS0tIC9mSzN0Lzk0Q2xhL0EzY1pnTUlX
+            dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
+            qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-01-02T19:35:52Z"
+    mac: ENC[AES256_GCM,data:Z0YURRCBbfr2jUpLspmveKt1uFJLep5b4wn4/9Pv0dnl9Mds+nE9at9im/CNP06QLmbxDnrPjFMaGQnS79MtWkLWBMEa91A2iWrGLQPz+xs41dp3Jjyxm2cI8tvUmkGKmM2gvf3OGu5FWFDCiwOAZgv5TpL9NSIlPc8tKtCk3bM=,iv:8I+zhqsDSnjZzMpY4lT0YVGCjPh+Tg6BoIKqeQGfFDY=,tag:BUdz2DTp++rouY59n75wxQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3

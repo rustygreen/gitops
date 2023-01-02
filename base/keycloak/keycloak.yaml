@@ -1,4 +1,38 @@
 ---
+# Dependencies
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: keycloak-dependencies
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/keycloak/dependencies
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  healthChecks:
+      # NOTE: we are waiting for the certificate to be replicated to the "keycloak" namespace
+      # because we don't want to proceed with keycloak installation unless we have the wildcard
+      # certificate in this namespace. "reflector" is used to replicate to the keycloak namespace.
+    - apiVersion: v1
+      kind: Secret
+      name: primary-tls
+      namespace: keycloak
+  timeout: 10m
+  dependsOn:
+    - name: settings
+    - name: wildcard-certificate
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
 # CRDs
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -14,6 +48,7 @@ spec:
     name: flux-cluster
   dependsOn:
     - name: settings
+    - name: keycloak-dependencies
   decryption:
     provider: sops
     secretRef:
@@ -46,6 +81,7 @@ spec:
   dependsOn:
     - name: settings
     - name: keycloak-crds
+    - name: keycloak-dependencies
   decryption:
     provider: sops
     secretRef:
@@ -71,31 +107,32 @@ spec:
   healthChecks:
     - apiVersion: v1
       kind: Service
-      name: postgres-cluster-rw
+      name: postgres-rw
       namespace: keycloak
     - apiVersion: v1
       kind: Secret
-      name: postgres-cluster-app
+      name: postgres-app
       namespace: keycloak
     - apiVersion: v1
       kind: Pod
       # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-      name: postgres-cluster-1
+      name: postgres-1
       namespace: keycloak
     - apiVersion: v1
       kind: Pod
       # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-      name: postgres-cluster-2
+      name: postgres-2
       namespace: keycloak
     - apiVersion: v1
       kind: Pod
       # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-      name: postgres-cluster-3
+      name: postgres-3
       namespace: keycloak
   timeout: 10m
   dependsOn:
     - name: settings
     - name: cloudnative-pg-operator
+    - name: keycloak-dependencies
   decryption:
     provider: sops
     secretRef:
@@ -141,6 +178,7 @@ spec:
   timeout: 15m
   dependsOn:
     - name: settings
+    - name: keycloak-dependencies
     - name: keycloak-crds
     - name: keycloak-operator
     - name: keycloak-database
