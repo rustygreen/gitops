@@ -26,7 +26,7 @@ The idea is to have every cluster in this repository easily repeatable. The clus
 
 [Video Source](https://clipchamp.com/watch/RpfVnbbcxTK)
 
-## :light_bulb: Philosophy
+## :light-bulb: Philosophy
 
 The following ideas, patterns, and philosophies are applied for clusters in this repository:
 
@@ -73,6 +73,6 @@ Each cluster is setup so that Flux will automatically apply changes to the clust
 
 ![PR workflow](https://lucid.app/publicSegments/view/4b6f2312-defa-4026-9207-7c737470c804/image.jpeg)
 
-## SOPs files
+## :key: SOPs files
 
 Since the entire state of the cluster is stored in this repository, it is necessary to encrypt certain information for a cluster( such as, passwords, SSH keys, etc.). FluxCD has various decryption providers (see [docs here](https://fluxcd.io/flux/guides/mozilla-sops/#configure-in-cluster-secrets-decryption)). Clusters in this repository use [Mozilla SOPs](https://github.com/mozilla/sops) with the [age encryption tool](https://github.com/FiloSottile/age).
