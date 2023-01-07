@@ -16,7 +16,7 @@ Workers
 
 ## Environment
 
-Kube-VIP IP: `192.168.6.239`
+Kube-VIP IP: `192.168.6.200`
 MetalLB Range:: `192.168.6.240-192.168.6.254`
 Load Balancer IP: `192.168.6.240`
 
@@ -25,7 +25,7 @@ Load Balancer IP: `192.168.6.240`
 ### Recreate entire cluster from scratch:
 
 ```bash
-export CLUSTER=on-prem
+export CLUSTER=homelab
 export ENV=staging
 export KUBECONFIG="clusters/$CLUSTER/$ENV/kubeconfig"
 
