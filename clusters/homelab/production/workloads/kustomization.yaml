@@ -16,7 +16,7 @@ resources:
   - ../../../../base/reloader
   - ../../../../base/reflector
   - ../../../../base/system-upgrade
-  # - ../../../../base/cloudnative-pg
-  # - ../../../../base/pgadmin
+  - ../../../../base/cloudnative-pg
+  - ../../../../base/pgadmin
   # - ../../../../base/keycloak
   # - ../../../../base/harbor
