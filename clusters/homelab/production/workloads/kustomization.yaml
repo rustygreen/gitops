@@ -10,7 +10,7 @@ resources:
   - ../../../../base/ingress-nginx
   # - ../../../../base/longhorn
   # - ../../../../base/oauth2-proxy
-  # - ../../../../base/kubernetes-dashboard
+  - ../../../../base/kubernetes-dashboard
   # - ../../../../base/echo-server
   # - ../../../../base/kured
   # - ../../../../base/reloader
