@@ -23,6 +23,7 @@ stringData:
     OAUTH_PROXY_CLIENT_SECRET: ENC[AES256_GCM,data:tiH1aa/2JF56nUIj+AKW1EzYxzS0ooc/7KQL09qkevI=,iv:HG1rjDqNq/+aqVzRbIQ2CzlDBIu4wmnXU+Vap979bh4=,tag:M0yBEbRgP3Rjy23MKUVzzQ==,type:str]
     NFS_SUBDIR_EXTERNAL_PROVISIONER_PATH: ENC[AES256_GCM,data:DLb9tCFmedWn4X7LvkGsc96W348GAlSzCSH0Q7BCY8E=,iv:gPMoJk4e+cogHZWLRzO2ZXWxYGJN9DbFUiNjG10p7og=,tag:YukCURU7kltFSBrWKFrGEw==,type:str]
     NFS_SUBDIR_EXTERNAL_PROVISIONER_SERVER: ENC[AES256_GCM,data:+iUMDH8LCCkTtLfI,iv:mWxVCTbExqd64LR++DWRaihykD4tJTyWAZv2h8XFLjw=,tag:qVhGdqt/EBULavJJLmuW+A==,type:str]
+    NFS_SUBDIR_EXTERNAL_PROVISIONER_PATH: ENC[AES256_GCM,data:ymdMEbjzHltu6e2GzT7qqjr1gN+Vqs1c8mcEg8Ld,iv:aAS916yQpsCtJycVwj6Hnwe/jkceSuI8Q/M9S8huKOw=,tag:F7pl8W602ULcH6VB6HLrvQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -38,8 +39,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-01-19T18:01:55Z"
-    mac: ENC[AES256_GCM,data:5Ti1vVb4dzAF0NLPIIe4rxJUgwMdvOtOWYOQPzGIfkZDIsXnDz2zs/lq2XPORJKRGVfY+F189l/N/6tM9vy6xbPX3yieO10roIjdXKgWGD5gkgRk8wJ7vHqo/wmXqauexhIK9NrlapSGSi38jZjwi2z/uv4gDeD2OZ+ZDrNFCYo=,iv:2ApQQPxJCiRNG6dImD2/PiDvzi++ZoSarJ4dUmnzDKU=,tag:BweMhuGzSI1q3psf2Uh8ag==,type:str]
+    lastmodified: "2023-01-19T19:43:50Z"
+    mac: ENC[AES256_GCM,data:F4R0ZhZPX9sOX7VuC0uvuAmuCxW3hUFIs18EBghvodkefqi15AUJlP2BNM4P1dNiEXjB8GjB5WDvoqFtqLdyqybMRCAA20itMFYvQrBf9aqm4V2o6+8mtGtjc1235tA5XLGBj8CfVpa6kkuH/JMkMeTkHzwGKa8VD1BQPW/jNgs=,iv:HqtIJUnfvcZ1rWbSwyExCADBSwFzm8iTBX3ZTIaP3cQ=,tag:t7lCJSKOX7J0JWJW53VkFQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
