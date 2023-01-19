@@ -11,6 +11,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h
+  # NOTE: this path is pointless, just points to itself, but is required.
+  path: ./base/primary-storage
   prune: true
   sourceRef:
     kind: GitRepository
