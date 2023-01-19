@@ -44,7 +44,6 @@ spec:
   dependsOn:
     - name: settings
     - name: nfs-subdir-external-provisioner-charts
-    - name: longhorn
   decryption:
     provider: sops
     secretRef:
