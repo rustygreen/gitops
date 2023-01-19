@@ -20,6 +20,8 @@ stringData:
     OAUTH_PROXY_SERVER: ENC[AES256_GCM,data:e5T58uU6OrfqkEr1EnhOaXafqCj+T4P70POHsQ==,iv:OI4sSqP+wurkprNWhft7WtdhDN7N97+b2Cfkmkbwk00=,tag:aQzQs/uYnGOyyzwFvU+cEQ==,type:str]
     OAUTH_PROXY_SERVER_REALM: ENC[AES256_GCM,data:AR9szBZu,iv:RZnFDxMYz9jDcJ1c8YxQa6A9AGY4kH6wfK+jxnc2Dx0=,tag:V/Zc7oqUEjxGOwkGAWpOgA==,type:str]
     OAUTH_PROXY_CLIENT_SECRET: ENC[AES256_GCM,data:tiH1aa/2JF56nUIj+AKW1EzYxzS0ooc/7KQL09qkevI=,iv:HG1rjDqNq/+aqVzRbIQ2CzlDBIu4wmnXU+Vap979bh4=,tag:M0yBEbRgP3Rjy23MKUVzzQ==,type:str]
+    NFS_SUBDIR_EXTERNAL_PROVISIONER_PATH: ENC[AES256_GCM,data:DLb9tCFmedWn4X7LvkGsc96W348GAlSzCSH0Q7BCY8E=,iv:gPMoJk4e+cogHZWLRzO2ZXWxYGJN9DbFUiNjG10p7og=,tag:YukCURU7kltFSBrWKFrGEw==,type:str]
+    NFS_SUBDIR_EXTERNAL_PROVISIONER_SERVER: ENC[AES256_GCM,data:+iUMDH8LCCkTtLfI,iv:mWxVCTbExqd64LR++DWRaihykD4tJTyWAZv2h8XFLjw=,tag:qVhGdqt/EBULavJJLmuW+A==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -35,8 +37,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-01-07T18:29:00Z"
-    mac: ENC[AES256_GCM,data:hYJtNeF0myjTIyIlc8SDUE8/604TIWLl5hUAHQlnKbnceYmGzbFfB32gafz7JSfQpjj4r4KT0JnpL2LzLZw7RXZctfyheQBMzE10+bbnmT3pwOJ7MuXI+/JPREBZa+0it/TxzFmzJ95nuy97ph4QzLxMywZsaeSp9GwV0hDPWi0=,iv:PzQbVanJN1Ta5A/raBUEyPpRM9rDxteR6TLRbPo83cU=,tag:HnJelSvlN1XC/b8lADEXOQ==,type:str]
+    lastmodified: "2023-01-19T17:01:16Z"
+    mac: ENC[AES256_GCM,data:p3vdfUFhLLFsfIkznDNrDoPxM+SaqC+evEM7H8jFs6wmicYQCglJJzvBb1DeR6fFGIxskIRI9+k8/sg/864+OipkcCxUgId61mgZNWHTJJH0Qd4WgnCNirNjHHNSmPj82izNBvVZOq91ywqP4xcijAZk9WaM8759tIl0O6wTuv0=,iv:6iTAgEL5UXL4YEKsI8uq1VxKIRqop4rQDb9wkdZ3oBk=,tag:nkSOCBZqMZtigUwYtYffVQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
