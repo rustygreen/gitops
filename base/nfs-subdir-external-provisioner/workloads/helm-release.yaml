@@ -24,7 +24,7 @@ spec:
       server: ${NFS_SUBDIR_EXTERNAL_PROVISIONER_SERVER}
     storageClass:
       defaultClass: false
-      name: managed-nfs-storage
+      name: nfs-subdir
       # Example: "${.PVC.namespace}-${.PVC.name}"
       # pathPattern: "${.PVC.namespace}-${.PVC.name}"
       reclaimPolicy: Retain

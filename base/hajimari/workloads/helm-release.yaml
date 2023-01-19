@@ -37,7 +37,7 @@ spec:
     persistence:
       data:
         enabled: true
-        existingClaim: hajimari-config
+        existingClaim: config
     resources:
       requests:
         cpu: 100m

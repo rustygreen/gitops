@@ -44,6 +44,7 @@ spec:
   dependsOn:
     - name: settings
     - name: hajimari-charts
+    - name: primary-storage
   decryption:
     provider: sops
     secretRef:

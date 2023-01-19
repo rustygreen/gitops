@@ -1,0 +1,19 @@
+---
+# This is an abstract "primary-storage" Kustomization used to decouple
+# all the possible storage class types in each base workload. Rather,
+# If a workload requires storage it can depend on this generic kustomization.
+# This kustomization should then depend on all of the specific storage
+# classes that will be included for the given environment/repository.
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: primary-storage
+  namespace: flux-system
+spec:
+  interval: 1h
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  dependsOn:
+    - name: longhorn
