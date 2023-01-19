@@ -13,7 +13,7 @@ resources:
   - ../../../../base/kubernetes-dashboard
   - ../../../../base/nfs-subdir-external-provisioner
   - ../../../../base/primary-storage/primary-storage-nfs.yaml
-  - ../../../../base/hajimari
+  # - ../../../../base/hajimari
   # - ../../../../base/echo-server
   # - ../../../../base/kured
   # - ../../../../base/reloader
