@@ -6,7 +6,7 @@ resources:
   - ../../../../base/metallb
   - ../../../../base/cert-manager
   - ../../../../base/metrics-server
-  - ../../../../base/wildcard-certificate
+  # - ../../../../base/wildcard-certificate
   - ../../../../base/ingress-nginx
   # - ../../../../base/longhorn
   # - ../../../../base/oauth2-proxy
