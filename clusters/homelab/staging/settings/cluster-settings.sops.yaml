@@ -9,6 +9,7 @@ stringData:
     HELM_REPOSITORY_INTERVAL: ENC[AES256_GCM,data:0MU=,iv:ftZNVavtaAnEd/B7p9eWqagsk3Ps80z36F9ZxLmNP8A=,tag:3cMzIVRRSpHjjwqU8Xtpgg==,type:str]
     HELM_RELEASE_INTERVAL: ENC[AES256_GCM,data:yBdm,iv:SFP9sboEREV0lJFrwLsxFvNGmLeYhOZEGG6XWvouQM0=,tag:ZRLc+bdHmth7vqWE6EtnXA==,type:str]
     PRIMARY_DOMAIN: ENC[AES256_GCM,data:oIwrVJ4MqTL75mI=,iv:YVXBzpGgTFcJ7ASNhjDToOqtmF8BVaHthKl5EISpUTo=,tag:7dhYcDSkmfIY/kcMErq9tA==,type:str]
+    PRIMARY_STORAGE_CLASS: ENC[AES256_GCM,data:cyKXfKUcCg/rRA==,iv:0GyGWkP25lfrwHtAloOES75eApd7h4KS9YgoQlUkhG4=,tag:xcoP8VNN4tj8MGH2rM8c+Q==,type:str]
     CERT_CLUSTER_ISSUER: ENC[AES256_GCM,data:FU+bP+Jm6NyztI29/D/IFfwhqA==,iv:TMIhixSpFu3VKOVbil43xEaSzPSg5btjfi6/4Im/ySI=,tag:gYcZCll97dNj1whucDsuhw==,type:str]
     CERT_REFLECT_NAMESPACES: ENC[AES256_GCM,data:XdGBN+0RKMb+iFmLMqw=,iv:mYqLvDDYA3C33wBzH9xh2G8Sju8mSPMHTghZEUtFKh8=,tag:Xqf+3wnNIYg64t3FkejzdA==,type:str]
     CLOUDFLARE_EMAIL: ENC[AES256_GCM,data:nTZD5fcJXzfP/8rrW3MUZBafa2A=,iv:5DdZIIKJInXbXZ6jHlt8Sc/y1AXhe8AXqv2XD8sIFPo=,tag:GtSaupM+g2Rsy2IZNJaUXg==,type:str]
@@ -37,8 +38,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-01-19T17:01:16Z"
-    mac: ENC[AES256_GCM,data:p3vdfUFhLLFsfIkznDNrDoPxM+SaqC+evEM7H8jFs6wmicYQCglJJzvBb1DeR6fFGIxskIRI9+k8/sg/864+OipkcCxUgId61mgZNWHTJJH0Qd4WgnCNirNjHHNSmPj82izNBvVZOq91ywqP4xcijAZk9WaM8759tIl0O6wTuv0=,iv:6iTAgEL5UXL4YEKsI8uq1VxKIRqop4rQDb9wkdZ3oBk=,tag:nkSOCBZqMZtigUwYtYffVQ==,type:str]
+    lastmodified: "2023-01-19T18:01:55Z"
+    mac: ENC[AES256_GCM,data:5Ti1vVb4dzAF0NLPIIe4rxJUgwMdvOtOWYOQPzGIfkZDIsXnDz2zs/lq2XPORJKRGVfY+F189l/N/6tM9vy6xbPX3yieO10roIjdXKgWGD5gkgRk8wJ7vHqo/wmXqauexhIK9NrlapSGSi38jZjwi2z/uv4gDeD2OZ+ZDrNFCYo=,iv:2ApQQPxJCiRNG6dImD2/PiDvzi++ZoSarJ4dUmnzDKU=,tag:BweMhuGzSI1q3psf2Uh8ag==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
