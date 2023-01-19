@@ -9,14 +9,14 @@ resources:
   - ../../../../base/wildcard-certificate
   - ../../../../base/ingress-nginx
   # - ../../../../base/longhorn
-  - ../../../../base/oauth2-proxy
+  # - ../../../../base/oauth2-proxy
   - ../../../../base/kubernetes-dashboard
-  - ../../../../base/echo-server
-  - ../../../../base/kured
-  - ../../../../base/reloader
-  - ../../../../base/reflector
-  - ../../../../base/system-upgrade
-  - ../../../../base/cloudnative-pg
-  - ../../../../base/pgadmin
-  - ../../../../base/keycloak
+  # - ../../../../base/echo-server
+  # - ../../../../base/kured
+  # - ../../../../base/reloader
+  # - ../../../../base/reflector
+  # - ../../../../base/system-upgrade
+  # - ../../../../base/cloudnative-pg
+  # - ../../../../base/pgadmin
+  # - ../../../../base/keycloak
   # - ../../../../base/harbor
