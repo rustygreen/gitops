@@ -36,11 +36,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: hajimari
-  #     namespace: hajimari
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: hajimari
+      namespace: hajimari
   dependsOn:
     - name: settings
     - name: hajimari-charts
