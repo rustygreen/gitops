@@ -19,13 +19,13 @@ spec:
   values:
     nfs:
       # Example: /volume1/storage
-      path: ${NFS_SUBDIR_EXTERNAL_PROVISIONER_PATH}
+      path: ${NFS_SERVER_SHARE}
       # Example: 192.168.1.49
-      server: ${NFS_SUBDIR_EXTERNAL_PROVISIONER_SERVER}
+      server: ${NFS_SERVER_IP}
     storageClass:
       defaultClass: false
       name: nfs-subdir
       # Example: "${.PVC.namespace}-${.PVC.name}" or "${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}"
       # pathPattern: ${NFS_SUBDIR_EXTERNAL_PROVISIONER_PATH:=${.PVC.namespace}-${.PVC.name}}
-      pathPattern: ${NFS_SUBDIR_EXTERNAL_PROVISIONER_PATH}
+      pathPattern: ${NFS_PATH_PATTERN}
       reclaimPolicy: Retain
