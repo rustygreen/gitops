@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: config
   namespace: ${HAJIMARI_NAMESPACE:=hajimari}
+  annotations:
+    nfs.io/storage-path: "hajimari-config"
 spec:
   accessModes:
     - ReadWriteOnce

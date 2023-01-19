@@ -9,11 +9,10 @@ resources:
   - ../../../../base/wildcard-certificate
   - ../../../../base/ingress-nginx
     # - ../../../../base/oauth2-proxy
-
   - ../../../../base/kubernetes-dashboard
-  - ../../../../base/nfs-subdir-external-provisioner
-  - ../../../../base/primary-storage/primary-storage-nfs.yaml
-  - ../../../../base/hajimari
+  # - ../../../../base/nfs-subdir-external-provisioner
+  # - ../../../../base/primary-storage/primary-storage-nfs.yaml
+  # - ../../../../base/hajimari
 
   # - ../../../../base/echo-server
   # - ../../../../base/kured
