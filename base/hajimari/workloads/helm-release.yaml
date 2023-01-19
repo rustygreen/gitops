@@ -1,0 +1,46 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: hajimari
+  namespace: ${HAJIMARI_NAMESPACE:=hajimari}
+spec:
+  interval: ${HELM_RELEASE_INTERVAL:=24h}
+  chart:
+    spec:
+      # renovate: registryUrl=https://hajimari.io
+      chart: hajimari
+      version: 2.0.2
+      sourceRef:
+        kind: HelmRepository
+        name: hajimari
+        namespace: flux-system
+  values:
+    hajimari:
+      defaultEnable: false
+      title: Dashboard
+      namespaceSelector:
+        matchNames:
+          - default
+      name: "Rusty"
+    ingress:
+      main:
+        enabled: true
+        hosts:
+          - host: &host "hajimari.${PRIMARY_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      data:
+        enabled: true
+        existingClaim: hajimari-config
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        memory: 256Mi
