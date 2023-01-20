@@ -32,10 +32,6 @@ spec:
       kind: Deployment
       name: tigera-operator
       namespace: tigera-operator
-    - apiVersion: apps/v1
-      kind: DaemonSet
-      name: calico-node
-      namespace: calico-system
   decryption:
     provider: sops
     secretRef:
