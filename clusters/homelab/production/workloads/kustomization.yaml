@@ -2,18 +2,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../../../base/kube-vip
+  - ../../../../base/bjw-s
   - ../../../../base/metallb
+  - ../../../../base/kube-vip
+  - ../../../../base/uptime-kuma
   - ../../../../base/cert-manager
+  - ../../../../base/oauth2-proxy
+  - ../../../../base/ingress-nginx
   - ../../../../base/metrics-server
   - ../../../../base/wildcard-certificate
-  - ../../../../base/ingress-nginx
-    # - ../../../../base/oauth2-proxy
   - ../../../../base/kubernetes-dashboard
   - ../../../../base/nfs-subdir-external-provisioner
-  - ../../../../base/primary-storage/primary-storage-nfs.yaml
-  - ../../../../base/hajimari
+  - ../../../../base/primary-storage/primary-storage-nfs
 
+  # - ../../../../base/hajimari
   # - ../../../../base/echo-server
   # - ../../../../base/kured
   # - ../../../../base/reloader

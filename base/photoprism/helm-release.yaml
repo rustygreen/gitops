@@ -1,0 +1,98 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: photoprism
+  namespace: media
+spec:
+  releaseName: photoprism
+  interval: 15m
+  # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+  chart:
+    spec:
+      chart: app-template
+      version: 0.1.1
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  values:
+    image:
+      repository: photoprism/photoprism
+      tag: 220901-bullseye
+
+    env:
+      ## See other config options from PhotoPrism documentation: https://docs.photoprism.org/getting-started/config-options/
+      TZ: ${TIMEZONE}
+      PHOTOPRISM_ADMIN_PASSWORD: ${PHOTOPRISM_ADMIN_PASSWORD}
+      PHOTOPRISM_SITE_URL: "https://photos.${PRIMARY_DOMAIN}/"  # Canonical / public site URL
+      PHOTOPRISM_SITE_TITLE: "Green's Photos"
+      PHOTOPRISM_SITE_AUTHOR: "Rusty Green"
+      PHOTOPRISM_APP_NAME: Photos
+      PHOTOPRISM_ORIGINALS_LIMIT: 4000 # in MB (default 1000)
+      PHOTOPRISM_THUMB_FILTER: "blackman"
+      PHOTOPRISM_STORAGE_PATH: /photoprism/storage
+      PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
+      PHOTOPRISM_IMPORT_PATH: /photoprism/import
+
+    # envFrom:
+    # - secretRef:
+    #     name: photoprism-env-variables
+
+    service:
+      main:
+        ports:
+          http:
+            port: 2342
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: 4G
+          external-dns.alpha.kubernetes.io/target: "ipv4.${PRIMARY_DOMAIN}"
+          external-dns/is-public: "true"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: image-multiple
+        hosts:
+          - host: &host photos.${PRIMARY_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      config:
+        enabled: true
+        mountPath: /photoprism/storage
+        existingClaim: photoprism-config
+
+      originals:
+        enabled: true
+        mountPath: /photoprism/originals
+        existingClaim: photoprism-photos
+
+      unsorted:
+        enabled: true
+        mountPath: /photoprism/import
+        existingClaim: photoprism-photos-import
+
+    # -- Enable and configure mariadb database subchart under this key.
+    #    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
+    # @default -- See values.yaml
+    mariadb:
+      enabled: true
+      architecture: standalone
+      auth:
+        database: photoprism
+        username: photoprism
+        password: "${PHOTOPRISM_ADMIN_PASSWORD}"
+        rootPassword: "${PHOTOPRISM_ADMIN_PASSWORD}"
+      primary:
+        extraFlags: --innodb-buffer-pool-size=2G --transaction-isolation=READ-COMMITTED --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
+        persistence:
+          enabled: true
+          existingClaim: photoprism-db
