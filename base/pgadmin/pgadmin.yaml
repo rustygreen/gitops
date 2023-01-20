@@ -44,7 +44,7 @@ spec:
   dependsOn:
     - name: settings
     - name: pgadmin-charts
-    - name: longhorn
+    - name: primary-storage
   decryption:
     provider: sops
     secretRef:

@@ -16,7 +16,6 @@ stringData:
     KUBE_VIP_IP: ENC[AES256_GCM,data:4EFl2a+qre5ZHJy//A==,iv:/hyRKvDiR9sUJiEwZra9D5gKvh288qTeQnUPmOUghd4=,tag:09QwNF9RpgxZ/Kwz2y1IJg==,type:str]
     METALLB_LB_RANGE: ENC[AES256_GCM,data:5cIrnKZHvrSV3QE2wHxApHWo4KbFvCkexnaq,iv:5g6yEfQuXEoUg5dFsxMJqKf+CiFzkTQEsP8zaJoSPDI=,tag:ROymqYJ/xnjDneaJ2vfYIg==,type:str]
     LOAD_BALANCER_IP: ENC[AES256_GCM,data:YIHC6l1UYLoQLljScw==,iv:uOzpwNawq2/PoblrIhLnsTOx7fGnyrle5400v/FcYnE=,tag:f0JhH+KOa7eBinKzpf62OQ==,type:str]
-    STORAGE_CLASS_NAME: ENC[AES256_GCM,data:Eek28n3wBEg=,iv:3d1xsLNwIT08/DPxugpYg8TvYbFsgR7gnMdclUkRhbc=,tag:VcSyfKCJjTqc+CWf+wZawQ==,type:str]
     POSTGRES_STORAGE_CLASS: ENC[AES256_GCM,data:0yxrCNfbAvPq7g==,iv:35y5mqP1LGejBue3p6FC2MaDqKuN/qrev+a9GdmbEk8=,tag:4/cwljLXnrr1tMRZnBseQQ==,type:str]
     OAUTH_PROXY_SERVER: ENC[AES256_GCM,data:e5T58uU6OrfqkEr1EnhOaXafqCj+T4P70POHsQ==,iv:OI4sSqP+wurkprNWhft7WtdhDN7N97+b2Cfkmkbwk00=,tag:aQzQs/uYnGOyyzwFvU+cEQ==,type:str]
     OAUTH_PROXY_SERVER_REALM: ENC[AES256_GCM,data:AR9szBZu,iv:RZnFDxMYz9jDcJ1c8YxQa6A9AGY4kH6wfK+jxnc2Dx0=,tag:V/Zc7oqUEjxGOwkGAWpOgA==,type:str]
@@ -39,8 +38,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-01-19T20:47:16Z"
-    mac: ENC[AES256_GCM,data:2qVQydjmpCoaxUS0eDVSxnQonMolnsBVkt1oqJMXd7sAW2W/oEl2S/Ja2L6ktVQYxwhmLtcx9sd8Ddc315FX9dPerX9s0Dwj5idjd69lwfNKL1Os/UbhV7mxt8TeooeMViy1RIti4zr5Q4j9NtUrkdrTEVjpfqbOutoZo6nl/jA=,iv:nIzVQC0JwfTSbnWGojQ7KYjtoYloDoeV1pWCUwIesvo=,tag:/kfr6exgqSs+LQKLo68g2Q==,type:str]
+    lastmodified: "2023-01-20T20:33:16Z"
+    mac: ENC[AES256_GCM,data:wuMCaaqfaioeVul9nKOPGldDu7grCIZWTdxyIacFQ/ICTaIBkrgtwvpHYiAeEmbLuWgvkP9upiHWuTcmreiQuteQSLFSFwzwtrucyzCLXEzLtHvccJyE5TWXI+/te6YZzFMzgn7IjAz53bd/JlGAfLVFztoUkFYKk53E+tDl0QA=,iv:2kq8TbI+1WX+7inDMdEF6KQHp2HhVypUSuDTBIOlPQo=,tag:96qswbgo0u76xGL4zw6sag==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
