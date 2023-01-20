@@ -19,7 +19,7 @@ resources:
   # Workload prerequisites.
   - ../../../../base/bjw-s
   # Other workloads.
-  # - ../../../../base/pgadmin
+  - ../../../../base/pgadmin
   - ../../../../base/hajimari
   - ../../../../base/uptime-kuma
   - ../../../../base/echo-server
