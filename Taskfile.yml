@@ -6,8 +6,7 @@ vars:
   ENV: "{{.ENV}}"
   CLUSTER_PATH: "{{.CLUSTER}}/{{.ENV}}"
   CLUSTER_ROOT_DIR: "{{.ROOT_DIR}}/clusters/{{.CLUSTER}}"
-  CLUSTER_DIR: "{{.CLUSTER_ROOT_DIR}}/{{.ENV}}"
-  KUBERNETES_DIR: "{{.CLUSTER_DIR}}"
+  KUBERNETES_DIR: "{{.CLUSTER_ROOT_DIR}}/{{.ENV}}"
   ANSIBLE_DIR: "{{.ROOT_DIR}}/tools/ansible"
   TERRAFORM_DIR: "{{.ROOT_DIR}}/terraform"
 
@@ -72,8 +71,7 @@ tasks:
     cmds:
       - "echo Cluster: {{.CLUSTER}}"
       - "echo Environment: {{.ENV}}"
-      - "echo Project Directory: {{.PROJECT_DIR}}"
-      - "echo Cluster Directory: {{.CLUSTER_DIR}}"
+      - "echo Cluster Directory: {{.KUBERNETES_DIR}}"
 
   recreate:
     desc: Recreates the cluster from scratch (nukes existing and creates new)
@@ -86,9 +84,9 @@ tasks:
     desc: Creates the cluster
     cmds:
       - task: ansible:install
-      - mv provision/kubeconfig {{.CLUSTER_DIR}} -f
+      - mv provision/kubeconfig {{.KUBERNETES_DIR}} -f
       - rm -r provision
-      - export KUBECONFIG={{.CLUSTER_DIR}}/kubeconfig
+      - export KUBECONFIG={{.KUBERNETES_DIR}}/kubeconfig
       - kubectl get nodes
       - task: cluster:verify
       - task: cluster:install
