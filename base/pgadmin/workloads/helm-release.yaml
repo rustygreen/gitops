@@ -36,5 +36,5 @@ spec:
               pathType: Prefix
       tls:
         - hosts:
-            - "pgadmin.${PRIMARY_DOMAIN}"
+          - "pgadmin.${PRIMARY_DOMAIN}"
           secretName: primary-tls
