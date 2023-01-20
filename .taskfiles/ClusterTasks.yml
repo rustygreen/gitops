@@ -11,7 +11,7 @@ tasks:
   install:
     desc: Install Flux into your cluster
     cmds:
-      - kubectl apply --kustomize {{.KUBERNETES_DIR}}/bootstrap
+      - kubectl apply --kustomize {{.ROOT_DIR}}/base/flux-system/bootstrap
       - cat {{.SOPS_AGE_KEY_FILE}} | kubectl -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
       - sops --decrypt {{.ROOT_DIR}}/base/flux-system/repository/git-repo-ssh-keys.sops.yaml | kubectl apply -f -
       - kubectl apply --kustomize {{.KUBERNETES_DIR}}
