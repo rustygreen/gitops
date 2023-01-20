@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: config
+  name: uptime-kuma-config
   namespace: ${UPTIME_KUMA_NAMESPACE:=uptime-kuma}
   annotations:
     nfs.io/storage-path: "uptime-kuma-config"
