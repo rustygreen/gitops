@@ -43,6 +43,7 @@ spec:
       # TODO: Figure out how to use variable substitution in here - @russell.green
       namespace: kubernetes-dashboard
   dependsOn:
+    - name: kubernetes-dashboard-charts
     - name: settings
   decryption:
     provider: sops
