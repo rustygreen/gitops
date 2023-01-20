@@ -7,7 +7,7 @@ resources:
   - ../../../../base/kube-vip
   # - ../../../../base/uptime-kuma
   - ../../../../base/cert-manager
-  # - ../../../../base/oauth2-proxy
+  - ../../../../base/oauth2-proxy
   - ../../../../base/ingress-nginx
   - ../../../../base/metrics-server
   - ../../../../base/wildcard-certificate
