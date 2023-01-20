@@ -18,33 +18,36 @@ spec:
       interval: ${HELM_RELEASE_INTERVAL:=24h}
   # See: https://github.com/angelnu/k8s-gitops/blob/main/core/kubernetes-dashboard/release.yaml
   values:
-    ingress:
-      enabled: true
-      annotations:
-        hajimari.io/enable: "true"
-        hajimari.io/icon: logos:kubernetes
-        hajimari.io/info: Kubernetes dashboard
-        hajimari.io/group: admin
-        nginx.ingress.kubernetes.io/proxy-body-size: "100m"
-        # https://auth.${PRIMARY_DOMAIN}/oauth2/auth?allowed_groups=/Kubernetes Admins
-        # NOTE: The auth-signin annotation is ignored if auth-url is blank.
-        # If no "DASHBOARD_AUTH_URL" variable is supplied, then the dashboard has no authentication.
-        nginx.ingress.kubernetes.io/auth-url: ${KUBE_DASHBOARD_AUTH_URL:='https://auth.$host/oauth2/auth?allowed_groups=/Kubernetes Administrators'}
-        nginx.ingress.kubernetes.io/auth-signin: ${KUBE_DASHBOARD_AUTH_SIGNIN:='https://auth.$host/oauth2/start'}
-
-        # TODO: implement IP address whitelist - @russell.green
-        # nginx.ingress.kubernetes.io/whitelist-source-range: "${SECURE_INGRESS_WHITELIST_RANGE}"
-        # See:
-        # - https://github.com/fluxcd/flux2/discussions/3357
-        # - https://www.reddit.com/r/fluxcd/comments/z82apm/conditionally_apply_annotations_or_other/
-      hosts:
-        - &host kube-dash.${PRIMARY_DOMAIN}
-      tls:
-      - hosts:
-        - *host
+    env:
+      TZ: "${TIMEZONE}"
     extraArgs:
       - --enable-skip-login
       - --disable-settings-authorizer
       - --enable-insecure-login
+      - --token-ttl=43200
     metricsScraper:
       enabled: true
+    # ingress:
+    #   enabled: true
+    #   annotations:
+    #     hajimari.io/enable: "true"
+    #     hajimari.io/icon: logos:kubernetes
+    #     hajimari.io/info: Kubernetes dashboard
+    #     hajimari.io/group: admin
+    #     nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+    #     # https://auth.${PRIMARY_DOMAIN}/oauth2/auth?allowed_groups=/Kubernetes Admins
+    #     # NOTE: The auth-signin annotation is ignored if auth-url is blank.
+    #     # If no "DASHBOARD_AUTH_URL" variable is supplied, then the dashboard has no authentication.
+    #     nginx.ingress.kubernetes.io/auth-url: ${KUBE_DASHBOARD_AUTH_URL:='https://auth.$host/oauth2/auth?allowed_groups=/Kubernetes Administrators'}
+    #     nginx.ingress.kubernetes.io/auth-signin: ${KUBE_DASHBOARD_AUTH_SIGNIN:='https://auth.$host/oauth2/start'}
+
+    #     # TODO: implement IP address whitelist - @russell.green
+    #     # nginx.ingress.kubernetes.io/whitelist-source-range: "${SECURE_INGRESS_WHITELIST_RANGE}"
+    #     # See:
+    #     # - https://github.com/fluxcd/flux2/discussions/3357
+    #     # - https://www.reddit.com/r/fluxcd/comments/z82apm/conditionally_apply_annotations_or_other/
+    #   hosts:
+    #     - &host kube-dash.${PRIMARY_DOMAIN}
+    #   tls:
+    #   - hosts:
+    #     - *host
