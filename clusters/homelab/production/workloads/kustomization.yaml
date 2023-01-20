@@ -5,7 +5,7 @@ resources:
   - ../../../../base/bjw-s
   - ../../../../base/metallb
   - ../../../../base/kube-vip
-  - ../../../../base/uptime-kuma
+  # - ../../../../base/uptime-kuma
   - ../../../../base/cert-manager
   - ../../../../base/oauth2-proxy
   - ../../../../base/ingress-nginx
