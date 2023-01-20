@@ -11,7 +11,7 @@ resources:
   - ../../../../base/ingress-nginx
   - ../../../../base/metrics-server
   - ../../../../base/wildcard-certificate
-  # - ../../../../base/kubernetes-dashboard
+  - ../../../../base/kubernetes-dashboard
   - ../../../../base/nfs-subdir-external-provisioner
   - ../../../../base/primary-storage/nfs
 
