@@ -47,7 +47,7 @@ spec:
     #     # - https://github.com/fluxcd/flux2/discussions/3357
     #     # - https://www.reddit.com/r/fluxcd/comments/z82apm/conditionally_apply_annotations_or_other/
     #   hosts:
-    #     - &host kube-dash.${PRIMARY_DOMAIN}
+    #     - &host kubernetes.${PRIMARY_DOMAIN}
     #   tls:
     #   - hosts:
     #     - *host
