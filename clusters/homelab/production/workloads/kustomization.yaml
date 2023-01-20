@@ -13,7 +13,7 @@ resources:
   - ../../../../base/wildcard-certificate
   - ../../../../base/kubernetes-dashboard
   - ../../../../base/nfs-subdir-external-provisioner
-  - ../../../../base/primary-storage/primary-storage-nfs
+  - ../../../../base/primary-storage/nfs
 
   # - ../../../../base/hajimari
   # - ../../../../base/echo-server
