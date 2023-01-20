@@ -17,7 +17,7 @@ spec:
         namespace: flux-system
   values:
     env:
-      email: "${PGADMIN_USER:=pgadmin@example.com}"
+      email: "${PGADMIN_USER:=admin@pgadmin.io}"
       password: "${PGADMIN_PASSWORD:=CHANGE_ME}"
 
     strategy:
@@ -37,3 +37,4 @@ spec:
       tls:
         - hosts:
             - "pgadmin.${PRIMARY_DOMAIN}"
+          secretName: primary-tls
