@@ -84,8 +84,6 @@ tasks:
     desc: Creates the cluster
     cmds:
       - task: ansible:install
-      - mv provision/kubeconfig {{.KUBERNETES_DIR}} -f
-      - rm -r provision
       - export KUBECONFIG={{.KUBERNETES_DIR}}/kubeconfig
       - kubectl get nodes
       - task: cluster:verify
