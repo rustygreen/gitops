@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://kubernetes-sigs.github.io/metrics-server
       chart: metrics-server
-      version: 3.8.2
+      version: 3.8.3
       sourceRef:
         kind: HelmRepository
         name: metrics-server
@@ -21,3 +21,7 @@ spec:
       - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
       - --kubelet-use-node-status-port
       - --metric-resolution=15s
+    metrics:
+      enabled: true
+    serviceMonitor:
+      enabled: true

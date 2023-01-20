@@ -2,26 +2,29 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../../../base/bjw-s
-  - ../../../../base/metallb
-  - ../../../../base/kube-vip
-  - ../../../../base/uptime-kuma
-  - ../../../../base/cert-manager
-  - ../../../../base/oauth2-proxy
-  - ../../../../base/ingress-nginx
-  - ../../../../base/metrics-server
-  - ../../../../base/wildcard-certificate
-  # - ../../../../base/kubernetes-dashboard
+  # Storage.
   - ../../../../base/nfs-subdir-external-provisioner
   - ../../../../base/primary-storage/nfs
-
-  # - ../../../../base/hajimari
-  # - ../../../../base/echo-server
-  # - ../../../../base/kured
-  # - ../../../../base/reloader
-  # - ../../../../base/reflector
-  # - ../../../../base/system-upgrade
-  # - ../../../../base/cloudnative-pg
-  # - ../../../../base/pgadmin
+  # Core infrastructure level.
+  - ../../../../base/metallb
+  - ../../../../base/kube-vip
+  # Core system-level.
+  - ../../../../base/reloader
+  - ../../../../base/reflector
+  - ../../../../base/cert-manager
+  - ../../../../base/ingress-nginx
+  - ../../../../base/metrics-server
+  - ../../../../base/system-upgrade
+  - ../../../../base/wildcard-certificate
+  # Workload prerequisites.
+  - ../../../../base/bjw-s
+  # Other workloads.
+  - ../../../../base/pgadmin
+  - ../../../../base/hajimari
+  - ../../../../base/uptime-kuma
+  - ../../../../base/echo-server
+  - ../../../../base/oauth2-proxy
+  - ../../../../base/cloudnative-pg
   # - ../../../../base/keycloak
   # - ../../../../base/harbor
+  # - ../../../../base/kubernetes-dashboard
