@@ -25,6 +25,6 @@ resources:
   - ../../../../base/echo-server
   - ../../../../base/oauth2-proxy
   - ../../../../base/cloudnative-pg
-  # - ../../../../base/keycloak
+  - ../../../../base/keycloak
   # - ../../../../base/harbor
   # - ../../../../base/kubernetes-dashboard
