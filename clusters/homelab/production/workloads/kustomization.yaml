@@ -20,11 +20,11 @@ resources:
   - ../../../../base/bjw-s
   # Other workloads.
   - ../../../../base/pgadmin
+  - ../../../../base/keycloak
   - ../../../../base/hajimari
   - ../../../../base/uptime-kuma
   - ../../../../base/echo-server
   - ../../../../base/oauth2-proxy
   - ../../../../base/cloudnative-pg
-  - ../../../../base/keycloak
   # - ../../../../base/harbor
   # - ../../../../base/kubernetes-dashboard
