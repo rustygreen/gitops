@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: photoprism
-  namespace: media
+  namespace: ${PHOTOPRISM_NAMESPACE:=photoprism}
 spec:
   releaseName: photoprism
   interval: 15m
@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: photoprism/photoprism
-      tag: 220901-bullseye
+      tag: 221118-jammy
 
     env:
       ## See other config options from PhotoPrism documentation: https://docs.photoprism.org/getting-started/config-options/
@@ -35,10 +35,6 @@ spec:
       PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
       PHOTOPRISM_IMPORT_PATH: /photoprism/import
 
-    # envFrom:
-    # - secretRef:
-    #     name: photoprism-env-variables
-
     service:
       main:
         ports:
@@ -48,7 +44,6 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
           external-dns.alpha.kubernetes.io/target: "ipv4.${PRIMARY_DOMAIN}"
