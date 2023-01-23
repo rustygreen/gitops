@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://helm.runix.net
       chart: pgadmin4
-      version: 1.14.1
+      version: 1.14.2
       sourceRef:
         kind: HelmRepository
         name: pgadmin
@@ -37,4 +37,3 @@ spec:
       tls:
         - hosts:
           - "pgadmin.${PRIMARY_DOMAIN}"
-          secretName: primary-tls
