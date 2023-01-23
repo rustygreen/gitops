@@ -12,11 +12,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: photoprism-photoprism4
-      namespace: photoprism
+  # healthChecks:
+  #   - apiVersion: apps/v1
+  #     kind: Deployment
+  #     name: photoprism
+  #     namespace: photoprism
   dependsOn:
     - name: settings
     - name: bjw-s-charts
