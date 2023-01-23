@@ -2,4 +2,4 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ${PHOTOPRISM_NAMESPACE:=hajimari}
+  name: ${PHOTOPRISM_NAMESPACE:=photoprism}
