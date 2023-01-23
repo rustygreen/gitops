@@ -5,16 +5,15 @@ metadata:
   namespace: ${PHOTOPRISM_NAMESPACE:=photoprism}
 spec:
   releaseName: photoprism
-  interval: 15m
-  # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+  interval: ${HELM_RELEASE_INTERVAL:=24h}
   chart:
     spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
       chart: app-template
-      version: 0.1.1
-      interval: 15m
+      version: 1.2.1
       sourceRef:
         kind: HelmRepository
-        name: bjw-s-charts
+        name: bjw-s
         namespace: flux-system
   values:
     image:
@@ -78,16 +77,16 @@ spec:
     # -- Enable and configure mariadb database subchart under this key.
     #    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
     # @default -- See values.yaml
-    mariadb:
-      enabled: true
-      architecture: standalone
-      auth:
-        database: photoprism
-        username: photoprism
-        password: "${PHOTOPRISM_ADMIN_PASSWORD}"
-        rootPassword: "${PHOTOPRISM_ADMIN_PASSWORD}"
-      primary:
-        extraFlags: --innodb-buffer-pool-size=2G --transaction-isolation=READ-COMMITTED --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
-        persistence:
-          enabled: true
-          existingClaim: photoprism-db
+    # mariadb:
+    #   enabled: true
+    #   architecture: standalone
+    #   auth:
+    #     database: photoprism
+    #     username: photoprism
+    #     password: "${PHOTOPRISM_ADMIN_PASSWORD}"
+    #     rootPassword: "${PHOTOPRISM_ADMIN_PASSWORD}"
+    #   primary:
+    #     extraFlags: --innodb-buffer-pool-size=2G --transaction-isolation=READ-COMMITTED --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
+    #     persistence:
+    #       enabled: true
+    #       existingClaim: photoprism-db
