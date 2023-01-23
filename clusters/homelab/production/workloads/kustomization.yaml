@@ -19,13 +19,12 @@ resources:
   # Workload prerequisites.
   - ../../../../base/bjw-s
   # Other workloads.
-  - ../../../../base/pgadmin
-  - ../../../../base/keycloak
-  - ../../../../base/hajimari
-  # - ../../../../base/photoprism
-  - ../../../../base/uptime-kuma
-  - ../../../../base/echo-server
-  - ../../../../base/oauth2-proxy
-  - ../../../../base/cloudnative-pg
-  # - ../../../../base/harbor
-  # - ../../../../base/kubernetes-dashboard
+  # - ../../../../base/pgadmin
+  # - ../../../../base/keycloak
+  # - ../../../../base/hajimari
+  - ../../../../base/photoprism
+  # - ../../../../base/uptime-kuma
+  # - ../../../../base/echo-server
+  # - ../../../../base/oauth2-proxy
+  # - ../../../../base/cloudnative-pg
+  
