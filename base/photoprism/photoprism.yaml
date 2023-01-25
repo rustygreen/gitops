@@ -12,30 +12,26 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: v1
-  #     kind: Service
-  #     name: postgres-rw
-  #     namespace: keycloak
-  #   - apiVersion: v1
-  #     kind: Secret
-  #     name: postgres-app
-  #     namespace: keycloak
-  #   - apiVersion: v1
-  #     kind: Pod
-  #     # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-  #     name: postgres-1
-  #     namespace: keycloak
-  #   - apiVersion: v1
-  #     kind: Pod
-  #     # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-  #     name: postgres-2
-  #     namespace: keycloak
-  #   - apiVersion: v1
-  #     kind: Pod
-  #     # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-  #     name: postgres-3
-  #     namespace: keycloak
+  healthChecks:
+    - apiVersion: v1
+      kind: Service
+      name: photoprism-mariadb
+      namespace: photoprism
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: photoprism-mariadb-0
+      namespace: photoprism
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: photoprism-mariadb-1
+      namespace: photoprism
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: photoprism-mariadb-2
+      namespace: photoprism
   timeout: 10m
   dependsOn:
     - name: settings
