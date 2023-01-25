@@ -39,7 +39,11 @@ spec:
   healthChecks:
     - apiVersion: v1
       kind: Service
-      name: photoprism-mariadb
+      name: mariadb-mariadb-galera
+      namespace: photoprism
+    - apiVersion: v1
+      kind: Service
+      name: mariadb-mariadb-galera-headless
       namespace: photoprism
     - apiVersion: v1
       kind: Pod
