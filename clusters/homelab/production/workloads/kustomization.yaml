@@ -18,11 +18,12 @@ resources:
   - ../../../../base/wildcard-certificate
   # Workload prerequisites.
   - ../../../../base/bjw-s
+  - ../../../../base/bitnami
   # Other workloads.
   # - ../../../../base/pgadmin
   # - ../../../../base/keycloak
   # - ../../../../base/hajimari
-  # - ../../../../base/photoprism
+  - ../../../../base/photoprism
   # - ../../../../base/uptime-kuma
   # - ../../../../base/echo-server
   # - ../../../../base/oauth2-proxy

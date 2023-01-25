@@ -4,7 +4,7 @@ metadata:
   name: &app photoprism
   namespace: ${PHOTOPRISM_NAMESPACE:=photoprism}
 spec:
-  releaseName: photoprism
+  releaseName: *app
   interval: ${HELM_RELEASE_INTERVAL:=24h}
   chart:
     spec:
@@ -38,8 +38,10 @@ spec:
       PHOTOPRISM_STORAGE_PATH: /photoprism/storage
       PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
       PHOTOPRISM_IMPORT_PATH: /photoprism/import
-      # PHOTOPRISM_UID: 1000
-      # PHOTOPRISM_GID: 1000
+      # Database
+      PHOTOPRISM_DATABASE_DRIVER: mysql
+      PHOTOPRISM_DATABASE_SERVER: "photoprism-mariadb"
+      PHOTOPRISM_DATABASE_PASSWORD: "${SECRET_PHOTOPRISM_PASSWORD}"
     service:
       main:
         ports:

@@ -17,6 +17,7 @@ stringData:
     METALLB_LB_RANGE: ENC[AES256_GCM,data:5cIrnKZHvrSV3QE2wHxApHWo4KbFvCkexnaq,iv:5g6yEfQuXEoUg5dFsxMJqKf+CiFzkTQEsP8zaJoSPDI=,tag:ROymqYJ/xnjDneaJ2vfYIg==,type:str]
     LOAD_BALANCER_IP: ENC[AES256_GCM,data:YIHC6l1UYLoQLljScw==,iv:uOzpwNawq2/PoblrIhLnsTOx7fGnyrle5400v/FcYnE=,tag:f0JhH+KOa7eBinKzpf62OQ==,type:str]
     POSTGRES_STORAGE_CLASS: ENC[AES256_GCM,data:0yxrCNfbAvPq7g==,iv:35y5mqP1LGejBue3p6FC2MaDqKuN/qrev+a9GdmbEk8=,tag:4/cwljLXnrr1tMRZnBseQQ==,type:str]
+    MARIADB_STORAGE_CLASS: ENC[AES256_GCM,data:+K0cEW3E5mPMMA==,iv:bHpL9XeMxZH6VPDFG5fQ18RIttZaVUTalBLQcSgp2nc=,tag:EVQtoIYKYBtcqbksMTkjew==,type:str]
     OAUTH_PROXY_SERVER: ENC[AES256_GCM,data:e5T58uU6OrfqkEr1EnhOaXafqCj+T4P70POHsQ==,iv:OI4sSqP+wurkprNWhft7WtdhDN7N97+b2Cfkmkbwk00=,tag:aQzQs/uYnGOyyzwFvU+cEQ==,type:str]
     OAUTH_PROXY_SERVER_REALM: ENC[AES256_GCM,data:AR9szBZu,iv:RZnFDxMYz9jDcJ1c8YxQa6A9AGY4kH6wfK+jxnc2Dx0=,tag:V/Zc7oqUEjxGOwkGAWpOgA==,type:str]
     OAUTH_PROXY_CLIENT_SECRET: ENC[AES256_GCM,data:tiH1aa/2JF56nUIj+AKW1EzYxzS0ooc/7KQL09qkevI=,iv:HG1rjDqNq/+aqVzRbIQ2CzlDBIu4wmnXU+Vap979bh4=,tag:M0yBEbRgP3Rjy23MKUVzzQ==,type:str]
@@ -39,8 +40,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-01-22T19:39:36Z"
-    mac: ENC[AES256_GCM,data:Z1zbN+phKFkIDPRlxY9c0CAVql5MSlNUgr6qwAnTaDiEfuU/x9+3gGKLWn7yoXbW5NWiSauI3X8FIftEYeWQA0P1x1pOPLZwPtHvUzOE5nTaYpHmA/p3weKu4OewDvGbyXMjIW10wvvh0iGIHrp2BbFcKHeykv34IItYj8q08f4=,iv:Mz2T/q5Gdla73nXd5/CLPmT6mJXWqypTsgxD6X+Wsmc=,tag:e+tB+C+p5C/hns+Nm0cd2A==,type:str]
+    lastmodified: "2023-01-25T02:05:27Z"
+    mac: ENC[AES256_GCM,data:2mb4A+Q54xkuSF/buE3C05JmZQ42A1U3NQrmLhqRLwGrWRv2NUdYH4OP/67AfsoYWa0pDGMcQ8O/ahDUTtYRqpEnKBX0LnGLMo/cVo6cn8LBEtTz1SYFBK9WcJCSgzysXEDBFAY9YqPzI+SGPTUGZsGmp0pzlGSKgipFnMP0gCo=,iv:3YYP3kt0GwiQhkKuH7qHNpg9Z4x3xB2EG250/Rjm7q0=,tag:BcEGr1jOQWYq7K2qU8HaxQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
