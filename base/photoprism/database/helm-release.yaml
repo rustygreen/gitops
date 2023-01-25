@@ -15,16 +15,16 @@ spec:
         kind: HelmRepository
         name: bitnami
         namespace: flux-system
-  # values:
+  values:
   #   fullnameOverride: photoprism-mariadb
   #   replicaCount: 3
   #   rootUser:
   #     user: photoprism
   #     password: ${PHOTOPRISM_MARIADB_PASSWORD}
-  #   db:
-  #     name: photoprism
-  #     user: photoprism
-  #     password: ${PHOTOPRISM_MARIADB_PASSWORD}
+    db:
+      name: photoprism
+      user: photoprism
+      password: ${PHOTOPRISM_MARIADB_PASSWORD}
   #   persistence:
   #     enabled: true
   #     existingClaim: photoprism-db
