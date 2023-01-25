@@ -17,21 +17,21 @@ spec:
       kind: Service
       name: photoprism-mariadb
       namespace: photoprism
-    - apiVersion: v1
-      kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-      name: photoprism-mariadb-0
-      namespace: photoprism
-    - apiVersion: v1
-      kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-      name: photoprism-mariadb-1
-      namespace: photoprism
-    - apiVersion: v1
-      kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-      name: photoprism-mariadb-2
-      namespace: photoprism
+    # - apiVersion: v1
+    #   kind: Pod
+    #   # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+    #   name: photoprism-mariadb-0
+    #   namespace: photoprism
+    # - apiVersion: v1
+    #   kind: Pod
+    #   # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+    #   name: photoprism-mariadb-1
+    #   namespace: photoprism
+    # - apiVersion: v1
+    #   kind: Pod
+    #   # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+    #   name: photoprism-mariadb-2
+    #   namespace: photoprism
   timeout: 10m
   dependsOn:
     - name: settings
