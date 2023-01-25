@@ -41,21 +41,21 @@ spec:
       kind: Service
       name: photoprism-mariadb
       namespace: photoprism
-    # - apiVersion: v1
-    #   kind: Pod
-    #   # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-    #   name: photoprism-mariadb-0
-    #   namespace: photoprism
-    # - apiVersion: v1
-    #   kind: Pod
-    #   # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-    #   name: photoprism-mariadb-1
-    #   namespace: photoprism
-    # - apiVersion: v1
-    #   kind: Pod
-    #   # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-    #   name: photoprism-mariadb-2
-    #   namespace: photoprism
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the mariadb cluster.
+      name: mariadb-mariadb-galera-0
+      namespace: photoprism
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the mariadb cluster.
+      name: mariadb-mariadb-galera-1
+      namespace: photoprism
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the mariadb cluster.
+      name: mariadb-mariadb-galera-2
+      namespace: photoprism
   timeout: 10m
   dependsOn:
     - name: settings
@@ -72,33 +72,33 @@ spec:
         name: cluster-settings
 ---
 # Workloads
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: photoprism
-#   namespace: flux-system
-# spec:
-#   interval: 1h
-#   path: ./base/photoprism/workloads
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-cluster
-#   healthChecks:
-#     - apiVersion: apps/v1
-#       kind: Deployment
-#       name: photoprism
-#       namespace: photoprism
-#   dependsOn:
-#     - name: settings
-#     - name: bjw-s-charts
-#     - name: primary-storage
-#     - name: photoprism-database
-#   decryption:
-#     provider: sops
-#     secretRef:
-#       name: sops-age
-#   postBuild:
-#     substituteFrom:
-#       - kind: Secret
-#         name: cluster-settings
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: photoprism
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/photoprism/workloads
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: photoprism
+      namespace: photoprism
+  dependsOn:
+    - name: settings
+    - name: bjw-s-charts
+    - name: primary-storage
+    - name: photoprism-database
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
