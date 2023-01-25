@@ -40,7 +40,7 @@ spec:
       PHOTOPRISM_IMPORT_PATH: /photoprism/import
       # Database
       PHOTOPRISM_DATABASE_DRIVER: mysql
-      PHOTOPRISM_DATABASE_SERVER: "mariadb-mariadb-galera.photoprism.svc"
+      PHOTOPRISM_DATABASE_SERVER: "mariadb-mariadb-galera.photoprism.svc:3306"
       PHOTOPRISM_DATABASE_PASSWORD: "${PHOTOPRISM_MARIADB_PASSWORD}"
     service:
       main:
