@@ -34,13 +34,13 @@ spec:
       PHOTOPRISM_SITE_AUTHOR: "Rusty Green"
       PHOTOPRISM_APP_NAME: Photos
       PHOTOPRISM_ORIGINALS_LIMIT: 4000 # in MB (default 1000)
-      PHOTOPRISM_THUMB_FILTER: "blackman"
+      # PHOTOPRISM_THUMB_FILTER: "blackman"
       PHOTOPRISM_STORAGE_PATH: /photoprism/storage
       PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
       PHOTOPRISM_IMPORT_PATH: /photoprism/import
       # Database
       PHOTOPRISM_DATABASE_DRIVER: mysql
-      PHOTOPRISM_DATABASE_SERVER: "photoprism-mariadb"
+      PHOTOPRISM_DATABASE_SERVER: "mariadb-mariadb-galera.photoprism.svc"
       PHOTOPRISM_DATABASE_PASSWORD: "${PHOTOPRISM_MARIADB_PASSWORD}"
     service:
       main:
