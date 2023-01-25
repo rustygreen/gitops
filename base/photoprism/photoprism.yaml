@@ -1,4 +1,28 @@
 ---
+# Dependencies
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: photoprism-dependencies
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/photoprism/dependencies
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  dependsOn:
+    - name: settings
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
 # Database
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -37,6 +61,7 @@ spec:
     - name: settings
     - name: bitnami-charts
     - name: primary-storage
+    - name: photoprism-dependencies
   decryption:
     provider: sops
     secretRef:
