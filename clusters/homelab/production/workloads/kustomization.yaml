@@ -23,7 +23,7 @@ resources:
   # - ../../../../base/pgadmin
   # - ../../../../base/keycloak
   # - ../../../../base/hajimari
-  - ../../../../base/photoprism
+  # - ../../../../base/photoprism
   # - ../../../../base/uptime-kuma
   # - ../../../../base/echo-server
   # - ../../../../base/oauth2-proxy
