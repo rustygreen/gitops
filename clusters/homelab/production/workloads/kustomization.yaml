@@ -28,5 +28,5 @@ resources:
   # - ../../../../base/uptime-kuma
   # - ../../../../base/echo-server
   # - ../../../../base/oauth2-proxy
-  # - ../../../../base/cloudnative-pg
+  - ../../../../base/cloudnative-pg
   
