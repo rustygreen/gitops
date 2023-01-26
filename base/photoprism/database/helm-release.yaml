@@ -16,27 +16,8 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
-  #   fullnameOverride: photoprism-mariadb
-  #   replicaCount: 3
-  #   rootUser:
-  #     user: photoprism
-  #     password: ${PHOTOPRISM_MARIADB_PASSWORD}
-    replicaCount: 1
+    replicaCount: 3
     db:
       name: photoprism
       user: photoprism
       password: ${PHOTOPRISM_MARIADB_PASSWORD}
-  #   persistence:
-  #     enabled: true
-  #     existingClaim: photoprism-db
-    # auth:
-    #   database: photoprism
-    #   username: photoprism
-    #   password: ${PHOTOPRISM_ADMIN_PASSWORD}
-    # primary:
-    #   extraFlags: --innodb-buffer-pool-size=2G --transaction-isolation=READ-COMMITTED --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
-    #   persistence:
-    #     enabled: true
-    #     existingClaim: photoprism-db
-    # secondary:
-    #   replicaCount: 2

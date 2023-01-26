@@ -1,0 +1,16 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: nextcloud
+spec:
+  instances: 3
+  storage:
+    size: 100Gi
+    storageClass: ${POSTGRES_STORAGE_CLASS:=''}
+  bootstrap:
+    initdb:
+      database: nextcloud
+      owner: nextcloud
+  monitoring:
+    enablePodMonitor: true
