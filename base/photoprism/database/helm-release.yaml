@@ -21,6 +21,7 @@ spec:
   #   rootUser:
   #     user: photoprism
   #     password: ${PHOTOPRISM_MARIADB_PASSWORD}
+    replicaCount: 1
     db:
       name: photoprism
       user: photoprism
