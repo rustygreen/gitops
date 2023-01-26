@@ -3,11 +3,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: keycloak-dependencies
+  name: nextcloud-dependencies
   namespace: flux-system
 spec:
   interval: 1h
-  path: ./base/keycloak/dependencies
+  path: ./base/nextcloud/dependencies
   prune: true
   sourceRef:
     kind: GitRepository
@@ -71,17 +71,17 @@ spec:
       namespace: nextcloud
     - apiVersion: v1
       kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      # NOTE: this needs to stay in sync w/ the number of instances in the nextcloud cluster.
       name: postgres-1
       namespace: nextcloud
     - apiVersion: v1
       kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      # NOTE: this needs to stay in sync w/ the number of instances in the nextcloud cluster.
       name: postgres-2
       namespace: nextcloud
     - apiVersion: v1
       kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      # NOTE: this needs to stay in sync w/ the number of instances in the nextcloud cluster.
       name: postgres-3
       namespace: nextcloud
   timeout: 10m
