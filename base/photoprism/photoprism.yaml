@@ -50,16 +50,16 @@ spec:
       # NOTE: this needs to stay in sync w/ the number of instances in the mariadb cluster.
       name: mariadb-mariadb-galera-0
       namespace: photoprism
-    - apiVersion: v1
-      kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the mariadb cluster.
-      name: mariadb-mariadb-galera-1
-      namespace: photoprism
-    - apiVersion: v1
-      kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the mariadb cluster.
-      name: mariadb-mariadb-galera-2
-      namespace: photoprism
+    # - apiVersion: v1
+    #   kind: Pod
+    #   # NOTE: this needs to stay in sync w/ the number of instances in the mariadb cluster.
+    #   name: mariadb-mariadb-galera-1
+    #   namespace: photoprism
+    # - apiVersion: v1
+    #   kind: Pod
+    #   # NOTE: this needs to stay in sync w/ the number of instances in the mariadb cluster.
+    #   name: mariadb-mariadb-galera-2
+    #   namespace: photoprism
   timeout: 10m
   dependsOn:
     - name: settings
