@@ -174,10 +174,10 @@ spec:
     #       authtype:
     #       name:
     #       password:
-    # livenessProbe:
-    #   enabled: false
-    # readinessProbe:
-    #   enabled: false
+    livenessProbe:
+      enabled: false
+    readinessProbe:
+      enabled: false
 
     persistence:
       enabled: true
