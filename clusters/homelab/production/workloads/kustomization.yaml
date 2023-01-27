@@ -21,7 +21,7 @@ resources:
   - ../../../../base/bitnami
   # Other workloads.
   - ../../../../base/nextcloud
-  - ../../../../base/pgadmin
+  # - ../../../../base/pgadmin
   # - ../../../../base/keycloak
   # - ../../../../base/hajimari
   # - ../../../../base/photoprism
