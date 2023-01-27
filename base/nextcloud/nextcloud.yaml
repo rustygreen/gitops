@@ -99,49 +99,29 @@ spec:
         name: cluster-settings
 ---
 # Workloads
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: nextcloud
-#   namespace: flux-system
-# spec:
-#   interval: 1h
-#   path: ./base/nextcloud/workloads
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: v1
-  #     kind: Service
-  #     name: keycloak-service
-  #     namespace: keycloak
-  #   - apiVersion: v1
-  #     kind: Pod
-  #     # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-  #     name: keycloak-0
-  #     namespace: keycloak
-  #   - apiVersion: v1
-  #     kind: Pod
-  #     # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-  #     name: keycloak-1
-  #     namespace: keycloak
-  #   - apiVersion: v1
-  #     kind: Pod
-  #     # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-  #     name: keycloak-2
-  #     namespace: keycloak
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: nextcloud
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/nextcloud/workloads
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
   # timeout: 15m
-  # dependsOn:
-  #   - name: settings
-  #   - name: nextcloud-dependencies
-  #   - name: nextcloud-charts
-  #   - name: nextcloud-database
-  # decryption:
-  #   provider: sops
-  #   secretRef:
-  #     name: sops-age
-  # postBuild:
-  #   substituteFrom:
-  #     - kind: Secret
-  #       name: cluster-settings
+  dependsOn:
+    - name: settings
+    - name: nextcloud-dependencies
+    - name: nextcloud-charts
+    - name: nextcloud-database
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings

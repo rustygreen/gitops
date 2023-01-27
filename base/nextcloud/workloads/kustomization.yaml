@@ -3,10 +3,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: longhorn-system
 resources:
-  # TODO: Switch back to using Helm once Longhorn releases a version that supports k3s 1.25
-  # SEE:
-  #   - https://github.com/longhorn/longhorn/issues/4788
-  #   - https://github.com/longhorn/longhorn/issues/4003#issuecomment-1291256148
-  #   - https://github.com/longhorn/longhorn/issues/4003
-  # - helm-release.yaml
-  - https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml
+  - volume.yaml
+  - helm-release.yaml

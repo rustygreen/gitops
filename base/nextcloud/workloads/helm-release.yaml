@@ -17,83 +17,174 @@ spec:
         namespace: flux-system
   values:
     image:
-      # https://hub.docker.com/_/nextcloud
-      repository: docker.io/library/nextcloud
-      tag: 24.0.6-fpm
-    env:
-      TZ: "${TIMEZONE}"
-      NEXTCLOUD_ADMIN_USER:
-        valueFrom:
-          secretKeyRef:
-            name: nextcloud
-            key: ADMIN_USERNAME
-      NEXTCLOUD_ADMIN_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: nextcloud
-            key: ADMIN_PASSWORD
-      NEXTCLOUD_TRUSTED_DOMAINS: "cloud.${PUBLIC_DOMAIN}"
-      SMTP_HOST: maddy.comms.svc.cluster.local
-      SMTP_PORT: 2525
-      SMTP_AUTHTYPE: PLAIN
-      MAIL_FROM_ADDRESS: "${SMTP_USER}"
-      POSTGRES_HOST: nextcloud-postgres.default.svc.cluster.local
-      POSTGRES_USER: nextcloud
-      POSTGRES_DB: nextcloud
-      POSTGRES_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: nextcloud
-            key: POSTGRES_PASSWORD
-      REDIS_HOST: nextcloud-redis.default.svc.cluster.local
-      REDIS_HOST_PORT: 6379
-      REDIS_HOST_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: nextcloud
-            key: REDIS_PASSWORD
-      NEXTCLOUD_DATA_DIR: /data
-    podSecurityContext:
-      runAsUser: "${SECURITY_CONTEXT_RUN_AS_USER}"
-      runAsGroup: "${SECURITY_CONTEXT_RUN_AS_GROUP}"
-      fsGroup: "${SECURITY_CONTEXT_FS_GROUP}"
-    persistence:
-      data:
-        enabled: true
-        existingClaim: appdata
-        subPath:
-          - path: nextcloud/html
-            mountPath: /var/www/html
-          - path: nextcloud/data
-            mountPath: /data
-          # https://github.com/nextcloud/docker/issues/763#issuecomment-1007447212
-          - path: nextcloud/redis-session.ini
-            mountPath: /usr/local/etc/php/conf.d/redis-session.ini
-      redis-config:
-        enabled: true
-        mountPath: /var/www/html
-        existingClaim: appdata
-        subPath: nextcloud
-    service:
-      main:
-        ports:
-          http:
-            port: 80
+      tag: 25.0.3
     ingress:
-      main:
+      enabled: true
+      annotations:
+        hajimari.io/enable: "true"
+        hajimari.io/icon: simple-icons:nextcloud
+        hajimari.io/info: File and Calendar server
+        hajimari.io/group: tools
+        nginx.ingress.kubernetes.io/proxy-body-size: 4G
+        nginx.ingress.kubernetes.io/server-snippet: |-
+          server_tokens off;
+          proxy_hide_header X-Powered-By;
+        
+          # Rule borrowed from .htaccess to handle Microsoft DAV clients
+          location = / {
+            if ( $http_user_agent ~ ^DavClnt ) {
+              return 302 /remote.php/webdav/$is_args$args;
+            }
+          }
+     
+          location = /robots.txt {
+              allow all;
+              log_not_found off;
+              access_log off;
+          }
+
+          location ^~ /.well-known {
+          
+            # The rules in this block are an adaptation of the rules
+            # in .htaccess that concern /.well-known.
+
+            location = /.well-known/carddav { return 301 /remote.php/dav/; }
+            location = /.well-known/caldav  { return 301 /remote.php/dav/; }
+            
+            location /.well-known/acme-challenge    { try_files $uri $uri/ =404; }
+            location /.well-known/pki-validation    { try_files $uri $uri/ =404; }
+            
+            # Let Nextcloud's API for /.well-known URIs handle all other
+            # requests by passing them to the front-end controller.
+            return 301 /index.php$request_uri;
+          }
+          
+          # Rules borrowed from .htaccess to hide certain paths from clients
+          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
+            deny all;
+          }
+          location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
+            deny all;
+          }
+
+          # Rule borrowed from .htaccess
+          #location /remote {
+          #    return 301 /remote.php$request_uri;
+          #}
+
+        nginx.ingress.kubernetes.io/enable-global-auth: "false"
+      tls:
+      - hosts:
+        - &host cloud.${PRIMARY_DOMAIN}
+    redis:
+      enabled: true
+      # password: set in secret
+      master:
+        persistence:
+          enabled: false
+      replica:
+        persistence:
+          enabled: false
+    internalDatabase:
+      enabled: false
+    externalDatabase:
+      enabled: true
+      type: postgresql
+      database: postgres
+      host: postgres-rw.nextcloud.svc:5432
+      existingSecret:
         enabled: true
-        ingressClassName: nginx
-        annotations:
-          external-dns.home.arpa/enabled: "true"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: cloud-outline
-        hosts:
-          - host: &host "cloud.${PUBLIC_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-    podAnnotations:
-      secret.reloader.stakater.com/reload: *app
+        secretName: postgres-app
+        usernameKey: username
+        passwordKey: password
+    # cronjob:
+    #   enabled: true
+    #   failedJobsHistoryLimit: 1
+    #   successfulJobsHistoryLimit: 1
+
+    nextcloud:
+      host: *host
+      # extraVolumes:
+      # - name: nfs-video
+      #   nfs:
+      #     server: "${NFS_SERVER}"
+      #     path: "${NFS_VIDEO}"
+      # - name: nfs-software
+      #   nfs:
+      #     server: "${NFS_SERVER}"
+      #     path: "${NFS_SOFTWARE}"
+      # - name: nfs-music
+      #   nfs:
+      #     server: "${NFS_SERVER}"
+      #     path: "${NFS_MUSIC}"
+      # - name: nfs-downloads
+      #   nfs:
+      #     server: "${NFS_SERVER}"
+      #     path: "${NFS_DOWNLOADS}"
+      # extraVolumeMounts:
+      # - name: nfs-video
+      #   mountPath: "/video"
+      # - name: nfs-software
+      #   mountPath: "/software"
+      # - name: nfs-music
+      #   mountPath: "/music"
+      # - name: nfs-downloads
+      #   mountPath: "/downloads"
+    #   phpConfigs:
+    #     uploadLimit.ini: |
+    #       upload_max_filesize = 16G
+    #       post_max_size = 16G
+    #       max_input_time = 3600
+    #       max_execution_time = 3600
+    #       default_phone_region = DE
+    #   configs:
+    #     proxy.config.php: |-
+    #       <?php
+    #       $CONFIG = array (
+    #         'trusted_proxies' => 
+    #         array(
+    #            0 => '${NETWORK_K8S_CLUSTER_CIDR}',
+    #         ),
+    #         'forwarded_for_headers' => 
+    #         array (
+    #           0 => 'HTTP_X_FORWARDED_FOR',
+    #         ),
+    #       );
+    #     gitops.config.php: |-
+    #       <?php
+    #       $CONFIG = array (
+    #         'appstoreenabled' => true,
+    #         #'appstoreurl' => 'https://apps.nextcloud.com/api/v0',
+    #         'mail_domain' => '${PRIMARY_DOMAIN}',
+    #       );
+    #     #Circumvention for client freezes - https://github.com/nextcloud/desktop/issues/5094
+    #     bulkupload.config.php: |-
+    #       <?php
+    #       $CONFIG = array (
+    #         'bulkupload.enabled' => false,
+    #       );
+    #   mail:
+    #     enabled: true
+    #     fromAddress: nextcloud
+    #     domain: ${PRIMARY_DOMAIN}
+    #     smtp:
+    #       host: ${CLUSTER_MAIL_SERVER}
+    #       secure:
+    #       port: ${CLUSTER_MAIL_SERVER_PORT}
+    #       authtype:
+    #       name:
+    #       password:
+    # livenessProbe:
+    #   enabled: false
+    # readinessProbe:
+    #   enabled: false
+
+    persistence:
+      enabled: true
+      existingClaim: nextcloud
+
+  # valuesFrom:
+  # - kind: Secret
+  #   name: "nextcloud-helm-values"
+  #   valuesKey: nextcloud.yaml
+  #   optional: false
