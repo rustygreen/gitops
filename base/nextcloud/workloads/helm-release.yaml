@@ -90,7 +90,7 @@ spec:
     externalDatabase:
       enabled: true
       type: postgresql
-      database: app
+      database: nextcloud
       host: postgres-rw.nextcloud.svc:5432
       existingSecret:
         enabled: true
