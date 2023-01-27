@@ -37,4 +37,6 @@ spec:
       tls:
         - hosts:
           - "pgadmin.${PRIMARY_DOMAIN}"
+          # TODO: Remove this, as it's not needed with a default certificate configured in ingress.
+          # See: https://github.com/rowanruseler/helm-charts/issues/189
           secretName: primary-tls
