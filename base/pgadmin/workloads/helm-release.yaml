@@ -37,3 +37,4 @@ spec:
       tls:
         - hosts:
           - "pgadmin.${PRIMARY_DOMAIN}"
+          secretName: primary-tls
