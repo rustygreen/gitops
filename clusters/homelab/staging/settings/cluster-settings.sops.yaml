@@ -26,6 +26,7 @@ stringData:
     NFS_PATH_PATTERN: ENC[AES256_GCM,data:P96SyfZ7dlFe3+nmjcT6PFWoaSIH3o8OStXNNtCqbkw4nllVbRWm,iv:skkGWSWE87Hxml+vfHT81P2OQt9XpRImzqySGVU9KJs=,tag:K1jbID8kpNUSZ968HCNjzA==,type:str]
     PHOTOPRISM_ADMIN_PASSWORD: ENC[AES256_GCM,data:CtKgw+irn9DP1do7TkjPbzkzbxd40p8rk8gL9wqqpkiv4SAdx0MHkw==,iv:01H3RCQFNNI9EaqZdlJav8JSL7f9T2SIm6mWCzsTY+4=,tag:wgown8Ixu2ckGvcbE4V2cA==,type:str]
     PHOTOPRISM_MARIADB_PASSWORD: ENC[AES256_GCM,data:i/L4vP+m0uywnVkvwvytG7ds48KRIFdgpl8fWjmRiXI=,iv:cD3IEMgbai14bQ3Q5qi6Kndbfta7CurBMxQXF+QZ+Z4=,tag:X1bHqVgWb5V1lBWactD4BA==,type:str]
+    NETWORK_K8S_CLUSTER_CIDR: ENC[AES256_GCM,data:fyADer0HM0XdeQ==,iv:x+pJ9mTv/N4zPql150LAdbwXOBBh/gOCWYRn51V8DNc=,tag:7oRkPRg0sV9XXPOlVqI4Ww==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -41,8 +42,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-01-25T14:21:30Z"
-    mac: ENC[AES256_GCM,data:o21iNfpvV8mv8tvyzvRWmVLbqoTRfvP2vapHW1RI1G1NQvS1ezddZhxdJ4Rx2vhBP66K3AVK04wazyAApaaH6g3BC6oDRH4FsfPDfQV1LKPUmtlEnDGaGFfq5Bv18RMAbP2z76JiBk0fcFSBVRyjIrpOhnHP+Q7z4/U2sAE6ns4=,iv:biIv2nm4oJ7lhMtCyElH6YWNXoVDZbdCAGKSOBQP0+c=,tag:CmWjLtHnqMU7CkzF8Q7pqg==,type:str]
+    lastmodified: "2023-01-28T02:03:02Z"
+    mac: ENC[AES256_GCM,data:Woi+nC1h0vvlakFSxeXOM9QCauQd+yWYJOE4pWvcfUDdDtTDb9+u8yZzSlo8giy2MhPly3dm4bOjWF2iHG8BrG6YdKCBkURN6ikfR8NCLs/HYCgVGezY1N5AkZDF1YXP3rtjfnGs7AMxTK2btGnYKxQ6yeRggVzNSGGu5yClkPg=,iv:4uNoCc06t8tQR/yoiw28GIs4+0dIPNpl+R7OJmIhEaY=,tag:1NpdXYZ0YNy/hOzDY2f4tg==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
