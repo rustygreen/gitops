@@ -21,7 +21,7 @@ resources:
   - ../../../../base/bitnami
   # Other workloads.
   # - ../../../../base/pgadmin
-  - ../../../../base/adguard
+  # - ../../../../base/adguard
   - ../../../../base/keycloak
   - ../../../../base/nextcloud
   # - ../../../../base/hajimari
