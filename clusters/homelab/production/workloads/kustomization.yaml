@@ -22,6 +22,7 @@ resources:
   # Other workloads.
   # - ../../../../base/pgadmin
   # - ../../../../base/adguard
+  - ../../../../base/blocky
   - ../../../../base/keycloak
   - ../../../../base/nextcloud
   # - ../../../../base/hajimari
