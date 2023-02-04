@@ -27,7 +27,7 @@ resources:
   # - ../../../../base/hajimari
   # - ../../../../base/photoprism
   # - ../../../../base/uptime-kuma
-  # - ../../../../base/echo-server
-  # - ../../../../base/oauth2-proxy
+  - ../../../../base/echo-server
+  - ../../../../base/oauth2-proxy
   - ../../../../base/cloudnative-pg
   
