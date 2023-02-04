@@ -52,7 +52,7 @@ spec:
             customDNS:
               mapping:
                 ${PRIMARY_DOMAIN}: ${LOAD_BALANCER_IP}
-                *.${PRIMARY_DOMAIN}: ${LOAD_BALANCER_IP}
+                "*.${PRIMARY_DOMAIN}": ${LOAD_BALANCER_IP}
             blocking:
               blackLists:
                 ads:
