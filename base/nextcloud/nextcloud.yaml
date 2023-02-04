@@ -114,6 +114,7 @@ spec:
   # timeout: 15m
   dependsOn:
     - name: settings
+    - name: primary-storage
     - name: nextcloud-dependencies
     - name: nextcloud-charts
     - name: nextcloud-database
