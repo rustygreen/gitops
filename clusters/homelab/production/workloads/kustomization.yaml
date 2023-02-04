@@ -20,9 +20,10 @@ resources:
   - ../../../../base/bjw-s
   - ../../../../base/bitnami
   # Other workloads.
-  - ../../../../base/nextcloud
   # - ../../../../base/pgadmin
-  # - ../../../../base/keycloak
+  - ../../../../base/adguard
+  - ../../../../base/keycloak
+  - ../../../../base/nextcloud
   # - ../../../../base/hajimari
   # - ../../../../base/photoprism
   # - ../../../../base/uptime-kuma

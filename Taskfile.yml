@@ -29,6 +29,7 @@ tasks:
     desc: Initialize workstation dependencies with Brew
     cmds:
       - brew install {{.DEPS}} {{.CLI_ARGS}}
+      - task ansible:init
     preconditions:
       - sh: command -v brew
         msg: |

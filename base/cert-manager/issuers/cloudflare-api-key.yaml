@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: cloudflare-api-key
+    namespace: ${CERT_MANAGER_NAMESPACE:=cert-manager}
+stringData:
+    api-key: ${CLOUDFLARE_API_KEY}

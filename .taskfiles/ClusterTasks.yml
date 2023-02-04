@@ -22,6 +22,11 @@ tasks:
     vars:
       SOPS_AGE_KEY_FILE: ~/.config/sops/age/keys.txt
 
+  r:
+    desc: Force update Flux to pull in changes from your Git repository
+    cmds:
+      - task: reconcile
+
   reconcile:
     desc: Force update Flux to pull in changes from your Git repository
     cmds:
