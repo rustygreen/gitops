@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: raspberry-pi-server-cowport
+  namespace: ${RPI_SERVER_NAMESPACE:=raspberry-pi-server}
+spec:
+  ports:
+    - port: 5000
+      protocol: TCP
+  selector:
+    app:  raspberry-pi-server-cowport

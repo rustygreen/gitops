@@ -1,0 +1,60 @@
+---
+# Basement
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: raspberry-pi-server-basement
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/raspberry-pi-server/basement
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: raspberry-pi-server-basement
+      namespace: raspberry-pi-server
+  dependsOn:
+    - name: settings
+    - name: bjw-s-charts
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
+# Cowport
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: raspberry-pi-server-cowport
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/raspberry-pi-server/cowport
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: raspberry-pi-server-cowport
+      namespace: raspberry-pi-server
+  dependsOn:
+    - name: settings
+    - name: bjw-s-charts
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings

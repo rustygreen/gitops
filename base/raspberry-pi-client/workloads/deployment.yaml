@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raspberry-pi-client
+  namespace: ${RPI_CLIENT_NAMESPACE:=raspberry-pi-client}
+spec:
+  selector:
+    matchLabels:
+      app: raspberry-pi-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: raspberry-pi-client
+    spec:
+      containers:
+        - name: raspberry-pi-client
+          image: ghcr.io/rustygreen/raspberry-pi-client:main
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 80
+          env:
+            - name: RPC_CONFIG
+              value: '{"servers": [{"title": "Basement Pi","url": "https://pi-basement.${PRIMARY_DOMAIN}","pinLabels": {"40": "Cows water","37": "Cows water drain","35": "Chickens water","37": "Chickens water drain"}}]}'

@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raspberry-pi-server-cowport
+  namespace: ${RPI_SERVER_NAMESPACE:=raspberry-pi-server}
+spec:
+  selector:
+    matchLabels:
+      app: raspberry-pi-server-cowport
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: raspberry-pi-server-cowport
+    spec:
+      containers:
+        - name: raspberry-pi-server
+          image: ghcr.io/rustygreen/raspberry-pi-server:main
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          securityContext:
+            privileged: true
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: site
+                    operator: In
+                    values:
+                      - cowport
+      tolerations:
+        - key: site
+          operator: Equal
+          value: cowport
+          effect: NoSchedule

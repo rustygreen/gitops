@@ -25,6 +25,8 @@ resources:
   - ../../../../base/blocky
   - ../../../../base/keycloak
   - ../../../../base/nextcloud
+  - ../../../../base/raspberry-pi-client
+  - ../../../../base/raspberry-pi-server
   # - ../../../../base/hajimari
   # - ../../../../base/photoprism
   # - ../../../../base/uptime-kuma

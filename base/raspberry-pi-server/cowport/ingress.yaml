@@ -1,0 +1,21 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: raspberry-pi-server-cowport
+  namespace: ${RPI_SERVER_NAMESPACE:=raspberry-pi-server}
+spec:
+  rules:
+    - host: pi-cowport.${PRIMARY_DOMAIN}
+      http:
+        paths:
+          - backend:
+              service:
+                name: raspberry-pi-server-cowport
+                port:
+                  number: 5000
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - pi-cowport.${PRIMARY_DOMAIN}

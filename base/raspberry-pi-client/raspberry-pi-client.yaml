@@ -1,0 +1,29 @@
+---
+# Workloads
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: raspberry-pi-client
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/raspberry-pi-client/workloads
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: raspberry-pi-client
+      namespace: raspberry-pi-client
+  dependsOn:
+    - name: settings
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
