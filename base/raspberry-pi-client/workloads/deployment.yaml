@@ -22,4 +22,26 @@ spec:
             - containerPort: 80
           env:
             - name: RPC_CONFIG
-              value: '{"servers": [{"title": "Basement Pi","url": "https://pi-basement.${PRIMARY_DOMAIN}","pinLabels": {"40": "Cows water","37": "Cows water drain","35": "Chickens water","37": "Chickens water drain"}}]}'
+              value: |-
+                {
+                  "servers": [
+                    {
+                      "title": "Basement RPi",
+                      "url": "https://pi-basement.${PRIMARY_DOMAIN}",
+                      "pinLabels": {
+                        "40": "Cows water",
+                        "38": "Cows water drain",
+                        "35": "Chickens water",
+                        "37": "Chickens water drain"
+                      }
+                    },
+                    {
+                      "title": "Cowport RPi",
+                      "url": "https://pi-cowport.${PRIMARY_DOMAIN}",
+                      "pinLabels": {
+                        "16": "Water Sensor Trigger",
+                        "18": "Water Sensor Echo"
+                      }
+                    }
+                  ]
+                }
