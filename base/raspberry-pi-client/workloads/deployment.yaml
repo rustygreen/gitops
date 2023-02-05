@@ -42,7 +42,10 @@ spec:
                       "hideUnlabeled": true,
                       "pinLabels": {
                         "16": "Water Sensor Trigger",
-                        "18": "Water Sensor Echo"
+                        "18": "Water Sensor Echo",
+                        "11": "Open Valve (alone) & Power On",
+                        "13": "Close Valve (13 + 15)",
+                        "15": "Close Valve (13 + 15)"
                       }
                     }
                   ]
