@@ -45,7 +45,9 @@ spec:
           config.yml: |-
             upstream:
               default:
-                - tcp+udp:10.0.1.1
+                - tcp-tls:1dot1dot1dot1.cloudflare-dns.com
+                - tcp-tls:dns.google
+                - tcp-tls:dns10.quad9.net
             conditional:
               mapping:
                 ${PRIMARY_DOMAIN}: tcp+udp:${LOAD_BALANCER_IP}
