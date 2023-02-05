@@ -28,9 +28,10 @@ spec:
                     {
                       "title": "Basement RPi",
                       "url": "https://pi-basement.${PRIMARY_DOMAIN}",
+                      "hideUnlabeled": true,
                       "pinLabels": {
                         "40": "Cows water",
-                        "38": "Cows water drain",
+                        "33": "Cows water drain",
                         "35": "Chickens water",
                         "37": "Chickens water drain"
                       }
@@ -38,6 +39,7 @@ spec:
                     {
                       "title": "Cowport RPi",
                       "url": "https://pi-cowport.${PRIMARY_DOMAIN}",
+                      "hideUnlabeled": true,
                       "pinLabels": {
                         "16": "Water Sensor Trigger",
                         "18": "Water Sensor Echo"
