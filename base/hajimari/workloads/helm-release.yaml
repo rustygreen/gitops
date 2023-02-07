@@ -27,9 +27,6 @@ spec:
       showGlobalBookmarks: false
       showAppUrls: false
       defaultEnable: true
-      namespaceSelector:
-        matchNames:
-          - default
     ingress:
       main:
         enabled: true
@@ -39,7 +36,7 @@ spec:
             10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
           hajimari.io/enable: "false"
         hosts:
-          - host: &host "dash.${PRIMARY_DOMAIN}"
+          - host: &host "apps.${PRIMARY_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
