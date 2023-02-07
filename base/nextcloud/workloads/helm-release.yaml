@@ -73,7 +73,6 @@ spec:
           #}
 
         nginx.ingress.kubernetes.io/enable-global-auth: "false"
-        nginx.ingress.kubernetes.io/custom-http-errors: ""
       tls:
       - hosts:
         - &host cloud.${PRIMARY_DOMAIN}
