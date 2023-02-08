@@ -30,14 +30,23 @@ spec:
         nginx.ingress.kubernetes.io/custom-http-errors: "418"
         nginx.ingress.kubernetes.io/server-snippet: |-
           server_tokens off;
-          server_tokens off;
-          proxy_hide_header X-Powered-By;
+          # Specify how to handle directories -- specifying `/index.php$request_uri`
+          # here as the fallback means that Nginx always exhibits the desired behaviour
+          # when a client requests a path that corresponds to a directory that exists
+          # on the server. In particular, if that directory contains an index.php file,
+          # that file is correctly served; if it doesn't, then the request is passed to
+          # the front-end controller. This consistent behaviour means that we don't need
+          # to specify custom rules for certain paths (e.g. images and other assets,
+          # `/updater`, `/ocm-provider`, `/ocs-provider`), and thus
+          # `try_files $uri $uri/ /index.php$request_uri`
+          # always provides the desired behaviour.
+          index index.php index.html /index.php$request_uri;
 
-          # Rule borrowed from .htaccess to handle Microsoft DAV clients
+          # Rule borrowed from `.htaccess` to handle Microsoft DAV clients
           location = / {
-            if ( $http_user_agent ~ ^DavClnt ) {
-              return 302 /remote.php/webdav/$is_args$args;
-            }
+              if ( $http_user_agent ~ ^DavClnt ) {
+                  return 302 /remote.php/webdav/$is_args$args;
+              }
           }
 
           location = /robots.txt {
@@ -46,28 +55,62 @@ spec:
               access_log off;
           }
 
+          # Make a regex exception for `/.well-known` so that clients can still
+          # access it despite the existence of the regex rule
+          # `location ~ /(\.|autotest|...)` which would otherwise handle requests
+          # for `/.well-known`.
           location ^~ /.well-known {
-            # The rules in this block are an adaptation of the rules
-            # in .htaccess that concern /.well-known.
+              # The following 6 rules are borrowed from `.htaccess`
 
-            location = /.well-known/carddav { return 301 /remote.php/dav/; }
-            location = /.well-known/caldav  { return 301 /remote.php/dav/; }
+              location = /.well-known/carddav     { return 301 /remote.php/dav/; }
+              location = /.well-known/caldav      { return 301 /remote.php/dav/; }
+              # Anything else is dynamically handled by Nextcloud
+              location ^~ /.well-known            { return 301 /index.php$uri; }
 
-            location /.well-known/acme-challenge    { try_files $uri $uri/ =404; }
-            location /.well-known/pki-validation    { try_files $uri $uri/ =404; }
-
-            # Let Nextcloud's API for /.well-known URIs handle all other
-            # requests by passing them to the front-end controller.
-            return 301 /index.php$request_uri;
+              try_files $uri $uri/ =404;
           }
 
-          # Rules borrowed from .htaccess to hide certain paths from clients
-          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
-            deny all;
+          # Rules borrowed from `.htaccess` to hide certain paths from clients
+          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)  { return 404; }
+          location ~ ^/(?:\.|autotest|occ|issue|indie|db_|console)              { return 404; }
+
+          # Ensure this block, which passes PHP files to the PHP process, is above the blocks
+          # which handle static assets (as seen below). If this block is not declared first,
+          # then Nginx will encounter an infinite rewriting loop when it prepends `/index.php`
+          # to the URI, resulting in a HTTP 500 error response.
+          location ~ \.php(?:$|/) {
+              fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+              set $path_info $fastcgi_path_info;
+
+              try_files $fastcgi_script_name =404;
+
+              include fastcgi_params;
+              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+              fastcgi_param PATH_INFO $path_info;
+              #fastcgi_param HTTPS on;
+
+              fastcgi_param modHeadersAvailable true;         # Avoid sending the security headers twice
+              fastcgi_param front_controller_active true;     # Enable pretty urls
+              fastcgi_pass php-handler;
+
+              fastcgi_intercept_errors on;
+              fastcgi_request_buffering off;
           }
 
-          location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
-            deny all;
+          location ~ \.(?:css|js|svg|gif)$ {
+              try_files $uri /index.php$request_uri;
+              expires 6M;         # Cache-Control policy borrowed from `.htaccess`
+              access_log off;     # Optional: Don't log access to assets
+          }
+
+          location ~ \.woff2?$ {
+              try_files $uri /index.php$request_uri;
+              expires 7d;         # Cache-Control policy borrowed from `.htaccess`
+              access_log off;     # Optional: Don't log access to assets
+          }
+
+          location / {
+              try_files $uri $uri/ /index.php$request_uri;
           }
       tls:
       - hosts:

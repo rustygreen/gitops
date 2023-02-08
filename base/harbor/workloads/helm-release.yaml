@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://helm.goharbor.io
       chart: harbor
-      version: 1.10.2
+      version: 1.11.0
       sourceRef:
         kind: HelmRepository
         name: goharbor
@@ -39,23 +39,23 @@ spec:
       resourcePolicy: "keep"
       persistentVolumeClaim:
         registry:
-          storageClass: "${HARBOR_STORAGE_CLASS:=longhorn}"
+          storageClass: "${PRIMARY_STORAGE_CLASS}"
           size: 50Gi
         chartmuseum:
-          storageClass: "${HARBOR_STORAGE_CLASS:=longhorn}"
+          storageClass: "${PRIMARY_STORAGE_CLASS}"
           size: 5Gi
         jobservice:
           jobLog:
-            storageClass: "${HARBOR_STORAGE_CLASS:=longhorn}"
+            storageClass: "${PRIMARY_STORAGE_CLASS}"
             size: 5Gi
           scanDataExports:
-            storageClass: "${HARBOR_STORAGE_CLASS:=longhorn}"
+            storageClass: "${PRIMARY_STORAGE_CLASS}"
             size: 5Gi
         redis:
-          storageClass: "${HARBOR_STORAGE_CLASS:=longhorn}"
+          storageClass: "${PRIMARY_STORAGE_CLASS}"
           size: 5Gi
         trivy:
-          storageClass: "${HARBOR_STORAGE_CLASS:=longhorn}"
+          storageClass: "${PRIMARY_STORAGE_CLASS}"
           size: 5Gi
     database:
       type: external

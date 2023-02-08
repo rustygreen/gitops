@@ -26,6 +26,7 @@ resources:
   - ../../../../base/blocky
   - ../../../../base/keycloak
   - ../../../../base/nextcloud
+  - ../../../../base/excalidraw
   - ../../../../base/raspberry-pi-client
   - ../../../../base/raspberry-pi-server
   # - ../../../../base/hajimari
