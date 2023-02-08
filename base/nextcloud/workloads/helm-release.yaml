@@ -68,9 +68,6 @@ spec:
       successfulJobsHistoryLimit: 1
     nextcloud:
       host: *host
-    nginx:
-      ## You need to set an fpm version of the image for nextcloud if you want to use nginx!
-      enabled: true
     livenessProbe:
       enabled: false
     readinessProbe:
