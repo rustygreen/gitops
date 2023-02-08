@@ -30,6 +30,8 @@ stringData:
     PHOTOPRISM_ADMIN_PASSWORD: ENC[AES256_GCM,data:MjV+jZzHYBPRmbKZDmXmi+IBa6J1GpMBHY70OOs2Dtuvl1LKDFpl5g==,iv:27V+nrZibEmcu/la8+0bkt0xm7XVcP1ue0YUaWaTatY=,tag:r3W1cBGTZx8CDR6Er3aSzw==,type:str]
     PHOTOPRISM_MARIADB_PASSWORD: ENC[AES256_GCM,data:R/ach7Lkw3F2v2aBYj+ZBXhK3TenTPrhWSIN6Lrcp5A=,iv:M49piWjL7sxTzLtRWfNRyzsUHkR9AEVOlrwXzcErmVg=,tag:zV71IYJvnhKJ8z+yPXcMXQ==,type:str]
     NETWORK_K8S_CLUSTER_CIDR: ENC[AES256_GCM,data:9C2zui0zq+5Ljg==,iv:GMNopUQxW58GwnH6byPPHV+WsQQkqC1i39b6bTj2wfM=,tag:G+KF0QDK+I/NN+/vKeximg==,type:str]
+    MINIO_USER: ENC[AES256_GCM,data:Bq0WD2w=,iv:qnENUfJDyXaRxfOMU6ZMJkr5+QbfdwpWpEaHNYBqmZ0=,tag:11Ce7FdIpK498mpxI1e/lQ==,type:str]
+    MINIO_PASSWORD: ENC[AES256_GCM,data:cvEWCryDkV3iTJzmR1tfvLA1dYW5gX57LqsOFf6X8WzoqckkIvFxZKaexDSp,iv:RkDdf/2pvqgJLtO6QMyev+JhpMTGk0sWV2vS/RA22SE=,tag:P54Td132EV1qj1cUwJT21A==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -45,8 +47,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-02-04T23:22:36Z"
-    mac: ENC[AES256_GCM,data:O4ZwOPfxCUy3YcaMdCiESxr8hGHtVHPd0XbQpaUN7/Taka8JZ9MNQwtDvCMY9u1rMO9iHCG6iunhFcdusKq0Fv+0BzgDCGC1YcJMJV/GvmAaR+346xcvJaiUwzFTQmAwSbTfwWdLJ6uKYEv3mrRwSTCTXJIerwvG8vYmMlEDIx4=,iv:0KC4C8GHOjsi86jtP8H6RTLoywcewcGgy6cr9MGG5ek=,tag:dmrvlDKuszJaUayfvbop0g==,type:str]
+    lastmodified: "2023-02-08T15:44:30Z"
+    mac: ENC[AES256_GCM,data:wSe2ES4XzazBlSQx+jZ5QftKEF6W02SExCmlkZ9m0Ds3m6gR/KBelNeqeMbhpodoApuoEy7yTDJNJFRuYVWc2WLvgToFHGQ6+7tIzp8Y82ClQEtZsCVQbhc7xp+ayTUDS2Nx5V00udSjnzK9QhAy7HOFYXuem61GMPFG1cW5A+E=,iv:rRAR6pctdJ2W4sbVJk6ZS+68VKVFZtSsJAa9o8KCgRE=,tag:FikAH8TzvUD+E4hUhQ1gAA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3

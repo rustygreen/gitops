@@ -1,0 +1,123 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: minio
+  namespace: ${MINIO_NAMESPACE:=minio}
+spec:
+  interval: ${HELM_RELEASE_INTERVAL:=24h}
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+      chart: app-template
+      version: 1.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: quay.io/minio/minio
+      tag: RELEASE.2023-01-31T02-24-19Z
+    env:
+      TZ: ${TIMEZONE}
+      MINIO_UPDATE: "off"
+      # TODO: Add back in once Prometheus is setup - @russell.green
+      # MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+      # MINIO_PROMETHEUS_JOB_ID: minio
+      # MINIO_PROMETHEUS_AUTH_TYPE: "public"
+      MINIO_ROOT_USER: ${MINIO_USER:=admin}
+      MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD:=changeme}
+      MINIO_BROWSER_REDIRECT_URL: https://minio.${PRIMARY_DOMAIN}/
+      MINIO_SERVER_URL: https://s3.${PRIMARY_DOMAIN}/
+      CONSOLE_MINIO_SERVER: https://minio.${PRIMARY_DOMAIN}
+      MINIO_DOMAIN: "https://s3.${PRIMARY_DOMAIN}"
+      MINIO_API_CORS_ALLOW_ORIGIN: https://minio.${PRIMARY_DOMAIN},https://s3.${PRIMARY_DOMAIN}
+    args: ["server", "/data", "--console-address", ":9001"]
+    service:
+      main:
+        enabled: true
+        ports:
+          http:
+            port: &console-port 9001
+          api:
+            enabled: true
+            port: &api-port 9000
+    serviceMonitor:
+      main:
+        # TODO: Enable when prometheus is installed - @russell.green
+        enabled: false
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /minio/health/live
+            port: *api-port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/custom-http-errors: "418"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: mdi:pail
+          hajimari.io/group: "storage"
+        hosts:
+          - host: &console-host "{{ .Release.Name }}.${PRIMARY_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *console-port
+        tls:
+          - hosts:
+              - *console-host
+      s3:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/custom-http-errors: "418"
+          nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
+          nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            chunked_transfer_encoding off;
+          hajimari.io/enable: "false"
+        hosts:
+          - host: &api-host s3.${PRIMARY_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *api-port
+        tls:
+          - hosts:
+              - *api-host
+    podSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 100
+    persistence:
+      config:
+        enabled: true
+        existingClaim: minio-data
+        mountPath: /data
+    resources:
+      requests:
+        memory: 100Mi
+        cpu: 100m
+      limits:
+        memory: 750Mi

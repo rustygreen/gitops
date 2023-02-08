@@ -28,7 +28,7 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "480"
-          nginx.ingress.kubernetes.io/custom-http-errors: ""
+          nginx.ingress.kubernetes.io/custom-http-errors: "418"
     externalURL: https://registry.${PRIMARY_DOMAIN}
     secretKey: "${HARBOR_SECRET_KEY:=e5EYeDDsQR3HdUB8}"
     harborAdminPassword: "${HARBOR_ADMIN_PASSWORD:=Harbor12345}"
