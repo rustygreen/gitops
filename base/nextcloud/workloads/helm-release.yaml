@@ -15,14 +15,18 @@ spec:
         kind: HelmRepository
         name: nextcloud
         namespace: flux-system
+  # See https://github.com/nextcloud/helm/blob/master/charts/nextcloud/values.yaml
   values:
-    # TODO: Re-evaluate: https://github.com/ishioni/homelab-ops/blob/master/cluster/apps/fileservers/nextcloud/helmrelease.yaml
+    # TODO: Re-evaluate the following sources:
+    # https://github.com/ishioni/homelab-ops/blob/master/cluster/apps/fileservers/nextcloud/helmrelease.yaml
+    # https://github.com/angelnu/k8s-gitops/blob/main/apps/default/nextcloud/release.yaml
     image:
       tag: 25.0.3
     ingress:
       enabled: true
       annotations:
         hajimari.io/enable: "true"
+        hajimari.io/appName: Nextcloud
         hajimari.io/icon: simple-icons:nextcloud
         hajimari.io/info: File and Calendar server
         hajimari.io/group: tools
@@ -31,15 +35,15 @@ spec:
         nginx.ingress.kubernetes.io/server-snippet: |-
           server_tokens off;
           # Specify how to handle directories -- specifying `/index.php$request_uri`
-          # here as the fallback means that Nginx always exhibits the desired behaviour
+          # here as the fallback means that Nginx always exhibits the desired behavior
           # when a client requests a path that corresponds to a directory that exists
           # on the server. In particular, if that directory contains an index.php file,
           # that file is correctly served; if it doesn't, then the request is passed to
-          # the front-end controller. This consistent behaviour means that we don't need
+          # the front-end controller. This consistent behavior means that we don't need
           # to specify custom rules for certain paths (e.g. images and other assets,
           # `/updater`, `/ocm-provider`, `/ocs-provider`), and thus
           # `try_files $uri $uri/ /index.php$request_uri`
-          # always provides the desired behaviour.
+          # always provides the desired behavior.
           index index.php index.html /index.php$request_uri;
 
           # Rule borrowed from `.htaccess` to handle Microsoft DAV clients
@@ -142,6 +146,40 @@ spec:
       successfulJobsHistoryLimit: 1
     nextcloud:
       host: *host
+      phpConfigs:
+        uploadLimit.ini: |
+          upload_max_filesize = 16G
+          post_max_size = 16G
+          max_input_time = 3600
+          max_execution_time = 3600
+          default_phone_region = US
+      configs:
+        proxy.config.php: |-
+          <?php
+          $CONFIG = array (
+            'trusted_proxies' => 
+            array(
+               0 => '${NETWORK_K8S_CLUSTER_CIDR}',
+            ),
+            'forwarded_for_headers' => 
+            array (
+              0 => 'HTTP_X_FORWARDED_FOR',
+            ),
+          );
+        gitops.config.php: |-
+          <?php
+          $CONFIG = array (
+            'appstoreenabled' => true,
+            #'appstoreurl' => 'https://apps.nextcloud.com/api/v0',
+            'mail_domain' => '${PRIMARY_DOMAIN}',
+          );
+        # Circumvention for client freezes - https://github.com/nextcloud/desktop/issues/5094
+        # TODO: Remove this once fixed - @russell.green
+        bulkupload.config.php: |-
+          <?php
+          $CONFIG = array (
+            'bulkupload.enabled' => false,
+          );
     livenessProbe:
       enabled: false
     readinessProbe:
