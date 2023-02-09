@@ -20,19 +20,19 @@ resources:
   - ../../../../base/bjw-s
   - ../../../../base/bitnami
   # Other workloads.
-  # - ../../../../base/pgadmin
-  # - ../../../../base/adguard
   - ../../../../base/minio
   - ../../../../base/blocky
   - ../../../../base/keycloak
   - ../../../../base/nextcloud
   - ../../../../base/excalidraw
-  - ../../../../base/raspberry-pi-client
-  - ../../../../base/raspberry-pi-server
-  # - ../../../../base/hajimari
-  # - ../../../../base/photoprism
-  # - ../../../../base/uptime-kuma
   - ../../../../base/echo-server
   - ../../../../base/oauth2-proxy
   - ../../../../base/cloudnative-pg
+  - ../../../../base/raspberry-pi-client
+  - ../../../../base/raspberry-pi-server
+  - ../../../../base/node-feature-discovery
+  # - ../../../../base/pgadmin
+  # - ../../../../base/hajimari
+  # - ../../../../base/photoprism
+  # - ../../../../base/uptime-kuma
   
