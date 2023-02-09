@@ -36,11 +36,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: node-feature-discovery
-  #     namespace: node-feature-discovery
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: node-feature-discovery-master
+      namespace: node-feature-discovery
   dependsOn:
     - name: settings
     - name: node-feature-discovery-charts

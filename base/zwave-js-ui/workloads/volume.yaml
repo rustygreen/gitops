@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: zwave-js-ui-config
+  namespace: ${ZWAVE_JS_UI_NAMESPACE:=zwave-js-ui}
+  annotations:
+    nfs.io/storage-path: "zwave-js-ui-config"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ${PRIMARY_STORAGE_CLASS}
+  resources:
+    requests:
+      storage: 1Gi

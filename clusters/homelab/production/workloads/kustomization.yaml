@@ -25,6 +25,7 @@ resources:
   - ../../../../base/keycloak
   - ../../../../base/nextcloud
   - ../../../../base/excalidraw
+  - ../../../../base/zwave-js-ui
   - ../../../../base/echo-server
   - ../../../../base/oauth2-proxy
   - ../../../../base/cloudnative-pg
