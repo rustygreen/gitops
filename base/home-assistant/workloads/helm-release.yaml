@@ -55,19 +55,19 @@ spec:
 
       # Home-Assistant
       # SECRET_RECORDER_DB_URL: "postgresql://home-assistant:{{ .hass_postgres_password }}@postgres-rw.home-assistant.svc.cluster.local/home-assistant"
-      - SECRET_EXTERNAL_URL:
+      - name: SECRET_EXTERNAL_URL
         value: https://home.${PRIMARY_DOMAIN}
-      - SECRET_TRUSTED_PROXIES_1:
+      - name: SECRET_TRUSTED_PROXIES_1
         value: ${NETWORK_K8S_CLUSTER_CIDR}
 
       # Home-Assistant Zones
-      - SECRET_ZONE_HOME_HOUSE_NUMBER:
+      - name: SECRET_ZONE_HOME_HOUSE_NUMBER
         value: "${HOUSE_NUMBER}"
-      - SECRET_ZONE_HOME_POSTAL_CODE:
+      - name: SECRET_ZONE_HOME_POSTAL_CODE
         value: "${POSTAL_CODE}"
-      - SECRET_ZONE_HOME_ELEVATION:
+      - name: SECRET_ZONE_HOME_ELEVATION
         value: "${HOME_ELEVATION}"
-      - SECRET_ZONE_HOME_LATITUDE:
+      - name: SECRET_ZONE_HOME_LATITUDE
         value: "${HOME_LATITUDE}"
       - name: SECRET_ZONE_HOME_LONGITUDE
         value: "${HOME_LONGITUDE}"
