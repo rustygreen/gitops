@@ -23,21 +23,15 @@ spec:
     strategy:
       type: Recreate
     env:
-      TZ: ${TIMEZONE}
+      # General
+      - TZ:
+        value: ${TIMEZONE}
+
       # Postgres database
-      POSTGRES_HOST: postgres-rw.home-assistant.svc.cluster.local
-      POSTGRES_DB: home-assistant
-      # Home-Assistant
-      # SECRET_RECORDER_DB_URL: "postgresql://home-assistant:{{ .hass_postgres_password }}@postgres-rw.home-assistant.svc.cluster.local/home-assistant"
-      SECRET_EXTERNAL_URL: https://home.${PRIMARY_DOMAIN}
-      SECRET_TRUSTED_PROXIES_1: ${NETWORK_K8S_CLUSTER_CIDR}
-      # Home-Assistant Zones
-      SECRET_ZONE_HOME_HOUSE_NUMBER: "${HOUSE_NUMBER}"
-      SECRET_ZONE_HOME_POSTAL_CODE: "${POSTAL_CODE}"
-      SECRET_ZONE_HOME_ELEVATION: "${HOME_ELEVATION}"
-      SECRET_ZONE_HOME_LATITUDE: "${HOME_LATITUDE}"
-      SECRET_ZONE_HOME_LONGITUDE: "${HOME_LONGITUDE}"
-    envFrom:
+      - POSTGRES_HOST:
+        value: postgres-rw.home-assistant.svc.cluster.local
+      - POSTGRES_DB:
+        value: home-assistant
       - name: POSTGRES_SUPER_USER
         valueFrom:
           secretKeyRef:
@@ -58,6 +52,25 @@ spec:
           secretKeyRef:
             name: postgres-app
             key: password
+
+      # Home-Assistant
+      # SECRET_RECORDER_DB_URL: "postgresql://home-assistant:{{ .hass_postgres_password }}@postgres-rw.home-assistant.svc.cluster.local/home-assistant"
+      - SECRET_EXTERNAL_URL:
+        value: https://home.${PRIMARY_DOMAIN}
+      - SECRET_TRUSTED_PROXIES_1:
+        value: ${NETWORK_K8S_CLUSTER_CIDR}
+
+      # Home-Assistant Zones
+      - SECRET_ZONE_HOME_HOUSE_NUMBER:
+        value: "${HOUSE_NUMBER}"
+      - SECRET_ZONE_HOME_POSTAL_CODE:
+        value: "${POSTAL_CODE}"
+      - SECRET_ZONE_HOME_ELEVATION:
+        value: "${HOME_ELEVATION}"
+      - SECRET_ZONE_HOME_LATITUDE:
+        value: "${HOME_LATITUDE}"
+      - name: SECRET_ZONE_HOME_LONGITUDE
+        value: "${HOME_LONGITUDE}"
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
     service:
