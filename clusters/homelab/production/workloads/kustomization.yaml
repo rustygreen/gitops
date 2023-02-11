@@ -31,7 +31,7 @@ resources:
   - ../../../../base/uptime-kuma
   - ../../../../base/echo-server
   - ../../../../base/oauth2-proxy
-  # - ../../../../base/home-assistant
+  - ../../../../base/home-assistant
   - ../../../../base/cloudnative-pg
   - ../../../../base/raspberry-pi-client
   - ../../../../base/raspberry-pi-server
