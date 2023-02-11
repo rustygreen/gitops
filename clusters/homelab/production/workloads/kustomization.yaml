@@ -20,6 +20,7 @@ resources:
   - ../../../../base/bjw-s
   - ../../../../base/bitnami
   # Other workloads.
+  - ../../../../base/emqx
   - ../../../../base/minio
   - ../../../../base/blocky
   - ../../../../base/pgadmin
@@ -31,7 +32,7 @@ resources:
   - ../../../../base/uptime-kuma
   - ../../../../base/echo-server
   - ../../../../base/oauth2-proxy
-  # - ../../../../base/home-assistant
+  - ../../../../base/home-assistant
   - ../../../../base/cloudnative-pg
   - ../../../../base/raspberry-pi-client
   - ../../../../base/raspberry-pi-server
