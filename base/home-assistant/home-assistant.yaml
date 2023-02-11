@@ -6,7 +6,10 @@ metadata:
   name: home-assistant-dependencies
   namespace: flux-system
 spec:
-  interval: 1h
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
   path: ./base/home-assistant/dependencies
   prune: true
   sourceRef:
@@ -30,7 +33,10 @@ metadata:
   name: home-assistant-database
   namespace: flux-system
 spec:
-  interval: 1h
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
   path: ./base/home-assistant/database
   prune: true
   sourceRef:
@@ -80,17 +86,20 @@ metadata:
   name: home-assistant
   namespace: flux-system
 spec:
-  interval: 1h
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
   path: ./base/home-assistant/workloads
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: home-assistant
-      namespace: home-assistant
+  # healthChecks:
+  #   - apiVersion: apps/v1
+  #     kind: Deployment
+  #     name: home-assistant
+  #     namespace: home-assistant
   dependsOn:
     - name: settings
     - name: bjw-s-charts
