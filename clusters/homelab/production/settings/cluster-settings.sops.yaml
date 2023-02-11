@@ -41,6 +41,7 @@ stringData:
     EMQX_ADMIN_PASSWORD: ENC[AES256_GCM,data:Ve96UBmHbk0v2IKFrkzZ7hxZZFmBO7l29BfC7vX+DzI7IBXMShcMnQ==,iv:PB/CM17m3bnXLGsMy6ijnClvzMLmTW2wUcOGlAtkWz8=,tag:Umh+1kxkLzAtnOzs08ir2g==,type:str]
     EMQX_USER: ENC[AES256_GCM,data:2H5zB38=,iv:SM0Jl0Z7vwI92ufkjBvv8mlZt/8eaExm4DlWqRLbEgo=,tag:4ZnJpVcJ/H3ZTffuoqmhFQ==,type:str]
     EMQX_PASSWORD: ENC[AES256_GCM,data:EXLHaV+2wJIs2InsvWY/HHdGXILWV170wRiEnfybuSXh1qQn2CJNPA==,iv:RV5BK6XFs3OpuG7rRfOIXWlmUyLVF7Tk/OHXazNWgL8=,tag:QtsYhjMWTbnNmCnPdNAwEg==,type:str]
+    PGADMIN_PASSWORD: ENC[AES256_GCM,data:d7I8CGPCUOkMnYBlXYDd7l41+ceq+V4RTNdiP8zZ+hQkQbAW4/pM,iv:Ad2O6l04qCkT+tQjlNpmHSYgk9o3syIi/lrk+uqecHc=,tag:wUqoWIHf8bVcJC5B2r/P/Q==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -56,8 +57,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-02-11T20:31:38Z"
-    mac: ENC[AES256_GCM,data:21kNrOSLxkIMVc87WsZBJVxKxAgo4vfI5wbCmqoSXv8+pn2/vyPsJD5XLDcViX9xn/q2F+nPannDJ1o3sF6BCN7iiAdFxQqsr7xtsHf9SmZw7cF5HDDHbCcZS966T0ZqHekIQS0yu35ZOgIEgL8s3fPu+SN0T7tvpiIaY7eTW2Q=,iv:VOFQLM182PhBtt8uXkVLjHihRJrKl+GmxpaMraSikVc=,tag:8hbpJrUWeITlgXD3ps9eKw==,type:str]
+    lastmodified: "2023-02-11T23:24:00Z"
+    mac: ENC[AES256_GCM,data:vWIFA1quBMNKKzCkYN9YlAZOEUqOzy4LWPR02VFT4/btnGCKdf4nWE/PZCjwlLo00RQGRqzgo0SgKVvYUX3O8YDcfO/Q15Z/NdjbEevUB2bUyAovce7EadAC1iHUNozGx1qB0AsBpfiuOPoWCG2z6nYJliB4TJj5DWDUGFhx2S4=,iv:h+KAsGmNoWdQTg3JlNzXRaypLHUHNJ324s+154wTOXQ=,tag:w2qGypRtHvPyC7i/PEn7Rw==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3

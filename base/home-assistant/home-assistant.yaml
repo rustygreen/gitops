@@ -25,58 +25,59 @@ spec:
     substituteFrom:
       - kind: Secret
         name: cluster-settings
----
+# TODO: Consider using Postgres - @russell.green
+# ---
 # Database
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: home-assistant-database
-  namespace: flux-system
-spec:
-  wait: true
-  interval: 30m
-  retryInterval: 1m
-  timeout: 10m
-  path: ./base/home-assistant/database
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-cluster
-  healthChecks:
-    - apiVersion: v1
-      kind: Service
-      name: postgres-rw
-      namespace: home-assistant
-    - apiVersion: v1
-      kind: Secret
-      name: postgres-app
-      namespace: home-assistant
-    - apiVersion: v1
-      kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the home-assistant cluster.
-      name: postgres-1
-      namespace: home-assistant
-    - apiVersion: v1
-      kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the home-assistant cluster.
-      name: postgres-2
-      namespace: home-assistant
-    - apiVersion: v1
-      kind: Pod
-      # NOTE: this needs to stay in sync w/ the number of instances in the home-assistant cluster.
-      name: postgres-3
-      namespace: home-assistant
-  dependsOn:
-    - name: settings
-    - name: cloudnative-pg-operator
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: cluster-settings
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: home-assistant-database
+#   namespace: flux-system
+# spec:
+#   wait: true
+#   interval: 30m
+#   retryInterval: 1m
+#   timeout: 10m
+#   path: ./base/home-assistant/database
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-cluster
+#   healthChecks:
+#     - apiVersion: v1
+#       kind: Service
+#       name: postgres-rw
+#       namespace: home-assistant
+#     - apiVersion: v1
+#       kind: Secret
+#       name: postgres-app
+#       namespace: home-assistant
+#     - apiVersion: v1
+#       kind: Pod
+#       # NOTE: this needs to stay in sync w/ the number of instances in the home-assistant cluster.
+#       name: postgres-1
+#       namespace: home-assistant
+#     - apiVersion: v1
+#       kind: Pod
+#       # NOTE: this needs to stay in sync w/ the number of instances in the home-assistant cluster.
+#       name: postgres-2
+#       namespace: home-assistant
+#     - apiVersion: v1
+#       kind: Pod
+#       # NOTE: this needs to stay in sync w/ the number of instances in the home-assistant cluster.
+#       name: postgres-3
+#       namespace: home-assistant
+#   dependsOn:
+#     - name: settings
+#     - name: cloudnative-pg-operator
+#   decryption:
+#     provider: sops
+#     secretRef:
+#       name: sops-age
+#   postBuild:
+#     substituteFrom:
+#       - kind: Secret
+#         name: cluster-settings
 ---
 # Workloads
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -94,15 +95,16 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: home-assistant
-  #     namespace: home-assistant
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: home-assistant
+      namespace: home-assistant
   dependsOn:
     - name: settings
     - name: bjw-s-charts
-    - name: home-assistant-database
+    # TOOD: Add back in once switch to postgres
+    # - name: home-assistant-database
   decryption:
     provider: sops
     secretRef:

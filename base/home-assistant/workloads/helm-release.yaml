@@ -27,31 +27,7 @@ spec:
       - name: TZ
         value: ${TIMEZONE}
 
-      # Postgres database
-      - name: POSTGRES_HOST
-        value: postgres-rw.home-assistant.svc.cluster.local
-      - name: POSTGRES_DB
-        value: home-assistant
-      - name: POSTGRES_SUPER_USER
-        valueFrom:
-          secretKeyRef:
-            name: postgres-superuser
-            key: username
-      - name: POSTGRES_SUPER_PASS
-        valueFrom:
-          secretKeyRef:
-            name: postgres-superuser
-            key: password
-      - name: POSTGRES_USER
-        valueFrom:
-          secretKeyRef:
-            name: postgres-app
-            key: username
-      - name: POSTGRES_PASS
-        valueFrom:
-          secretKeyRef:
-            name: postgres-app
-            key: password
+      # TODO: Consider using Postgres DB.
 
       # Home-Assistant
       # SECRET_RECORDER_DB_URL: "postgresql://home-assistant:{{ .hass_postgres_password }}@postgres-rw.home-assistant.svc.cluster.local/home-assistant"
