@@ -36,7 +36,7 @@ spec:
   wait: true
   interval: 30m
   retryInterval: 1m
-  timeout: 3m
+  timeout: 10m
   path: ./base/home-assistant/database
   prune: true
   sourceRef:
@@ -66,7 +66,6 @@ spec:
       # NOTE: this needs to stay in sync w/ the number of instances in the home-assistant cluster.
       name: postgres-3
       namespace: home-assistant
-  timeout: 10m
   dependsOn:
     - name: settings
     - name: cloudnative-pg-operator
