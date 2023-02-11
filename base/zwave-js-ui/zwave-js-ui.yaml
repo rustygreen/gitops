@@ -12,11 +12,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: zwave-js-ui
-  #     namespace: zwave-js-ui
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: zwave-js-ui
+      namespace: zwave-js-ui
   dependsOn:
     - name: settings
     - name: bjw-s-charts

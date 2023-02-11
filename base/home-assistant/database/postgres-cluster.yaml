@@ -1,0 +1,16 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: ${HOME_ASSISTANT_NAMESPACE:=home-assistant}
+spec:
+  instances: 3
+  storage:
+    size: 25Gi
+    storageClass: ${POSTGRES_STORAGE_CLASS:=''}
+  bootstrap:
+    initdb:
+      database: home-assistant
+      owner: home-assistant
+  monitoring:
+    enablePodMonitor: true

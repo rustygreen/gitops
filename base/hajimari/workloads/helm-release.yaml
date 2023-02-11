@@ -18,12 +18,15 @@ spec:
   values:
     hajimari:
       title: Apps
-      darkTheme: espresso
       alwaysTargetBlank: true
-      showGreeting: false
-      showAppGroups: false
+      defaultAppIcon: mdi:application
+      defaultSearchProvider: DuckDuckGo
+      namespaceSelector:
+        any: true
+      showGreeting: true
+      showAppGroups: true
       showAppStatus: false
-      showBookmarkGroups: false
+      showBookmarkGroups: true
       showGlobalBookmarks: false
       showAppUrls: false
       defaultEnable: true

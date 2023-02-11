@@ -22,18 +22,18 @@ resources:
   # Other workloads.
   - ../../../../base/minio
   - ../../../../base/blocky
+  - ../../../../base/pgadmin
+  - ../../../../base/hajimari
   - ../../../../base/keycloak
   - ../../../../base/nextcloud
   - ../../../../base/excalidraw
   - ../../../../base/zwave-js-ui
+  - ../../../../base/uptime-kuma
   - ../../../../base/echo-server
   - ../../../../base/oauth2-proxy
+  - ../../../../base/home-assistant
   - ../../../../base/cloudnative-pg
   - ../../../../base/raspberry-pi-client
   - ../../../../base/raspberry-pi-server
   - ../../../../base/node-feature-discovery
-  # - ../../../../base/pgadmin
-  # - ../../../../base/hajimari
-  # - ../../../../base/photoprism
-  # - ../../../../base/uptime-kuma
   

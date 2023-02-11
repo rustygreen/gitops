@@ -8,7 +8,7 @@ spec:
   interval: ${HELM_RELEASE_INTERVAL:=24h}
   chart:
     spec:
-      # renovate: registryUrl=https://hub.docker.com/r/zwavejs/zwavejs2mqtt
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
       chart: app-template
       version: 1.3.1
       sourceRef:
