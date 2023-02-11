@@ -6,7 +6,10 @@ metadata:
   name: emqx-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
   path: ./base/emqx/charts
   prune: true
   sourceRef:
@@ -30,7 +33,10 @@ metadata:
   name: emqx
   namespace: flux-system
 spec:
-  interval: 1h
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
   path: ./base/emqx/workloads
   prune: true
   sourceRef:

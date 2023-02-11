@@ -5,7 +5,7 @@ metadata:
   name: emqx
   namespace: ${EMQX_NAMESPACE:=emqx}
 spec:
-  interval: ${HELM_RELEASE_INTERVAL:=24h}
+  interval: ${HELM_RELEASE_INTERVAL:=15m}
   chart:
     spec:
       # renovate: registryUrl=https://repos.emqx.io/charts
