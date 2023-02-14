@@ -34,65 +34,49 @@ spec:
         nginx.ingress.kubernetes.io/custom-http-errors: "418"
         nginx.ingress.kubernetes.io/server-snippet: |-
           server_tokens off;
-          # Specify how to handle directories -- specifying `/index.php$request_uri`
-          # here as the fallback means that Nginx always exhibits the desired behavior
-          # when a client requests a path that corresponds to a directory that exists
-          # on the server. In particular, if that directory contains an index.php file,
-          # that file is correctly served; if it doesn't, then the request is passed to
-          # the front-end controller. This consistent behavior means that we don't need
-          # to specify custom rules for certain paths (e.g. images and other assets,
-          # `/updater`, `/ocm-provider`, `/ocs-provider`), and thus
-          # `try_files $uri $uri/ /index.php$request_uri`
-          # always provides the desired behavior.
-          index index.php index.html /index.php$request_uri;
-
-          # Rule borrowed from `.htaccess` to handle Microsoft DAV clients
+          proxy_hide_header X-Powered-By;
+        
+          # Rule borrowed from .htaccess to handle Microsoft DAV clients
           location = / {
-              if ( $http_user_agent ~ ^DavClnt ) {
-                  return 302 /remote.php/webdav/$is_args$args;
-              }
+            if ( $http_user_agent ~ ^DavClnt ) {
+              return 302 /remote.php/webdav/$is_args$args;
+            }
           }
-
+     
           location = /robots.txt {
               allow all;
               log_not_found off;
               access_log off;
           }
 
-          # Make a regex exception for `/.well-known` so that clients can still
-          # access it despite the existence of the regex rule
-          # `location ~ /(\.|autotest|...)` which would otherwise handle requests
-          # for `/.well-known`.
           location ^~ /.well-known {
-              # The following 6 rules are borrowed from `.htaccess`
+          
+            # The rules in this block are an adaptation of the rules
+            # in .htaccess that concern /.well-known.
 
-              location = /.well-known/carddav     { return 301 /remote.php/dav/; }
-              location = /.well-known/caldav      { return 301 /remote.php/dav/; }
-              # Anything else is dynamically handled by Nextcloud
-              location ^~ /.well-known            { return 301 /index.php$uri; }
-
-              try_files $uri $uri/ =404;
+            location = /.well-known/carddav { return 301 /remote.php/dav/; }
+            location = /.well-known/caldav  { return 301 /remote.php/dav/; }
+            
+            location /.well-known/acme-challenge    { try_files $uri $uri/ =404; }
+            location /.well-known/pki-validation    { try_files $uri $uri/ =404; }
+            
+            # Let Nextcloud's API for /.well-known URIs handle all other
+            # requests by passing them to the front-end controller.
+            return 301 /index.php$request_uri;
+          }
+          
+          # Rules borrowed from .htaccess to hide certain paths from clients
+          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
+            deny all;
+          }
+          location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
+            deny all;
           }
 
-          # Rules borrowed from `.htaccess` to hide certain paths from clients
-          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)  { return 404; }
-          location ~ ^/(?:\.|autotest|occ|issue|indie|db_|console)              { return 404; }
-
-          location ~ \.(?:css|js|svg|gif)$ {
-              try_files $uri /index.php$request_uri;
-              expires 6M;         # Cache-Control policy borrowed from `.htaccess`
-              access_log off;     # Optional: Don't log access to assets
-          }
-
-          location ~ \.woff2?$ {
-              try_files $uri /index.php$request_uri;
-              expires 7d;         # Cache-Control policy borrowed from `.htaccess`
-              access_log off;     # Optional: Don't log access to assets
-          }
-
-          location / {
-              try_files $uri $uri/ /index.php$request_uri;
-          }
+          # Rule borrowed from .htaccess
+          #location /remote {
+          #    return 301 /remote.php$request_uri;
+          #}
       tls:
       - hosts:
         - &host cloud.${PRIMARY_DOMAIN}
