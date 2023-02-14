@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - s3-access-key.yaml
   - postgres-cluster.yaml
-  - scheduled-backup.yaml
+  # - scheduled-backup.yaml
