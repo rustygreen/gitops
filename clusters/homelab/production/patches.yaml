@@ -16,3 +16,14 @@ metadata:
   namespace: flux-system
 spec:
   path: ./clusters/homelab/production/settings
+---
+# Keycloak database patches
+# This swaps out the standard DB cluster with a specific one for this environment.
+# This patch will include things like (backup, recovery, etc.).
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: keycloak-database
+  namespace: flux-system
+spec:
+  path: ./clusters/homelab/production/workloads/keycloak/database

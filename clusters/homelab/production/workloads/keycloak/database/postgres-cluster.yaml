@@ -1,0 +1,49 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: keycloak
+spec:
+  instances: 3
+  storage:
+    size: 75Gi
+    storageClass: ${POSTGRES_STORAGE_CLASS:=''}
+  bootstrap:
+    recovery:
+      source: &previous-cluster postgres-v0
+      database: keycloak
+      owner: keycloak
+  monitoring:
+    enablePodMonitor: true
+  backup:
+    retentionPolicy: 30d
+    barmanObjectStore:
+      wal:
+        compression: &compression bzip2
+        maxParallel: &parallel 1
+      destinationPath: &bucket s3://keycloak
+      endpointURL: &s3-host ${S3_SERVER}
+      serverName: postgres-v1
+      s3Credentials:
+        accessKeyId:
+          name: &secret-name s3-access-key
+          key: &access-key access-key
+        secretAccessKey:
+          name: *secret-name
+          key: &secret-key secret-key
+  externalClusters:
+    - name: *previous-cluster
+      barmanObjectStore:
+        wal:
+          compression: *compression
+          maxParallel: *parallel
+        destinationPath: *bucket
+        endpointURL: *s3-host
+        s3Credentials:
+          accessKeyId:
+            name: *secret-name
+            key: *access-key
+          secretAccessKey:
+            name: *secret-name
+            key: *secret-key

@@ -33,6 +33,9 @@ stringData:
     NETWORK_K8S_CLUSTER_CIDR: ENC[AES256_GCM,data:9C2zui0zq+5Ljg==,iv:GMNopUQxW58GwnH6byPPHV+WsQQkqC1i39b6bTj2wfM=,tag:G+KF0QDK+I/NN+/vKeximg==,type:str]
     MINIO_USER: ENC[AES256_GCM,data:Bq0WD2w=,iv:qnENUfJDyXaRxfOMU6ZMJkr5+QbfdwpWpEaHNYBqmZ0=,tag:11Ce7FdIpK498mpxI1e/lQ==,type:str]
     MINIO_PASSWORD: ENC[AES256_GCM,data:cvEWCryDkV3iTJzmR1tfvLA1dYW5gX57LqsOFf6X8WzoqckkIvFxZKaexDSp,iv:RkDdf/2pvqgJLtO6QMyev+JhpMTGk0sWV2vS/RA22SE=,tag:P54Td132EV1qj1cUwJT21A==,type:str]
+    S3_SERVER: ENC[AES256_GCM,data:ls+jGmcwiV+jr6gVEI4LtM3KBVRKbA==,iv:7R4DH71hHc3h5dmi3DXAJMcrr2UIhBBXaRXEUNYMFAM=,tag:CKAOPyieDtNCLUkOQwwkUw==,type:str]
+    S3_ACCESS_KEY: ENC[AES256_GCM,data:kMiSQ3SbewhxW90LpsUt9Q==,iv:sXKFz1JS943Xrm8S0qqyzIdPyRZRisSVXzWzSTKMZuM=,tag:fHoOWVnFmSYAkGQf0CRF9A==,type:str]
+    S3_SECRET_KEY: ENC[AES256_GCM,data:JemLm/KpANLMTY2WJ3s0Ot1pX9rJQjgXOHA0c21z0K0=,iv:CJbhFvXik0JeLzKoNzjF6hMiKCUyQgeZz2L1i1u7tS0=,tag:cZz0ZkRDG0pJYSxqNRLacA==,type:str]
     HOUSE_NUMBER: ENC[AES256_GCM,data:/NPht1jhXk5mwymLGC0=,iv:NCvpjJnRtSU0lGq2PwBVcJVbrudkBku10Ugvi96RYKw=,tag:+6f1gDpVPdQxz6xE0KOtZA==,type:str]
     POSTAL_CODE: ENC[AES256_GCM,data:/P9doCc=,iv:8Eeb/C9OEOOH5Hgx/xWcKUApA9TyD7thjPP64OXOZz8=,tag:Ck9Vgbe3dSweXfyRj7W8Pg==,type:str]
     HOME_ELEVATION: ENC[AES256_GCM,data:dHU9,iv:ostWuR7A3ndG8KyQaomRkkiTk34TySno2SnHJkcjPok=,tag:rp2dGYqjNrhmdEejI5HB1Q==,type:str]
@@ -57,8 +60,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-02-11T23:24:00Z"
-    mac: ENC[AES256_GCM,data:vWIFA1quBMNKKzCkYN9YlAZOEUqOzy4LWPR02VFT4/btnGCKdf4nWE/PZCjwlLo00RQGRqzgo0SgKVvYUX3O8YDcfO/Q15Z/NdjbEevUB2bUyAovce7EadAC1iHUNozGx1qB0AsBpfiuOPoWCG2z6nYJliB4TJj5DWDUGFhx2S4=,iv:h+KAsGmNoWdQTg3JlNzXRaypLHUHNJ324s+154wTOXQ=,tag:w2qGypRtHvPyC7i/PEn7Rw==,type:str]
+    lastmodified: "2023-02-13T22:03:03Z"
+    mac: ENC[AES256_GCM,data:/OwDe4Hk2CLEhU5mQLIKhebJlAzTFDjZIHllUnh2lfZ8LMzUTU3vHWLnaZBzHmnWVBO4wXu4J9ZS0NtfKGC8AcPtDqe8rS6KXdXI7u5oKo+IfXhHNYQFOEbL9N2koc8q5TqQeGQCTDZOogbAgAye9IfelNrkX9ZpGab0YwYTaeM=,iv:NDpTh0H/F0ePtq2f7Z2kOb7DXRumrs98uoCLKBsZv4U=,tag:+t4CUOlkf0+VPiPAJqnjJQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
