@@ -10,10 +10,13 @@ spec:
     size: 100Gi
     storageClass: ${POSTGRES_STORAGE_CLASS:=''}
   bootstrap:
-    recovery:
-      source: &previous-cluster postgres-v0
+    initdb:
       database: nextcloud
       owner: nextcloud
+    # recovery:
+    #   source: &previous-cluster postgres-v0
+    #   database: nextcloud
+    #   owner: nextcloud
   monitoring:
     enablePodMonitor: true
   backup:
