@@ -22,6 +22,7 @@ spec:
     # https://github.com/angelnu/k8s-gitops/blob/main/apps/default/nextcloud/release.yaml
     image:
       tag: 25.0.3
+    replicaCount: 2
     ingress:
       enabled: true
       annotations:
@@ -103,8 +104,8 @@ spec:
         passwordKey: password
     cronjob:
       enabled: true
-      failedJobsHistoryLimit: 1
-      successfulJobsHistoryLimit: 1
+      failedJobsHistoryLimit: 10
+      successfulJobsHistoryLimit: 10
     nextcloud:
       host: *host
       phpConfigs:
@@ -141,10 +142,6 @@ spec:
           $CONFIG = array (
             'bulkupload.enabled' => false,
           );
-    livenessProbe:
-      enabled: false
-    readinessProbe:
-      enabled: false
     persistence:
       enabled: true
       existingClaim: nextcloud
