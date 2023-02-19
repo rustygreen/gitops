@@ -35,7 +35,7 @@ spec:
         hajimari.io/icon: simple-icons:nextcloud
         hajimari.io/info: File and Calendar server
         hajimari.io/group: tools
-        nginx.ingress.kubernetes.io/proxy-body-size: "10G"
+        nginx.ingress.kubernetes.io/proxy-body-size: "16G"
         nginx.ingress.kubernetes.io/custom-http-errors: "418"
         nginx.ingress.kubernetes.io/server-snippet: |-
           server_tokens off;
