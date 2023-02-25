@@ -20,3 +20,5 @@ spec:
     hostname: identity.${PRIMARY_DOMAIN}
   http:
     tlsSecret: primary-tls
+  ingressSpec:
+    foo
