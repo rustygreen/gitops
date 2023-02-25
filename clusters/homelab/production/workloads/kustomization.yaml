@@ -21,7 +21,7 @@ resources:
   - ../../../../base/bitnami
   # Other workloads.
   - ../../../../base/emqx
-    - ../../../../base/minio
+  - ../../../../base/minio
   - ../../../../base/blocky
   - ../../../../base/pgadmin
   - ../../../../base/jellyfin
