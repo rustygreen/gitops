@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: cloudflare-ddns
+    name: cloudflare-ddns-secret
     namespace: cloudflare-ddns
 stringData:
     CLOUDFLARE_APIKEY: ${CLOUDFLARE_API_KEY}

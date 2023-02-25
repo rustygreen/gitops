@@ -12,11 +12,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: cloudflare-ddns
-  #     namespace: cloudflare-ddns
+  healthChecks:
+    - apiVersion: v1
+      kind: ConfigMap
+      name: cloudflare-ddns-configmap
+      namespace: cloudflare-ddns
   dependsOn:
     - name: settings
     - name: bjw-s-charts
@@ -42,11 +42,15 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: cloudflare-ddns
-  #     namespace: cloudflare-ddns
+  healthChecks:
+    - apiVersion: v1
+      kind: Secret
+      name: cloudflare-ddns-secret
+      namespace: cloudflare-ddns
+    - apiVersion: batch/v1
+      kind: CronJob
+      name: cloudflare-ddns
+      namespace: cloudflare-ddns
   dependsOn:
     - name: settings
     - name: bjw-s-charts
