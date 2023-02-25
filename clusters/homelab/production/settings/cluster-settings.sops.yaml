@@ -21,6 +21,7 @@ stringData:
     BLOCKY_IP: ENC[AES256_GCM,data:KkUU4b5DN+ZetTa7dA==,iv:zvYteQXhG/w9jW7g8neTmXhcwr9wjGoJAXZcyLA13Ao=,tag:F12ZmgiLKa1IVShXtT17Aw==,type:str]
     HOME_ASSISTANT_IP: ENC[AES256_GCM,data:QH5+MNgcxQWVxNsgPg==,iv:+2hPY/JFdEs2zYvZ3mHY3dtxrXUQXS/OIwZnOGD47yA=,tag:zYXXP3au/krX65vAVixLqQ==,type:str]
     EMQX_IP: ENC[AES256_GCM,data:Y215WwkPmYEQa8xbPQ==,iv:H/GbcuENe/2md3sXBkGQVpbqNtM4SeIBS1CYIfFCVUA=,tag:zFWxWDOxb69VM+ua4/3Q2A==,type:str]
+    JELLYFIN_IP: ENC[AES256_GCM,data:KCLTXEbEbPAlpbnsxw==,iv:r5gUO/vX9eRUTGNTKqR+5fqc0dyplX8SSyh9/pbV5yU=,tag:VzD2faBbRwzbPfoMotgqfQ==,type:str]
     NFS_SERVER_IP: ENC[AES256_GCM,data:08xUeGIPCUCtwhRE,iv:9WX8X7PoCJtdjYSdlPKV3lxJrULhSQUQPP1J/fT4lhg=,tag:PUBoKHJAyN8KfBNGcqiyQA==,type:str]
     NFS_SERVER_SHARE: ENC[AES256_GCM,data:+anfOegdErCtWxPPhoQPMLsbdacuWrZ7Hmmy3nT/lV5aOKc=,iv:WnfGIEUaegyJ36P+lVWpAGBH1UhvgyTEee1Z/o5H4yQ=,tag:8Xaia9KXw6NxCR8ZfPpoxg==,type:str]
     NFS_PATH_PATTERN: ENC[AES256_GCM,data:arrl3mVGMDQuE6L5UeJ/oi8rU6KmyQ/m6eAjYIIyTyXHeVHNJzU9,iv:lm8/PxcHx1/aZrB5r9UkNRFSf4Bk5Tr1ktKOIhRtnW8=,tag:L7hIwYlMt94kY7tpo56odg==,type:str]
@@ -61,8 +62,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-02-25T15:53:20Z"
-    mac: ENC[AES256_GCM,data:GRY1KUxIa5n93aI5Ppfu6uBCEp9chZAP10NL3Dds5YviALIRRKRr1Q8J/cN2N9nZbX+yxw5y01lFrD+vxh19oE7Xwh+HbEJCw1RvH35R29C7Sa6AxGbPo6BZOcva8UmWdTv+5Pkt1U0SU+ofMyJLTUY0IJaPCTxU5Itg0MsvjJo=,iv:h2lwlrnxKbdnNqgZHazch1ITgb6suBgfAhS75kE9l8s=,tag:XWEcN5PgKDjmb66PIS3FeA==,type:str]
+    lastmodified: "2023-02-25T18:01:47Z"
+    mac: ENC[AES256_GCM,data:QFvjVyKDHb6ZId85UJeLwvy0huapZQxDRXBRH2HY2EHhMirSjOha3W1q28nktMgi/GStcdUuIDE3hlXSOONMOu8C9NqUeKfkKBH3By4ll5Cy3Qf6nSsNFyexaCUAJpApBkrQOQL79/ECWQM3YoWwHTH6k7JNLmPQhOofcYdBMFM=,iv:3doL7X7wC9xMmuBccYomLein5iM1lP39DGwr6PS3ssk=,tag:y8LKk2r7GbBxuvdAZR6JSw==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3

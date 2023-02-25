@@ -1,0 +1,103 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: jellyfin
+  namespace: jellyfin
+spec:
+  interval: ${HELM_RELEASE_INTERVAL:=24h}
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+      chart: app-template
+      version: 1.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    image:
+      repository: ghcr.io/onedr0p/jellyfin
+      tag: 10.8.9@sha256:01a6497a1290b73f63251aebe6d01327c15b3413c3e1013c2a396ffe116ced4d
+    env:
+      TZ: ${TIMEZONE}
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: "${JELLYFIN_IP}"
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            port: 8096
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          hajimari.io/icon: simple-icons:jellyfin
+        hosts:
+          - host: &host "media.${PRIMARY_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 44
+        - 109
+    persistence:
+      config:
+        enabled: true
+        existingClaim: jellyfin-config
+        mountPath: /config
+      photo:
+        enabled: true
+        mountPath: /photo
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NFS_SERVER_IP}"
+            path: "${NFS_SERVER_SHARE}/photos"
+      videos:
+        enabled: true
+        mountPath: /videos
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NFS_SERVER_IP}"
+            path: "${NFS_SERVER_SHARE}/videos"
+      music:  
+        enabled: true
+        mountPath: /music
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NFS_SERVER_IP}"
+            path: "${NFS_SERVER_SHARE}/music"
+      downloads:
+        enabled: true
+        mountPath: /downloads
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NFS_SERVER_IP}"
+            path: "${NFS_SERVER_SHARE}/downloads"
+      transcode:
+        enabled: true
+        type: emptyDir
+      cache:
+        enabled: true
+        type: emptyDir
+    resources:
+      requests:
+        gpu.intel.com/i915: 1
+        cpu: 100m
+        memory: 1Gi
+      limits:
+        gpu.intel.com/i915: 1
+        memory: 6Gi

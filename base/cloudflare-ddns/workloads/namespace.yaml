@@ -1,5 +1,0 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: ${CLOUDFLARE_DDNS_NAMESPACE:=cloudflare-ddns}
