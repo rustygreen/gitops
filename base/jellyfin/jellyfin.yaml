@@ -7,7 +7,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h
-  path: ./base/jelllyfin/workloads
+  path: ./base/jellyfin/workloads
   prune: true
   sourceRef:
     kind: GitRepository
