@@ -1,0 +1,61 @@
+---
+# Dependencies
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cloudflare-ddns-dependencies
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/cloudflare-ddns/dependencies
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  # healthChecks:
+  #   - apiVersion: apps/v1
+  #     kind: Deployment
+  #     name: cloudflare-ddns
+  #     namespace: cloudflare-ddns
+  dependsOn:
+    - name: settings
+    - name: bjw-s-charts
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings
+---
+# Workloads
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cloudflare-ddns
+  namespace: flux-system
+spec:
+  interval: 1h
+  path: ./base/cloudflare-ddns/workloads
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-cluster
+  # healthChecks:
+  #   - apiVersion: apps/v1
+  #     kind: Deployment
+  #     name: cloudflare-ddns
+  #     namespace: cloudflare-ddns
+  dependsOn:
+    - name: settings
+    - name: bjw-s-charts
+    - name: cloudflare-ddns-dependencies
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-settings

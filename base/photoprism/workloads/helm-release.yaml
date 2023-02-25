@@ -52,7 +52,7 @@ spec:
         enabled: true
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
-          external-dns.alpha.kubernetes.io/target: "ipv4.${PRIMARY_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "${CLOUDFLARE_RECORD_NAME}"
           external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: image-multiple

@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cloudflare-api-key.sops.yaml
+  - cloudflare-api-key.yaml
   - self-signed.yaml
   - letsencrypt-staging.yaml
   - letsencrypt-production.yaml

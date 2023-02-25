@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+    name: cloudflare-ddns
+stringData:
+    CLOUDFLARE_APIKEY: ${CLOUDFLARE_API_KEY}
+    CLOUDFLARE_EMAIL: ${CLOUDFLARE_EMAIL}
+    CLOUDFLARE_RECORD_NAME: ${CLOUDFLARE_RECORD_NAME}
+type: Opaque
