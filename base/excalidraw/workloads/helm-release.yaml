@@ -31,6 +31,7 @@ spec:
       main:
         enabled: true
         annotations:
+          external-dns.alpha.kubernetes.io/target: "${CLOUDFLARE_RECORD_NAME}"
           external-dns.home.arpa/enabled: "true"
           hajimari.io/appName: Draw
           hajimari.io/icon: mdi:draw
