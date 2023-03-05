@@ -30,10 +30,10 @@ spec:
                       "url": "https://pi-basement.${PRIMARY_DOMAIN}",
                       "hideUnlabeled": true,
                       "pinLabels": {
-                        "40": "Cows water",
-                        "33": "Cows water drain",
-                        "35": "Chickens water",
-                        "37": "Chickens water drain"
+                        "40": "Chickens water",
+                        "33": "Cows water",
+                        "35": "Main water supply",
+                        "37": "Main water drain"
                       }
                     },
                     {

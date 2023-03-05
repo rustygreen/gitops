@@ -29,6 +29,9 @@ spec:
 
     ingress:
       enabled: true
+      annotations:
+        hajimari.io/enable: "true"
+        hajimari.io/icon: mdi:elephant
       hosts:
         - host: "pgadmin.${PRIMARY_DOMAIN}"
           paths:
