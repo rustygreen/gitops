@@ -1,0 +1,41 @@
+# Proxy service/ingress for homelab UDM Pro machine.
+# Adding this allows accessing the UDM Pro over a valid
+# HTTPS certificate through ingress (when on the network).
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: udm-pro
+  namespace: default
+spec:
+  type: ExternalName
+  # IP: 192.168.1.1
+  externalName: green-udm
+  ports:
+  - name: https
+    port: 443
+    targetPort: 443
+    protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: udm-pro
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol:  "HTTPS"
+    hajimari.io/group: Homelab Infrastructure
+    hajimari.io/appName: UDM Pro
+    hajimari.io/icon: mdi:presentation
+spec:
+  rules:
+  - host: "udm.${PRIMARY_DOMAIN}"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: udm-pro
+            port:
+              name: https
