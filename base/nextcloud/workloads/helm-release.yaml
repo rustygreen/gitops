@@ -21,7 +21,8 @@ spec:
     # https://github.com/ishioni/homelab-ops/blob/master/cluster/apps/fileservers/nextcloud/helmrelease.yaml
     # https://github.com/angelnu/k8s-gitops/blob/main/apps/default/nextcloud/release.yaml
     image:
-      tag: 25.0.3
+      repository: rustygreen/nextcloud
+      tag: 26.0.0
     hpa:
       enabled: true
       cputhreshold: 60
