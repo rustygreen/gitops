@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - udm-pro.yaml
   - nas.yaml
+  - proxmox.yaml
