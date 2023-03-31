@@ -10,24 +10,21 @@ spec:
     size: 100Gi
     storageClass: ${POSTGRES_STORAGE_CLASS:=''}
   bootstrap:
-    initdb:
+    recovery:
+      source: &previous-cluster postgres-v1
       database: nextcloud
       owner: nextcloud
-    # recovery:
-    #   source: &previous-cluster postgres-v0
-    #   database: nextcloud
-    #   owner: nextcloud
   monitoring:
     enablePodMonitor: true
   backup:
-    retentionPolicy: 30d
+    retentionPolicy: 15d
     barmanObjectStore:
       wal:
         compression: &compression bzip2
         maxParallel: &parallel 1
       destinationPath: &bucket s3://nextcloud
       endpointURL: &s3-host ${S3_SERVER}
-      serverName: postgres-v1
+      serverName: postgres-v2
       s3Credentials:
         accessKeyId:
           name: &secret-name s3-access-key
@@ -35,18 +32,18 @@ spec:
         secretAccessKey:
           name: *secret-name
           key: &secret-key secret-key
-  # externalClusters:
-  #   - name: *previous-cluster
-  #     barmanObjectStore:
-  #       wal:
-  #         compression: *compression
-  #         maxParallel: *parallel
-  #       destinationPath: *bucket
-  #       endpointURL: *s3-host
-  #       s3Credentials:
-  #         accessKeyId:
-  #           name: *secret-name
-  #           key: *access-key
-  #         secretAccessKey:
-  #           name: *secret-name
-  #           key: *secret-key
+  externalClusters:
+    - name: *previous-cluster
+      barmanObjectStore:
+        wal:
+          compression: *compression
+          maxParallel: *parallel
+        destinationPath: *bucket
+        endpointURL: *s3-host
+        s3Credentials:
+          accessKeyId:
+            name: *secret-name
+            key: *access-key
+          secretAccessKey:
+            name: *secret-name
+            key: *secret-key
