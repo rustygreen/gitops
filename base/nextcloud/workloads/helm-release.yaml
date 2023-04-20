@@ -108,7 +108,7 @@ spec:
         usernameKey: username
         passwordKey: password
     cronjob:
-      enabled: false
+      enabled: true
       failedJobsHistoryLimit: 10
       successfulJobsHistoryLimit: 10
     nextcloud:
