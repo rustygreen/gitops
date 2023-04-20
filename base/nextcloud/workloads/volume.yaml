@@ -8,8 +8,7 @@ metadata:
       nfs.io/storage-path: "nextcloud-data"
 spec:
   accessModes:
-    # TODO: change this to ReadWriteMany
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: ${PRIMARY_STORAGE_CLASS}
   resources:
     requests:
