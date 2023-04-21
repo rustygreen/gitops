@@ -112,8 +112,8 @@ spec:
       successfulJobsHistoryLimit: 10
     nextcloud:
       host: *host
-      username: ${NEXTCLOUD_USERNAME:=admin}
-      password: ${NEXTCLOUD_PASSWORD:=changeme}
+      # username: ${NEXTCLOUD_USERNAME:=admin}
+      # password: ${NEXTCLOUD_PASSWORD:=changeme}
       phpConfigs:
         uploadLimit.ini: |
           upload_max_filesize = 16G
