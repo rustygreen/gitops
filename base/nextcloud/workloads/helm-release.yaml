@@ -112,8 +112,8 @@ spec:
       successfulJobsHistoryLimit: 10
     nextcloud:
       host: *host
-      # username: ${NEXTCLOUD_USERNAME:=admin}
-      # password: ${NEXTCLOUD_PASSWORD:=changeme}
+      username: ${NEXTCLOUD_USERNAME:=admin}
+      password: ${NEXTCLOUD_PASSWORD:=changeme}
       phpConfigs:
         uploadLimit.ini: |
           upload_max_filesize = 16G
@@ -127,11 +127,33 @@ spec:
           $CONFIG = array (
             'trusted_proxies' => 
             array(
-               0 => '${NETWORK_K8S_CLUSTER_CIDR}',
+              0 => '${NETWORK_K8S_CLUSTER_CIDR}',
             ),
             'forwarded_for_headers' => 
             array (
               0 => 'HTTP_X_FORWARDED_FOR',
+            ),
+            'default_phone_region' => 'US',
+            'allow_user_to_change_display_name' => false,
+            'lost_password_link' => 'disabled',
+            'oidc_login_button_text' => 'Log in with OpenID',
+            'oidc_login_hide_password_form' => false,
+            'oidc_login_disable_registration' => false,
+            'oidc_create_groups' => true,
+            'oidc_login_webdav_enabled' => true,
+            'oidc_login_password_authentication' => false,
+            'oidc_login_client_id' => '${NEXTCLOUD_OIDC_CLIENT_ID:=nextcloud}',
+            'oidc_login_client_secret' => '${NEXTCLOUD_OIDC_CLIENT_SECRET}',
+            'oidc_login_provider_url' => '${NEXTCLOUD_OIDC_SERVER}',
+            'oidc_login_end_session_redirect' => true,
+            'oidc_login_logout_url' => 'https://cloud.${PRIMARY_DOMAIN}/apps/oidc_login/oidc',
+            'oidc_login_auto_redirect' => true,
+            'oidc_login_redir_fallback' => true,
+            'oidc_login_code_challenge_method' => 'S256',
+            'oidc_login_attributes' => 
+            array (
+              'id' => 'preferred_username',
+              'mail' => 'email',
             ),
           );
         gitops.config.php: |-

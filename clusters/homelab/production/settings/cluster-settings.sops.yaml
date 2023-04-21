@@ -47,7 +47,7 @@ stringData:
     EMQX_USER: ENC[AES256_GCM,data:2H5zB38=,iv:SM0Jl0Z7vwI92ufkjBvv8mlZt/8eaExm4DlWqRLbEgo=,tag:4ZnJpVcJ/H3ZTffuoqmhFQ==,type:str]
     EMQX_PASSWORD: ENC[AES256_GCM,data:EXLHaV+2wJIs2InsvWY/HHdGXILWV170wRiEnfybuSXh1qQn2CJNPA==,iv:RV5BK6XFs3OpuG7rRfOIXWlmUyLVF7Tk/OHXazNWgL8=,tag:QtsYhjMWTbnNmCnPdNAwEg==,type:str]
     PGADMIN_PASSWORD: ENC[AES256_GCM,data:d7I8CGPCUOkMnYBlXYDd7l41+ceq+V4RTNdiP8zZ+hQkQbAW4/pM,iv:Ad2O6l04qCkT+tQjlNpmHSYgk9o3syIi/lrk+uqecHc=,tag:wUqoWIHf8bVcJC5B2r/P/Q==,type:str]
-    NEXTCLOUD_PASSWORD: ENC[AES256_GCM,data:FAIEZEfHB7wuDeZ0kQHI4hTNvWsFG54CNajMyF3JixquHscpSKSY2mb2cfm1,iv:JqOn1DL7/gvQFQsK1Qz8ii+V31kKpOUAhwqyIpIFIuk=,tag:PVym4ccslKTsdTtcKnZWFw==,type:str]
+    NEXTCLOUD_PASSWORD: ENC[AES256_GCM,data:Gg9bh9tPmiqR/w4y5VYJhNEs1fTUM31nQSNunMeYxwC4158vY/l5WA==,iv:04g5sRgk4WfijfI8eMUl4GHWsAWhZ1nap5TpSmvt5h8=,tag:GXIXDcpQC3BdX/xxFwzPjw==,type:str]
     NEXTCLOUD_OIDC_CLIENT_SECRET: ENC[AES256_GCM,data:Kx8QAHW35ioa0jpgfbVGIBByLMH/25fF8sAiXMtnbDQ=,iv:R+G5p1UZbp3B4bCjYHw/OnWUrGcRbDETnswxO2cWuH8=,tag:ebx+D94Yc85AY4UlNSGcfg==,type:str]
     NEXTCLOUD_OIDC_SERVER: ENC[AES256_GCM,data:994UpZGDed0ByZ/Ap8XRJE8X6TOgdGvxz0ROZ2Up0t2oUoJl9r2xEgY=,iv:QEtltCL86FudpHTd97Zx9F0utmk4gtGvmaR29UPYS6U=,tag:/DrBNThWdRsGYvsiKrDzgg==,type:str]
 sops:
@@ -65,8 +65,8 @@ sops:
             dFcvcDJtaktiREFiZU4xQ0lkbXE1eTQKwX9HGFeQVm1zq19vs2RbIqdUCCqLaQ9F
             qHpnGHg1JTZZ5mV7IzyB0k/N843N5ss26S4pE5E8mdzMFTjvndM2qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-04-21T01:11:18Z"
-    mac: ENC[AES256_GCM,data:87tYsljAzacgEvaaF01YNn+2dlZd8bRZ7MvGSITvKhLbCPGmVczxk7oVy3JbC8AarhIU/DKYkgmom2+s3YMEgoWmNeD+iwJSRPb3EHhEWG+3XHZQE0vjfxY5bVQcGsx8trgwCAfBb62WRDikzm13kcyVQB2PJumebSBcFDtRBvA=,iv:GxT/BGKMfaYALLP9pqmFC/tY0ZoT3exvUg1jtfBMfk8=,tag:gyTGh9/RKhWed1AtjV3aIA==,type:str]
+    lastmodified: "2023-04-21T20:05:47Z"
+    mac: ENC[AES256_GCM,data:8KP/XciTuD56CZ0ecQY5Cuh8i8gjeKg/XAOrKea4/DvFeVNzEdwoHfs4fTOVEd834c26NM1TLp3abrIG6dLC6+acIvybdZYDKX08EkpPjLBCRFp+48kPlm4XLMs8gi33LVEohZhHO/8DQCdQ3yEm38R3+h/chlaeh+hRpYAoxWQ=,iv:6e77omc0gRhvGbu4Qt9IjVOAL2o9ia6n2fIurAGiIl0=,tag:j5r1A1QWGkLMRKFxJorkKA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3
