@@ -26,7 +26,7 @@ spec:
     hpa:
       enabled: true
       cputhreshold: 60
-      minPods: 1
+      minPods: 2
       maxPods: 5
     ingress:
       enabled: true
@@ -147,6 +147,7 @@ spec:
               8 => 'OC\\Preview\\MarkDown',
               9 => 'OC\\Preview\\OpenDocument',
               10 => 'OC\\Preview\\Krita',
+              11 => 'OC\\Preview\\MOV',
             ),
             'allow_user_to_change_display_name' => false,
             'lost_password_link' => 'disabled',
