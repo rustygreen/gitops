@@ -88,7 +88,6 @@ spec:
         - &host cloud.${PRIMARY_DOMAIN}
     redis:
       enabled: true
-      # password: set in secret
       master:
         persistence:
           enabled: false

@@ -19,12 +19,7 @@ The point of this setup is to simplify cluster creation, management, and increas
 
 Each cluster makes use of different scripts/methods for bootstrapping and working with the cluster. View the README.md file in the root of each cluster folder to understand how to work with that cluster.
 
-The idea is to have every cluster in this repository easily repeatable. The cluster should be able to be torn down, re-created, and restored through simple commands. Below is an example of bootstrapping an Azure cluster:
-
-<iframe allowfullscreen style="border:none" src="https://clipchamp.com/watch/RpfVnbbcxTK/embed" width="640" height="360">
-</iframe>
-
-[Video Source](https://clipchamp.com/watch/RpfVnbbcxTK)
+The idea is to have every cluster in this repository easily repeatable. The cluster should be able to be torn down, re-created, and restored through simple commands.
 
 ## :light: Philosophy
 
@@ -62,16 +57,6 @@ The following clusters are managed in this repository.
 
 TODO
 
-## :gear: Pull Request Workflow
-
-Each cluster is setup so that Flux will automatically apply changes to the cluster when a change is pushed to this repository (a pull model, rather than push). Each cluster, with multiple environments, will be setup so that a [gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) process can be used.
-
-**Example:**
-
-- my-cluster/staging cluster is updated anytime changes are pushed to the `develop` branch
-- my-cluster/production cluster is updated anytime changes are pushed to the `master` branch
-
-![PR workflow](https://lucid.app/publicSegments/view/4b6f2312-defa-4026-9207-7c737470c804/image.jpeg)
 
 ## :key: SOPs files
 
