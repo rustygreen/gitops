@@ -22,7 +22,7 @@ spec:
     # https://github.com/angelnu/k8s-gitops/blob/main/apps/default/nextcloud/release.yaml
     image:
       repository: rustygreen/nextcloud
-      tag: 26.0.0
+      tag: 26.0.1
     hpa:
       enabled: true
       cputhreshold: 60
@@ -113,6 +113,8 @@ spec:
       successfulJobsHistoryLimit: 10
     nextcloud:
       host: *host
+      username: ${NEXTCLOUD_USERNAME:=admin}
+      password: ${NEXTCLOUD_PASSWORD:=changeme}
       phpConfigs:
         uploadLimit.ini: |
           upload_max_filesize = 16G
@@ -132,6 +134,7 @@ spec:
             array (
               0 => 'HTTP_X_FORWARDED_FOR',
             ),
+            'default_phone_region' => 'US',
           );
         gitops.config.php: |-
           <?php
