@@ -26,7 +26,7 @@ spec:
     hpa:
       enabled: true
       cputhreshold: 60
-      minPods: 1
+      minPods: 2
       maxPods: 5
     ingress:
       enabled: true
@@ -48,7 +48,7 @@ spec:
               return 302 /remote.php/webdav/$is_args$args;
             }
           }
-     
+
           location = /robots.txt {
               allow all;
               log_not_found off;
@@ -127,13 +127,28 @@ spec:
           $CONFIG = array (
             'trusted_proxies' => 
             array(
-               0 => '${NETWORK_K8S_CLUSTER_CIDR}',
+              0 => '${NETWORK_K8S_CLUSTER_CIDR}',
             ),
             'forwarded_for_headers' => 
             array (
               0 => 'HTTP_X_FORWARDED_FOR',
             ),
             'default_phone_region' => 'US',
+            'enabledPreviewProviders' =>
+            array (
+              0 => 'OC\\Preview\\PNG',
+              1 => 'OC\\Preview\\JPEG',
+              2 => 'OC\\Preview\\GIF',
+              3 => 'OC\\Preview\\HEIC',
+              4 => 'OC\\Preview\\BMP',
+              5 => 'OC\\Preview\\XBitmap',
+              6 => 'OC\\Preview\\MP3',
+              7 => 'OC\\Preview\\TXT',
+              8 => 'OC\\Preview\\MarkDown',
+              9 => 'OC\\Preview\\OpenDocument',
+              10 => 'OC\\Preview\\Krita',
+              11 => 'OC\\Preview\\MOV',
+            ),
             'allow_user_to_change_display_name' => false,
             'lost_password_link' => 'disabled',
             'oidc_login_button_text' => 'Log in with OpenID',
