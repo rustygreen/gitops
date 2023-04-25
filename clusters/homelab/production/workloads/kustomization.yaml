@@ -24,7 +24,7 @@ resources:
   - ../../../../base/minio
   - ../../../../base/blocky
   - ../../../../base/pgadmin
-  - ../../../../base/jellyfin
+  # - ../../../../base/jellyfin
   - ../../../../base/hajimari
   - ../../../../base/keycloak
   - ../../../../base/nextcloud
