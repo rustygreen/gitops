@@ -81,13 +81,18 @@ tasks:
       - sleep 5 & echo Cluster destroyed
       - task: create
 
-  create:
-    desc: Creates the cluster
+  install:
+    desc: Installs Kubernetes
     cmds:
       - task: ansible:install
       - export KUBECONFIG="{{.KUBERNETES_DIR}}/kubeconfig"
       - kubectl get nodes
       - task: cluster:verify
+
+  create:
+    desc: Creates the cluster
+    cmds:
+      - task: install
       - task: cluster:install
 
   sync:

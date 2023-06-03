@@ -11,7 +11,7 @@ spec:
     storageClass: ${POSTGRES_STORAGE_CLASS:=''}
   bootstrap:
     recovery:
-      source: &previous-cluster postgres-v0
+      source: &previous-cluster postgres-v1
       database: keycloak
       owner: keycloak
   monitoring:
@@ -24,7 +24,7 @@ spec:
         maxParallel: &parallel 1
       destinationPath: &bucket s3://keycloak
       endpointURL: &s3-host ${S3_SERVER}
-      serverName: postgres-v1
+      serverName: postgres-v2
       s3Credentials:
         accessKeyId:
           name: &secret-name s3-access-key

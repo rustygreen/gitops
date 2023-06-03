@@ -27,6 +27,11 @@ metadata:
   namespace: flux-system
 spec:
   path: ./clusters/homelab/production/workloads/keycloak/database
+  dependsOn:
+    - name: settings
+    - name: cloudnative-pg-operator
+    - name: keycloak-dependencies
+    - name: minio
 ---
 # Nextcloud database patches
 # This swaps out the standard DB cluster with a specific one for this environment.
