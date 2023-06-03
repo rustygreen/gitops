@@ -31,7 +31,10 @@ NOTE: this cluster requires this set of commands to be ran instead of just simpl
 
 TODO: Determine if there is a way to declare labels/taints via manifests.
 
-NOTE: Update database recovery/backup versions when re-creating cluster.
+Pre re-creating this cluster steps:
+
+1. Update database recovery/backup versions when re-creating cluster
+2. Remove router DNS pointing to cluster blocky service (set to "Auto")
 
 ```bash
 export CLUSTER=homelab
@@ -39,6 +42,8 @@ export ENV=production
 export KUBECONFIG="clusters/$CLUSTER/$ENV/kubeconfig"
 
 task ansible:nuke
+sleep 5 & echo Cluster destroyed
+task install
 
 kubectl taint nodes rasp-1 site=basement:NoSchedule
 kubectl label nodes rasp-1 site=basement
@@ -48,3 +53,7 @@ kubectl label nodes rasp-2 site=cowport
 
 task cluster:install
 ```
+
+Post re-creating this cluster steps:
+
+1. Update router DNS to point to blocky service IP: 192.168.7.202
