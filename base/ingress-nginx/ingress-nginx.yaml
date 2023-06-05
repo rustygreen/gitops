@@ -30,7 +30,9 @@ metadata:
   name: ingress-nginx
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/ingress-nginx/workloads
   prune: true
   sourceRef:
@@ -42,10 +44,10 @@ spec:
       name: ingress-nginx-controller
       # TODO: Figure out how to use variable substitution in here - @russell.green
       namespace: nginx
-  timeout: 5m
   dependsOn:
     - name: settings
     - name: ingress-nginx-charts
+    - name: wildcard-certificate
   decryption:
     provider: sops
     secretRef:

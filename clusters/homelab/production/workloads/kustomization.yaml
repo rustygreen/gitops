@@ -26,8 +26,8 @@ resources:
   - ../../../../base/pgadmin
   - ../../../../base/jellyfin
   - ../../../../base/hajimari
-  - ../../../../base/keycloak
-  - ../../../../base/nextcloud
+  # - ../../../../base/keycloak
+  # - ../../../../base/nextcloud
   - ../../../../base/excalidraw
   - ../../../../base/zwave-js-ui
   - ../../../../base/uptime-kuma
@@ -36,8 +36,8 @@ resources:
   - ../../../../base/home-assistant
   - ../../../../base/cloudnative-pg
   - ../../../../base/cloudflare-ddns
-  - ../../../../base/raspberry-pi-client
-  - ../../../../base/raspberry-pi-server
+  # - ../../../../base/raspberry-pi-client
+  # - ../../../../base/raspberry-pi-server
   - ../../../../base/node-feature-discovery
   - ../../../../base/homelab-proxied-sites
   
