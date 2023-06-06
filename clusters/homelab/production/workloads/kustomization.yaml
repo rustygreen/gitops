@@ -37,7 +37,7 @@ resources:
   - ../../../../base/cloudnative-pg
   - ../../../../base/cloudflare-ddns
   # - ../../../../base/raspberry-pi-client
-  # - ../../../../base/raspberry-pi-server
+  - ../../../../base/raspberry-pi-server
   - ../../../../base/node-feature-discovery
   - ../../../../base/homelab-proxied-sites
   
