@@ -22,7 +22,7 @@ spec:
     # https://github.com/angelnu/k8s-gitops/blob/main/apps/default/nextcloud/release.yaml
     image:
       repository: rustygreen/nextcloud
-      tag: 26.0.1-imagemagick
+      tag: 26.0.2
     hpa:
       enabled: true
       cputhreshold: 60
