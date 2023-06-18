@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: raspberry-pi-client2
+  namespace: ${RPI_CLIENT_NAMESPACE:=raspberry-pi-client2}
+  annotations:
+    hajimari.io/enable: "false"
+    hajimari.io/icon: "raspberry-pi"
+spec:
+  rules:
+    - host: pi2.${PRIMARY_DOMAIN}
+      http:
+        paths:
+          - backend:
+              service:
+                name: raspberry-pi-client2
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - pi2.${PRIMARY_DOMAIN}

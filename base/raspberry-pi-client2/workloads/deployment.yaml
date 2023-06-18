@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raspberry-pi-client2
+  namespace: ${RPI_CLIENT_NAMESPACE:=raspberry-pi-client2}
+spec:
+  selector:
+    matchLabels:
+      app: raspberry-pi-client2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: raspberry-pi-client2
+    spec:
+      containers:
+        - name: raspberry-pi-client2
+          image: ghcr.io/rustygreen/raspberry-pi-client2:1.0.0-rc.1
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 80
