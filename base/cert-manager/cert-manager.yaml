@@ -6,7 +6,9 @@ metadata:
   name: cert-manager-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/cert-manager/charts
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: cert-manager
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/cert-manager/controller
   prune: true
   sourceRef:
@@ -69,7 +73,9 @@ metadata:
   name: cert-manager-issuers
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/cert-manager/issuers
   prune: true
   sourceRef:
@@ -89,7 +95,6 @@ spec:
     - apiVersion: cert-manager.io/v1
       kind: ClusterIssuer
       name: self-signed
-  timeout: 5m
   decryption:
     provider: sops
     secretRef:

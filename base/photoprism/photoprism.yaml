@@ -6,7 +6,9 @@ metadata:
   name: photoprism-dependencies
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/photoprism/dependencies
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: photoprism-database
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 5m
+  timeout: 10m
   path: ./base/photoprism/database
   prune: true
   sourceRef:
@@ -60,7 +64,6 @@ spec:
       # NOTE: this needs to stay in sync w/ the number of instances in the mariadb cluster.
       name: mariadb-mariadb-galera-2
       namespace: photoprism
-  timeout: 10m
   dependsOn:
     - name: settings
     - name: bitnami-charts
@@ -82,7 +85,9 @@ metadata:
   name: photoprism
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/photoprism/workloads
   prune: true
   sourceRef:

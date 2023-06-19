@@ -6,7 +6,9 @@ metadata:
   name: cloudnative-pg-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/cloudnative-pg/charts
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: cloudnative-pg-operator
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/cloudnative-pg/operator
   prune: true
   sourceRef:
@@ -46,7 +50,6 @@ spec:
       kind: Service
       name: cnpg-webhook-service
       namespace: cloudnative-pg
-  timeout: 5m
   dependsOn:
     - name: settings
     - name: cloudnative-pg-charts

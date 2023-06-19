@@ -6,7 +6,9 @@ metadata:
   name: jelllyfin
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/jellyfin/workloads
   prune: true
   sourceRef:

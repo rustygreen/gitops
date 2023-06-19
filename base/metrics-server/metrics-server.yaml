@@ -6,7 +6,9 @@ metadata:
   name: metrics-server-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/metrics-server/charts
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: metrics-server
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/metrics-server/workloads
   prune: true
   sourceRef:

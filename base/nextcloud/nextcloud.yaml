@@ -6,7 +6,9 @@ metadata:
   name: nextcloud-dependencies
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/nextcloud/dependencies
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: nextcloud-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/nextcloud/charts
   prune: true
   sourceRef:
@@ -54,7 +58,9 @@ metadata:
   name: nextcloud-database
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 5m
+  timeout: 10m
   path: ./base/nextcloud/database
   prune: true
   sourceRef:
@@ -84,7 +90,6 @@ spec:
       # NOTE: this needs to stay in sync w/ the number of instances in the nextcloud cluster.
       name: postgres-3
       namespace: nextcloud
-  timeout: 10m
   dependsOn:
     - name: settings
     - name: cloudnative-pg-operator
@@ -105,7 +110,9 @@ metadata:
   name: nextcloud
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/nextcloud/workloads
   prune: true
   sourceRef:

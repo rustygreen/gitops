@@ -6,7 +6,9 @@ metadata:
   name: reflector-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/reflector/charts
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: reflector
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/reflector/workloads
   prune: true
   sourceRef:

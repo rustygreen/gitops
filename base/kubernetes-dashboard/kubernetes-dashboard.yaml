@@ -6,7 +6,9 @@ metadata:
   name: kubernetes-dashboard-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/kubernetes-dashboard/charts
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: kubernetes-dashboard
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/kubernetes-dashboard/workloads
   prune: true
   sourceRef:

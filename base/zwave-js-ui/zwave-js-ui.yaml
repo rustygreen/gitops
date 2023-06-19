@@ -6,7 +6,9 @@ metadata:
   name: zwave-js-ui
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/zwave-js-ui/workloads
   prune: true
   sourceRef:

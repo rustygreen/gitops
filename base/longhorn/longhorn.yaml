@@ -6,7 +6,9 @@ metadata:
   name: longhorn-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/longhorn/charts
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: longhorn-prerequisites
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/longhorn/prerequisites
   prune: true
   sourceRef:
@@ -54,7 +58,9 @@ metadata:
   name: longhorn
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/longhorn/workloads
   prune: true
   sourceRef:

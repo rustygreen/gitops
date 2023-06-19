@@ -6,7 +6,9 @@ metadata:
   name: harbor-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/harbor/charts
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: harbor-database
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 5m
+  timeout: 10m
   path: ./base/harbor/database
   prune: true
   sourceRef:
@@ -60,7 +64,6 @@ spec:
       # NOTE: this needs to stay in sync w/ the number of instances in the harbor cluster.
       name: postgres-3
       namespace: harbor
-  timeout: 10m
   dependsOn:
     - name: settings
     - name: cloudnative-pg-operator
@@ -80,7 +83,9 @@ metadata:
   name: harbor
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 5m
+  timeout: 10m
   path: ./base/harbor/workloads
   prune: true
   sourceRef:
@@ -92,7 +97,6 @@ spec:
   #     name: keycloak-operator
   #     # TODO: Figure out how to use variable substitution in here - @russell.green
   #     namespace: keycloak
-  timeout: 10m
   dependsOn:
     - name: settings
     - name: longhorn

@@ -6,7 +6,9 @@ metadata:
   name: system-upgrade-crds
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/system-upgrade/crds
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: system-upgrade
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/system-upgrade/workloads
   prune: true
   sourceRef:

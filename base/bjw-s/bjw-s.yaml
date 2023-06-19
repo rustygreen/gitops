@@ -6,7 +6,9 @@ metadata:
   name: bjw-s-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/bjw-s/charts
   prune: true
   sourceRef:

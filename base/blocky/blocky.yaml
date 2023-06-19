@@ -6,7 +6,9 @@ metadata:
   name: blocky
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/blocky/workloads
   prune: true
   sourceRef:

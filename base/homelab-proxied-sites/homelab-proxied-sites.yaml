@@ -6,7 +6,9 @@ metadata:
   name: homelab-proxied-sites
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/homelab-proxied-sites/workloads
   prune: true
   sourceRef:

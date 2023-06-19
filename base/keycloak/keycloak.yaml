@@ -6,7 +6,9 @@ metadata:
   name: keycloak-dependencies
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/keycloak/dependencies
   prune: true
   sourceRef:
@@ -20,7 +22,6 @@ spec:
       kind: Secret
       name: primary-tls
       namespace: keycloak
-  timeout: 10m
   dependsOn:
     - name: settings
     - name: wildcard-certificate
@@ -40,7 +41,9 @@ metadata:
   name: keycloak-crds
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/keycloak/crds
   prune: true
   sourceRef:
@@ -65,7 +68,9 @@ metadata:
   name: keycloak-operator
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 5m
+  timeout: 10m
   path: ./base/keycloak/operator
   prune: true
   sourceRef:
@@ -77,7 +82,6 @@ spec:
       name: keycloak-operator
       # TODO: Figure out how to use variable substitution in here - @russell.green
       namespace: keycloak
-  timeout: 10m
   dependsOn:
     - name: settings
     - name: keycloak-crds
@@ -98,7 +102,9 @@ metadata:
   name: keycloak-database
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 5m
+  timeout: 10m
   path: ./base/keycloak/database
   prune: true
   sourceRef:
@@ -128,7 +134,6 @@ spec:
       # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
       name: postgres-3
       namespace: keycloak
-  timeout: 10m
   dependsOn:
     - name: settings
     - name: cloudnative-pg-operator
@@ -149,7 +154,9 @@ metadata:
   name: keycloak
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 5m
+  timeout: 10m
   path: ./base/keycloak/cluster
   prune: true
   sourceRef:
@@ -175,7 +182,6 @@ spec:
       # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
       name: keycloak-2
       namespace: keycloak
-  timeout: 15m
   dependsOn:
     - name: settings
     - name: keycloak-dependencies

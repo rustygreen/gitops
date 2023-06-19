@@ -6,7 +6,9 @@ metadata:
   name: raspberry-pi-client2
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/raspberry-pi-client2/workloads
   prune: true
   sourceRef:

@@ -6,7 +6,9 @@ metadata:
   name: raspberry-pi-server-basement
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/raspberry-pi-server/basement
   prune: true
   sourceRef:
@@ -36,7 +38,9 @@ metadata:
   name: raspberry-pi-server-cowport
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/raspberry-pi-server/cowport
   prune: true
   sourceRef:

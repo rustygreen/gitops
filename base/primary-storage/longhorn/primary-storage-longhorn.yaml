@@ -10,7 +10,9 @@ metadata:
   name: primary-storage
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/primary-storage/noop
   prune: true
   sourceRef:

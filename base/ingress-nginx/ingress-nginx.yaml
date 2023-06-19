@@ -6,7 +6,9 @@ metadata:
   name: ingress-nginx-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/ingress-nginx/charts
   prune: true
   sourceRef:

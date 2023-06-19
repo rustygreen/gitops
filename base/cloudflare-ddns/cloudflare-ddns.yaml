@@ -6,7 +6,9 @@ metadata:
   name: cloudflare-ddns-dependencies
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/cloudflare-ddns/dependencies
   prune: true
   sourceRef:
@@ -36,7 +38,9 @@ metadata:
   name: cloudflare-ddns
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/cloudflare-ddns/workloads
   prune: true
   sourceRef:

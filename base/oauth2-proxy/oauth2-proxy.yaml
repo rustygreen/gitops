@@ -6,7 +6,9 @@ metadata:
   name: oauth2-proxy-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/oauth2-proxy/charts
   prune: true
   sourceRef:
@@ -30,17 +32,19 @@ metadata:
   name: oauth2-proxy
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/oauth2-proxy/workloads
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-cluster
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: oauth2-proxy
-  #     namespace: oauth2-proxy
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: oauth2-proxy
+      namespace: oauth2-proxy
   dependsOn:
     - name: settings
     - name: oauth2-proxy-charts

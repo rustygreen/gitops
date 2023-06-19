@@ -6,7 +6,9 @@ metadata:
   name: reloader-charts
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/reloader/charts
   prune: true
   sourceRef:
@@ -30,7 +32,9 @@ metadata:
   name: reloader
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./base/reloader/workloads
   prune: true
   sourceRef:
