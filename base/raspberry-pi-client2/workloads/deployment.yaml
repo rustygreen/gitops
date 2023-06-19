@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: raspberry-pi-client2
-          image: ghcr.io/rustygreen/raspberry-pi-client2:1.0.0-rc.1
+          image: ghcr.io/rustygreen/raspberry-pi-client:1.0.0-rc.1
           imagePullPolicy: "Always"
           ports:
             - containerPort: 80
