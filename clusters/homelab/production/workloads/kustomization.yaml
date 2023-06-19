@@ -27,6 +27,7 @@ resources:
   - ../../../../base/hajimari
   - ../../../../base/keycloak
   - ../../../../base/nextcloud
+  - ../../../../base/collabora
   - ../../../../base/excalidraw
   - ../../../../base/zwave-js-ui
   - ../../../../base/uptime-kuma
