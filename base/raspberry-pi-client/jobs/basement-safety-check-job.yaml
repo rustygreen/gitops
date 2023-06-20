@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: basement-safety-check
+spec:
+  schedule: "0,20 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: basement-safety-check
+            image: curlimages/curl
+            command:
+            - sh
+            - -c
+            args:
+            - curl "https://pi.${PRIMARY_DOMAIN}/api/safety-check?recipeId=5f255a3e-85a9-486f-831a-046351040444"
+          restartPolicy: OnFailure
