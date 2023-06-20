@@ -1,10 +1,11 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: &name basement-safety-check
+  name: &name fill-cows-water
   namespace: ${RPI_CLIENT_NAMESPACE:=raspberry-pi-client}
 spec:
-  schedule: "0,20 * * * *"
+  # Runs at 11:00 AM and 04:00 PM everyday
+  schedule: "0 0 11,16 ? * * *"
   jobTemplate:
     spec:
       template:
@@ -16,5 +17,5 @@ spec:
             - sh
             - -c
             args:
-            - curl "https://pi.${PRIMARY_DOMAIN}/api/safety-check?recipeId=5f255a3e-85a9-486f-831a-046351040444"
+            - curl "https://pi.${PRIMARY_DOMAIN}/api/fill?recipeId=9b069bbc-19a4-428e-a0c9-eecb172aaace"
           restartPolicy: OnFailure
