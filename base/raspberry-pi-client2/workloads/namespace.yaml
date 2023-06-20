@@ -1,5 +1,0 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: ${RPI_CLIENT_NAMESPACE:=raspberry-pi-client2}

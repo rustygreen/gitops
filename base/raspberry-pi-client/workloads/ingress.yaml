@@ -16,7 +16,7 @@ spec:
               service:
                 name: raspberry-pi-client
                 port:
-                  number: 80
+                  number: 3000
             path: /
             pathType: Prefix
   tls:
