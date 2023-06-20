@@ -1,11 +1,11 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: &name fill-cows-water
+  name: &name fill-cows-water-evening
   namespace: ${RPI_CLIENT_NAMESPACE:=raspberry-pi-client}
 spec:
-  # Runs at 11:00 AM and 04:00 PM everyday
-  schedule: "0 0 11,16 ? * * *"
+  # Runs at 5:00 PM everyday
+  schedule: "0 17 * * *"
   jobTemplate:
     spec:
       template:
