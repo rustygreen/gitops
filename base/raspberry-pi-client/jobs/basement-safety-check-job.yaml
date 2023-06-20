@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: basement-safety-check
+  namespace: ${RPI_CLIENT_NAMESPACE:=raspberry-pi-client}
 spec:
   schedule: "0,20 * * * *"
   jobTemplate:
