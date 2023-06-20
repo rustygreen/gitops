@@ -4,9 +4,11 @@ metadata:
   name: &name basement-safety-check
   namespace: ${RPI_CLIENT_NAMESPACE:=raspberry-pi-client}
 spec:
+  # Runs every 20 minutes
   schedule: "0,20 * * * *"
   jobTemplate:
     spec:
+      ttlSecondsAfterFinished: 600
       template:
         spec:
           containers:
