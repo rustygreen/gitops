@@ -51,6 +51,9 @@ kubectl label nodes rasp-1 site=basement
 kubectl taint nodes rasp-2 site=cowport:NoSchedule
 kubectl label nodes rasp-2 site=cowport
 
+kubectl taint nodes rasp-3 site=chickens:NoSchedule
+kubectl label nodes rasp-3 site=chickens
+
 task cluster:install
 ```
 
