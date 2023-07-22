@@ -1,0 +1,21 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: raspberry-pi-server-chickens
+  namespace: ${RPI_SERVER_NAMESPACE:=raspberry-pi-server}
+spec:
+  rules:
+    - host: pi-chickens.${PRIMARY_DOMAIN}
+      http:
+        paths:
+          - backend:
+              service:
+                name: raspberry-pi-server-chickens
+                port:
+                  number: 5000
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - pi-chickens.${PRIMARY_DOMAIN}

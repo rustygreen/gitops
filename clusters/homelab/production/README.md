@@ -60,3 +60,15 @@ task cluster:install
 Post re-creating this cluster steps:
 
 1. Update router DNS to point to blocky service IP: 192.168.7.202
+
+
+# Preparing Raspberry Pis
+
+Enable `cgroups` by appending `cgroup_memory=1 cgroup_enable=memory` to `/boot/cmdline.txt`
+
+Example:
+```bash
+console=serial0,115200 console=tty1 root=PARTUUID=58b06195-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait cgroup_memory=1 cgroup_enable=memory
+```
+
+See [docs here](https://docs.k3s.io/advanced#raspberry-pi)

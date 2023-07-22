@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raspberry-pi-server-chickens
+  namespace: ${RPI_SERVER_NAMESPACE:=raspberry-pi-server}
+spec:
+  selector:
+    matchLabels:
+      app: raspberry-pi-server-chickens
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: raspberry-pi-server-chickens
+    spec:
+      containers:
+        - name: raspberry-pi-server
+          image: ghcr.io/rustygreen/raspberry-pi-server:1.0.3
+          imagePullPolicy: Always
+          ports:
+            - containerPort: &port 5000
+          securityContext:
+            privileged: true
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: *port
+        initialDelaySeconds: 5
+        periodSeconds: 60
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: site
+                    operator: In
+                    values:
+                      - chickens
+      tolerations:
+        - key: site
+          operator: Equal
+          value: chickens
+          effect: NoSchedule
