@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: raspberry-pi-server
-          image: ghcr.io/rustygreen/raspberry-pi-server:1.0.3
+          image: ghcr.io/rustygreen/raspberry-pi-server:1.0.4
           imagePullPolicy: Always
           ports:
             - containerPort: &port 5000
