@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: raspberry-pi-server-chickens
   namespace: ${RPI_SERVER_NAMESPACE:=raspberry-pi-server}
+  annotations:
+    nginx.ingress.kubernetes.io/custom-http-errors: "418"
 spec:
   rules:
     - host: pi-chickens.${PRIMARY_DOMAIN}

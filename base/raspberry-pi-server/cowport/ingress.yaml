@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: raspberry-pi-server-cowport
   namespace: ${RPI_SERVER_NAMESPACE:=raspberry-pi-server}
+  annotations:
+    nginx.ingress.kubernetes.io/custom-http-errors: "418"
 spec:
   rules:
     - host: pi-cowport.${PRIMARY_DOMAIN}
