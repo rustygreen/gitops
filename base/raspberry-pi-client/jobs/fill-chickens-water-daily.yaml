@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: &name fill-chickens-water-daily
+  namespace: ${RPI_CLIENT_NAMESPACE:=raspberry-pi-client}
+spec:
+  # Runs at 2:00 PM every day
+  schedule: "0 14 * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 7200
+      template:
+        spec:
+          containers:
+          - name: *name
+            image: curlimages/curl
+            command:
+            - sh
+            - -c
+            args:
+            - curl "https://pi.${PRIMARY_DOMAIN}/api/fill?recipeId=01172978-cafe-47b0-ae38-aeea477dca6b"
+          restartPolicy: OnFailure
