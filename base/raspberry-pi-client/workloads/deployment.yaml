@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: raspberry-pi-client
-          image: ghcr.io/rustygreen/raspberry-pi-client:1.0.0-rc.16
+          image: ghcr.io/rustygreen/raspberry-pi-client:1.0.0-rc.17
           ports:
             - containerPort: 3000
           env:
