@@ -26,7 +26,7 @@ resources:
   - ../../../../base/pgadmin
   - ../../../../base/hajimari
   - ../../../../base/keycloak
-  # - ../../../../base/nextcloud
+  - ../../../../base/nextcloud
   - ../../../../base/collabora
   - ../../../../base/excalidraw
   - ../../../../base/zwave-js-ui

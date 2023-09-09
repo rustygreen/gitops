@@ -36,15 +36,15 @@ spec:
 # Nextcloud database patches
 # This swaps out the standard DB cluster with a specific one for this environment.
 # This patch will include things like (backup, recovery, etc.).
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: nextcloud-database
-#   namespace: flux-system
-# spec:
-#   path: ./clusters/homelab/production/workloads/nextcloud/database
-#   dependsOn:
-#     - name: settings
-#     - name: cloudnative-pg-operator
-#     - name: nextcloud-dependencies
-#     - name: minio
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: nextcloud-database
+  namespace: flux-system
+spec:
+  path: ./clusters/homelab/production/workloads/nextcloud/database
+  dependsOn:
+    - name: settings
+    - name: cloudnative-pg-operator
+    - name: nextcloud-dependencies
+    - name: minio
