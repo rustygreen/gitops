@@ -28,6 +28,7 @@ resources:
   - ../../../../base/keycloak
   - ../../../../base/nextcloud
   - ../../../../base/collabora
+  - ../../../../base/photoprism
   - ../../../../base/excalidraw
   - ../../../../base/zwave-js-ui
   - ../../../../base/uptime-kuma

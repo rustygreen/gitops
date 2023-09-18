@@ -8,7 +8,7 @@ metadata:
       nfs.io/storage-path: "photoprism-config"
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: ${PRIMARY_STORAGE_CLASS}
   resources:
     requests:
@@ -20,10 +20,10 @@ metadata:
   name: photoprism-photos
   namespace: ${PHOTOPRISM_NAMESPACE:=photoprism}
   annotations:
-      nfs.io/storage-path: "photoprism-photos"
+      nfs.io/storage-path: "photos"
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: ${PRIMARY_STORAGE_CLASS}
   resources:
     requests:
@@ -35,10 +35,10 @@ metadata:
   name: photoprism-photos-import
   namespace: ${PHOTOPRISM_NAMESPACE:=photoprism}
   annotations:
-      nfs.io/storage-path: "photoprism-photos-import"
+      nfs.io/storage-path: "photos-import"
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: ${PRIMARY_STORAGE_CLASS}
   resources:
     requests:
