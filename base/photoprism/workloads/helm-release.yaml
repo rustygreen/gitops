@@ -24,7 +24,7 @@ spec:
     #   fsGroupChangePolicy: "OnRootMismatch"
     image:
       repository: photoprism/photoprism
-      tag: latest
+      tag: 231011
     env:
       ## See other config options from PhotoPrism documentation: https://docs.photoprism.org/getting-started/config-options/
       TZ: ${TIMEZONE}
@@ -64,6 +64,17 @@ spec:
         tls:
           - hosts:
               - *host
+    probes:
+      readiness:
+        type: HTTP
+        spec:
+          httpGet:
+            path: /api/v1/status
+      liveness:
+        type: HTTP
+        spec:
+          httpGet:
+            path: /api/v1/status
     persistence:
       config:
         enabled: true
