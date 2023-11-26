@@ -41,10 +41,22 @@ spec:
         path: /
         pathType: Prefix
         hosts:
-          - &host "emqx.${PRIMARY_DOMAIN}"
+          - emqx.${PRIMARY_DOMAIN}
         tls:
           - hosts:
-              - *host
+              - emqx.${PRIMARY_DOMAIN}
+      mqtt:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          nginx.ingress.kubernetes.io/custom-http-errors: "418"
+        path: /
+        pathType: Prefix
+        hosts:
+          - mqtt.${PRIMARY_DOMAIN}
+        tls:
+          - hosts:
+              - mqtt.${PRIMARY_DOMAIN}
     metrics:
       enabled: false
     persistence:
