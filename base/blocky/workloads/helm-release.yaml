@@ -69,7 +69,6 @@ spec:
                     /^adtrack(er|ing)?[0-9]*[_.-]/
                     /^advert(s|is(ing|ements?))?[0-9]*[_.-]/
                     /^aff(iliat(es?|ion))?[_.-]/
-                    /^analytics?[_.-]/
                     /^banners?[_.-]/
                     /^beacons?[0-9]*[_.-]/
                     /^count(ers?)?[0-9]*[_.-]/
