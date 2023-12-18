@@ -5,4 +5,4 @@ resources:
   - basement-safety-check-job.yaml
   # - fill-cows-water-morning.yaml
   # - fill-cows-water-evening.yaml
-  - fill-chickens-water-daily.yaml
+  # - fill-chickens-water-daily.yaml
