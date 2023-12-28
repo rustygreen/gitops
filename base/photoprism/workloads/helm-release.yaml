@@ -24,7 +24,7 @@ spec:
     #   fsGroupChangePolicy: "OnRootMismatch"
     image:
       repository: photoprism/photoprism
-      tag: 231021
+      tag: 231128
     env:
       ## See other config options from PhotoPrism documentation: https://docs.photoprism.org/getting-started/config-options/
       TZ: ${TIMEZONE}
